@@ -1,4 +1,3 @@
-
 <?php
     // PAGE SEEKER
     @include('shared/utilities.php');

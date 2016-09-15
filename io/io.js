@@ -1,14 +1,14 @@
 var stanza;
 function loadXMLStatus(ports){
-    //console.log(ports);
     $.ajax({
         dataType: "json",
         type: "get",
-        url: "io/leggi.php"//,
-        //data: {ports: ports}
+        url: "io/leggi.php",
+        data: {ports: ports}
     })
     .done(function(el){
         $.each(el, function(port, portArray){
+            console.log(port);
             if(port > 94){
                 switch(parseInt(port)){
                     case 95:
@@ -51,11 +51,11 @@ function loadXMLStatus(ports){
                 });
             }
         });
-        setTimeout(loadXMLStatus(),100);
+        setTimeout(loadXMLStatus(ports),100);
     })
     .error(function(){
         console.log("Errore di connessione");
-        setTimeout(loadXMLStatus(),500);
+        setTimeout(loadXMLStatus(ports),500);
     });
 }
 
@@ -74,5 +74,5 @@ function setLed(port, led, isRGB = false){
 }
 
 $(document).ready(function(){
-    loadXMLStatus();
+    loadXMLStatus(ports);
 });

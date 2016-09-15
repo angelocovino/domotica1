@@ -1,6 +1,6 @@
 <?php @include('shared/header.php'); ?>
 <script>
-    var ports = [91, 92, 93];
+    var ports = [91, 92, 93, 95, 96, 97];
     function appicciaStuta (elem, isClick = false){
         if(elem.target){
             var tr = $(elem.currentTarget);
