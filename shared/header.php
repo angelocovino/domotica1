@@ -8,26 +8,14 @@
     // IO CLASS
     @include("class/io.class.php");
 ?>
+<!DOCTYPE html>
 <html>
     <head>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-        <script src="js/shared.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
         <link href="css/header.css" rel="stylesheet" />
 <?php
-    if(strcasecmp($pagina, "perimetro") == 0):
-?>
-        <link href="css/jquerySVG/jquery.svg.css" type="text/css">
-        <script src="js/jquerySVG/jquery.svg.js"></script>
-        <script src="js/jquerySVG/jquery.svgdom.js"></script>
-        <script src="js/jquerySVG/jquery.svganim.js"></script>
-<?php
-    elseif(strcasecmp($pagina, "luci") == 0):
-?>
-        <link href="css/spectrum.css" rel="stylesheet" />
-        <script src="js/spectrum.js"></script>
-<?php
-    endif;
+    echo "<script src='js/shared.php?page=" . $pagina . "'></script>";
 ?>
     </head>
     <body>

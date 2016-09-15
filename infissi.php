@@ -1,37 +1,4 @@
 <?php @include('shared/header.php'); ?>
-<script>
-    function appicciaStuta (elem, isClick = false){
-        if(elem.target){
-            var tr = $(elem.currentTarget);
-            isClick = elem.data.isClick;
-        }else{
-            var tr = $(elem);
-        }
-        var port = tr.attr('data-port');
-        var led = tr.attr('data-led');
-        var btn = tr.attr('data-btn');
-        var img = tr.find("img");
-        if(led != undefined){
-            if(isClick){
-                setLed(port, led);
-            }else{
-                if(tr.attr("data-acceso") == 1){
-                    img.attr("src", lampadinaAccesa);
-                }else{
-                    img.attr("src", lampadinaSpenta);
-                }
-            }
-        }else{
-            if(tr.attr("data-acceso") == 'up'){
-                img.attr("src", lampadinaAccesa);
-            }if(tr.attr("data-acceso") == 'dwn'){
-                img.attr("src", lampadinaSpenta);
-            }
-        }
-    }
-    $(document).ready(function(){
-    })
-</script>
 <?php
     $gestioni = array(
         "gestione totale" => array(
@@ -71,6 +38,10 @@
         "Telo oscurante salotto" => array(
             "abbassa" => saIO::led(15, 94),
             "Alza" => saIO::led(7, 94)
+        ),
+        "Telo oscurante cucina/salotto" => array(
+            "abbassa" => saIO::led(7, 93),
+            "Alza" => saIO::led(6, 93)
         ),
         "Finestra Andrea" => array(
             "stato" => saIO::btn(5, 93),
