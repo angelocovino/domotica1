@@ -114,7 +114,7 @@ function pad (str, max) {
 }
 
 function reloadColor(baseColor, stanza){
-    salone = $("#rgb_" + stanza).spectrum({
+    $("#rgb_" + stanza).spectrum({
         preferredFormat: "hsl",
         color:"#" + baseColor,
         showPalette: false,

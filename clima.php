@@ -1,6 +1,4 @@
-<?php
-    @include('shared/header.php');
-?>
+<?php @include('shared/header.php'); ?>
 <script>
     /*
     *op = codice operazione
@@ -67,6 +65,4 @@
     Manuale<div style="width:40px;cursor:pointer;" onClick='GestioneCaldo(1,93)'><img src="" id="manuale" />
 </div>
    
-<?php
-    @include('shared/footer.php');
-?>
+<?php @include('shared/footer.php'); ?>
