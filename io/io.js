@@ -26,18 +26,23 @@ function loadXMLStatus(ports, callback){
     });
 }
 
-function setLed(port, led, isRGB = false){
-    address = "io/set.php?address=" + 0 + "&port=" + port + "&led=" + led;
-    if(isRGB === true){
-        address = "io/set.php?address=" + 0 + "&port=" + port + "&rgb=" + led;
+var setTypes = [
+    "led",
+    "rgb",
+    "pwm3"
+];
+
+function setLed(port, value, type="led"){
+    if(setTypes.indexOf(type) > -1){
+        address = "io/set.php?address=" + 0 + "&port=" + port + "&" + type + "=" + led;
+        //address = "/set.php?address=" + assPorte[port] + "&port=" + port + "&led=" + led;
+        $.ajax({
+            type:"get",
+            url: address
+        }).done(function(obj){
+        }).error(function(){
+        });
     }
-    //address = "/set.php?address=" + assPorte[port] + "&port=" + port + "&led=" + led;
-    $.ajax({
-        type:"get",
-        url: address
-    }).done(function(obj){
-    }).error(function(){
-    });
 }
 
 $(document).ready(function(){

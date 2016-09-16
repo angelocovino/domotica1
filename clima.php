@@ -1,68 +1,60 @@
 <?php @include('shared/header.php'); ?>
 <script>
-    /*
-    *op = codice operazione
-    *scheda = ultime 2 cifre della scheda clima
-    */
-    function GestioneCaldo(op,scheda){
-        str = "";
-        if(op==0){//abilità automatico
-            str="SogliaTemp.htm?ReleTemp=1";
-        }
-        if(op==1){//Abilità manuale
-            str = "forms.htm?all=C";
-        }
-        if(op==2){//Cambia temperatura
-            var temp = "sogliaCaldo";
-            if(scheda = 93) temp = "sogliaFreddo";
-            str = "SogliaTemp.htm?soglia=" + $("#" + temp).val();
-        }
-        if(op==3){//accendi
-            str = "leds.cgi?led=8";
-        }
-          $.ajax({
+    var str;
+    var climateOperations = ['automatic', 'manual', 'update'];
+    function climateManagement(operation, scheda){
+        if(climateOperations.indexOf(operation) > -1){
+            switch(operation){
+                case 'automatic':
+                    str="SogliaTemp.htm?ReleTemp=1";
+                    break;
+                case 'manual':
+                    str = "forms.htm?all=C";
+                    break;
+                case 'update':
+                    str = "SogliaTemp.htm?soglia=" + $(".sogliaSelect").val();
+                    break;
+            }
+            $.ajax({
                 dataType: "json",
                 type: "get",
                 url: "http://domotica.smart.homepc.it:80" + scheda + "/" + str
             })
-            .done(function(el){
-          })
-            .error(function(obj,str1){
-
-            });
+            .done(function(el){})
+            .error(function(obj,str1){});
+        }
     }
 </script>
-<div id="caldo" style="border:solid #000 1px; background-color:#ff8e8e">
-    <h1>Caldo</h1>
-    <select id="sogliaCaldo">
-        <?php
-        for($i=12;$i<37;$i+=0.5){
-            echo "<option value=\"{$i}\">{$i}</option>";
+<?php
+    class climate{
+        public $name;
+        public $port;
+        
+        public function __construct($name, $port){
+            $this->name = $name;
+            $this->port = $port;
         }
-        ?>
-    </select><button id="MemCaldo"  onClick='GestioneCaldo(2,91)'>Cambia soglia</button><br />
-    Stato<p id="stato"></p>
-    Temperaturaa<p id="Temperatura"></p>
-    Soglia<p id="Soglia"></p>
-    Automatico<div onClick='GestioneCaldo(0,91)' style="width:40px;cursor:pointer;"><img src="" id="automatico" /></div>
-    Manuale<div onClick='GestioneCaldo(1,91)' style="width:40px;cursor:pointer;"><img src="" id="manuale" /></div>
-</div>
-
-<div id="Freddo" style="border:solid #000 1px;margin-top:10px; background-color:#8ec8ff">
-    <h1>Freddo</h1>
-    <select id="sogliaFreddo">
-        <?php
-        for($i=12;$i<37;$i++){
-            echo "<option value=\"{$i}\">{$i}</option>";
-            echo "<option value=\"{$i}.5\">{$i}.5</option>";
-        }
-        ?>
-    </select><button id="MemCaldo" onClick='GestioneCaldo(2,93)'>Cambia soglia</button><br />
-    Stato<p id="stato"></p>
-    Temperaturaa<p id="Temperatura"></p>
-    Soglia<p id="Soglia"></p>
-    Automatico<div style="width:40px;cursor:pointer;" onClick='GestioneCaldo(0,93)'><img src="" id="automatico" /></div>
-    Manuale<div style="width:40px;cursor:pointer;" onClick='GestioneCaldo(1,93)'><img src="" id="manuale" />
-</div>
-   
+    }
+    $climi = array(
+        new climate("caldo", "91"),
+        new climate("freddo", "93")
+    );
+    
+    foreach($climi as $clima){
+        echo "<div id='{$clima->name}'>";
+            echo "<h1>{$clima->name}</h1>";
+            echo "<select class='sogliaSelect'>";
+                for($i=12; $i<37; $i+=0.5){
+                    echo "<option value=\"{$i}\">{$i}</option>";
+                }
+            echo "</select>";
+            echo "<button onClick=\"climateManagement('update',{$clima->port})\">Cambia soglia</button><br />";
+            echo "Stato <span class='stato'></span><br />";
+            echo "Temperatura <span class='temperature'></span><br />";
+            echo "Soglia<span class='soglia'></span><br />";
+            echo "Automatico<div onClick=\"climateManagement('automatic',{$clima->port})\"><img src='' class='automatico' /></div>";
+            echo "Manuale<div onClick=\"climateManagement('manual',{$clima->port})\"><img src='' class='manuale' /></div>";
+        echo "</div>";
+    }
+?>
 <?php @include('shared/footer.php'); ?>

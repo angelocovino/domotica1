@@ -75,7 +75,7 @@ loadScript("js/jquery.min.js", function () {
         $("input[type=range]").change(function(){
             var port = $(this).parents("tr").attr('data-port');
             var led = $(this).parents("tr").attr('data-led');
-            setLed(port, led, false);
+            setLed(port, led);
         });
 
         $(document).on('input', '[type=range]', function(){
@@ -126,7 +126,7 @@ function reloadColor(baseColor, stanza){
             var str = color1['h'] + "_" + color1['s'] + "_" + color1['l'];
             $('#rgb_' + stanza).parent().find('.sp-preview-img').attr('src', 'shared/drawLamp.php?color=' + str);
             str = pad(color.toRed(), 3) + "" + pad(color.toGreen(), 3) + "" + color.toBlue();
-            setLed(95, str, true);
+            setLed(95, str, "rgb");
         }
     });
 }
