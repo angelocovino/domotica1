@@ -69,8 +69,8 @@ loadScript("js/jquery.min.js", function () {
             $("#" + id + "_span").html($(this).val() + "%");
         });
     });
-});
 loadScript("io/io.js", function () {});
+});
 
 var lampadinaAccesa = "immagini/lamp-2.svg";
 var lampadinaSpenta = "immagini/lamp-3.svg";
