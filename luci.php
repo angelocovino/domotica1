@@ -20,11 +20,11 @@
         ),
         "salone led RGB" => array(
             "spegni" => saIO::led(0, 0),
-            "accendi/colora" => false
+            "accendi/colora" => saIO::rgb(95)
         ),
         "salone led White" => array(
-            "spegni" => saIO::led(0, 0),
-            "accendi/regola" => saIO::led(0, 0)
+            "spegni" => saIO::white(95, true),
+            "accendi/regola" => saIO::white(95)
         ),
         "cucina" => array(
             "luce" => saIO::led(2, 91),
@@ -38,11 +38,11 @@
         ),
         "matrimoniale led RGB" => array(
             "spegni" => saIO::led(0, 0),
-            "accendi/colora" => false
+            "accendi/colora" => saIO::rgb(97)
         ),
         "matrimoniale led White" => array(
-            "spegni" => saIO::led(0, 0),
-            "accendi/regola" => saIO::led(0, 0)
+            "spegni" => saIO::white(97, true),
+            "accendi/regola" => saIO::white(97)
         ),
         "esterno" => array(
             "luce balcone" => saIO::led(4, 93),
@@ -64,11 +64,11 @@
         ),
         "bagno ospiti led RGB" => array(
             "spegni" => saIO::led(0, 0),
-            "accendi/colora" => false
+            "accendi/colora" => saIO::rgb(96)
         ),
         "bagno ospiti led White" => array(
-            "spegni" => saIO::led(0, 0),
-            "accendi/regola" => saIO::led(0, 0)
+            "spegni" => saIO::white(96, true),
+            "accendi/regola" => saIO::white(96)
         )
     );
     foreach($stanze as $nome => $luci){
@@ -83,7 +83,7 @@
                     echo "<div class='fatto responsive'>";
                         echo "<table class='gestione_luci' cellspacing='0'>";
                             $str = "";
-                            if($led instanceof saIO && (strpos($luce, "colora") == false)){
+                            if($led instanceof saIO){
                                 $str = $led->getData();
                             }
                             echo "<tr" . $str . ">";

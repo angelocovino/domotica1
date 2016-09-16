@@ -34,7 +34,7 @@ var setTypes = [
 
 function setLed(port, value, type="led"){
     if(setTypes.indexOf(type) > -1){
-        address = "io/set.php?address=" + 0 + "&port=" + port + "&" + type + "=" + led;
+        address = "io/set.php?address=" + 0 + "&port=" + port + "&" + type + "=" + value;
         //address = "/set.php?address=" + assPorte[port] + "&port=" + port + "&led=" + led;
         $.ajax({
             type:"get",
