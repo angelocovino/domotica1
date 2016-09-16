@@ -1,32 +1,4 @@
 <?php @include('shared/header.php'); ?>
-<script>
-    var ports = [91, 92, 93, 95, 96, 97];
-    function appicciaStuta (elem, isClick = false){
-        if(elem.target){
-            var tr = $(elem.currentTarget);
-            isClick = elem.data.isClick;
-        }else{
-            var tr = $(elem);
-        }
-        var port = tr.attr('data-port');
-        var led = tr.attr('data-led');
-        var img = tr.find("img");
-        if(isClick){
-            setLed(port, led);
-        }else{
-            if(tr.attr("data-acceso") == 1){
-                img.attr("src", lampadinaAccesa);
-            }else if(tr.attr("data-acceso") == 0){
-                img.attr("src", lampadinaSpenta);
-            }
-        }
-    }
-    $(document).ready(function(){
-        reloadColor("ffffff", "salone");
-        reloadColor("ffffff", "matrimoniale");
-        reloadColor("ffffff", "bagno");
-    });
-</script>
 <?php
     $stanze = array(
         "stanza andrea" => array(
@@ -52,7 +24,7 @@
         ),
         "salone led White" => array(
             "spegni" => saIO::led(0, 0),
-            "accendi/regola" => false
+            "accendi/regola" => saIO::led(0, 0)
         ),
         "cucina" => array(
             "luce" => saIO::led(2, 91),
@@ -70,7 +42,7 @@
         ),
         "matrimoniale led White" => array(
             "spegni" => saIO::led(0, 0),
-            "accendi/regola" => false
+            "accendi/regola" => saIO::led(0, 0)
         ),
         "esterno" => array(
             "luce balcone" => saIO::led(4, 93),
@@ -96,7 +68,7 @@
         ),
         "bagno ospiti led White" => array(
             "spegni" => saIO::led(0, 0),
-            "accendi/regola" => false
+            "accendi/regola" => saIO::led(0, 0)
         )
     );
     foreach($stanze as $nome => $luci){

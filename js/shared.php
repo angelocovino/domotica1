@@ -1,4 +1,10 @@
-function loadScript(url, callback) {
+<?php
+    header("Content-type: text/javascript");
+    if(isset($_GET['page'])){
+        $page = $_GET['page'];
+    }
+?>
+function loadScript(url, callback){
     var script = document.createElement("script")
     script.type = "text/javascript";
     if (script.readyState) { //IE
@@ -16,7 +22,9 @@ function loadScript(url, callback) {
     script.src = url;
     document.getElementsByTagName("head")[0].appendChild(script);
 }
-
+function loadStyle(url){
+    $("head").append("<link rel='stylesheet' href='" + url + "' type='text/css' />");
+}
 loadScript("js/jquery.min.js", function () {
     $(document).ready(function(){
         // TITOLO TOGGLE
@@ -63,13 +71,37 @@ loadScript("js/jquery.min.js", function () {
             "height" : (calculatedHeight+5) + "px",
             "padding" : "5px 0 0 0"
         });
+        
+        $("input[type=range]").change(function(){
+            var port = $(this).parents("tr").attr('data-port');
+            var led = $(this).parents("tr").attr('data-led');
+            setLed(port, led, false);
+        });
 
         $(document).on('input', '[type=range]', function(){
             var id = $(this).attr("id");
             $("#" + id + "_span").html($(this).val() + "%");
         });
     });
-loadScript("io/io.js", function () {});
+    loadScript("io/io.js", function(){});
+<?php
+        if(isset($page)):
+            echo "loadScript('js/" . $page . ".js', function () {});";
+            if(strcasecmp($page, "perimetro") == 0):
+?>
+    loadStyle("css/jquerySVG/jquery.svg.css");
+    loadScript("js/jquerySVG/jquery.svg.js", function(){});
+    loadScript("js/jquerySVG/jquery.svgdom.js", function(){});
+    loadScript("js/jquerySVG/jquery.svganim.js", function(){});
+<?php
+            elseif(strcasecmp($page, "luci") == 0):
+?>
+    loadStyle("css/spectrum.css");
+    loadScript("js/spectrum.js", function(){});
+<?php
+            endif;
+        endif;
+    ?>
 });
 
 var lampadinaAccesa = "immagini/lamp-2.svg";
@@ -80,6 +112,7 @@ function pad (str, max) {
     str = str.toString();
     return ((str.length < max) ? pad("0" + str, max) : str);
 }
+
 function reloadColor(baseColor, stanza){
     salone = $("#rgb_" + stanza).spectrum({
         preferredFormat: "hsl",
@@ -95,5 +128,17 @@ function reloadColor(baseColor, stanza){
             str = pad(color.toRed(), 3) + "" + pad(color.toGreen(), 3) + "" + color.toBlue();
             setLed(95, str, true);
         }
+    });
+}
+
+var type, number;
+function setLedView(port, portArray, callback){
+    $.each(portArray, function(tagName, value) {
+        type = tagName.substring(0, 3);
+        number = tagName.substring(3);
+        $("[data-port=" + port + "][data-" + type + "=" + number + "]").attr("data-acceso", value);
+        $(".fatto tr").each(function(i, elem){
+            callback(elem);
+        });
     });
 }

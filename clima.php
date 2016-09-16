@@ -1,7 +1,6 @@
 <?php
     @include('shared/header.php');
 ?>
-<script src="io/ioClima.js"></script>
 <script>
     /*
     *op = codice operazione
@@ -16,7 +15,9 @@
             str = "forms.htm?all=C";
         }
         if(op==2){//Cambia temperatura
-            str = "SogliaTemp.htm?soglia=" + $("#sogliaCaldo").val();
+            var temp = "sogliaCaldo";
+            if(scheda = 93) temp = "sogliaFreddo";
+            str = "SogliaTemp.htm?soglia=" + $("#" + temp).val();
         }
         if(op==3){//accendi
             str = "leds.cgi?led=8";
@@ -37,9 +38,8 @@
     <h1>Caldo</h1>
     <select id="sogliaCaldo">
         <?php
-        for($i=12;$i<37;$i++){
+        for($i=12;$i<37;$i+=0.5){
             echo "<option value=\"{$i}\">{$i}</option>";
-            echo "<option value=\"{$i}.5\">{$i}.5</option>";
         }
         ?>
     </select><button id="MemCaldo"  onClick='GestioneCaldo(2,91)'>Cambia soglia</button><br />

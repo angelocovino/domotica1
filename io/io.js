@@ -1,5 +1,6 @@
-var stanza;
-function loadXMLStatus(ports){
+var ports, loadXMLcallback;
+
+function loadXMLStatus(ports, callback){
     $.ajax({
         dataType: "json",
         type: "get",
@@ -8,54 +9,20 @@ function loadXMLStatus(ports){
     })
     .done(function(el){
         $.each(el, function(port, portArray){
-            console.log(port);
-            if(port > 94){
-                switch(parseInt(port)){
-                    case 95:
-                        stanza = "salone";
-                        break;
-                    case 96:
-                        stanza = "bagno";
-                        break;
-                    case 97:
-                        stanza = "matrimoniale";
-                        break;
-                }
-                if($("#rgb_" + stanza).length > 0){
-                    // LED RGB
-                    var g = portArray['PWM1'] / 2;
-                    var r = portArray['PWM2'] / 2;
-                    var b = portArray['PWM4'] / 2;
-                    var hexdecimal = pad(Number(r).toString(16), 2) + pad(Number(g).toString(16), 2) + pad(Number(b).toString(16), 2);
-                    var hex = pad(r, 3) + pad(g, 3) + pad(b, 3);
-                    $("#rgb_" + stanza).spectrum("set", "#" + hexdecimal);
-                    $('#rgb_' + stanza).parent().find('.sp-preview-img').attr('src', 'shared/drawLamp.php?rgb=' + hex);
-                    // LED WHITE
-                    var w = portArray['PWM3'] / 2;
-                    var wPercentage = ((w * 100) / 250);
-                    $("#white_" + stanza).val(wPercentage);
-                    var str = wPercentage + "%";
-                    if(wPercentage == 0){
-                        str = 'Accendi/Regola';
-                    }
-                    $("#white_" + stanza + "_span").html(str);
-                }
-            }else{
-                $.each(this, function(tagName, value) {
-                    type = tagName.substring(0, 3);
-                    number = tagName.substring(3);
-                    $("[data-port=" + port + "][data-" + type + "=" + number + "]").attr("data-acceso", value);
-                    $(".fatto tr").each(function(i, elem){
-                        appicciaStuta(elem);
-                    });
-                });
-            }
-        });
-        setTimeout(loadXMLStatus(ports),100);
+            if((typeof callback !== "undefined") && ($.isFunction(callback))){
+                callback(port, portArray);
+            };
+        })
     })
     .error(function(){
         console.log("Errore di connessione");
-        setTimeout(loadXMLStatus(ports),500);
+    })
+    .complete(function(xhr, textStatus){
+        if(xhr.status == 200){
+            setTimeout(loadXMLStatus(ports, callback), 100);
+        }else{
+            setTimeout(loadXMLStatus(ports, callback), 500);
+        }
     });
 }
 
@@ -74,5 +41,12 @@ function setLed(port, led, isRGB = false){
 }
 
 $(document).ready(function(){
-    loadXMLStatus(ports);
+    if(
+        typeof ports !== "undefined" &&
+        (typeof loadXMLcallback !== "undefined") && ($.isFunction(loadXMLcallback))
+    ){
+        loadXMLStatus(ports, loadXMLcallback);
+    }else{
+        console.log("ports/callback undefined");
+    }
 });
