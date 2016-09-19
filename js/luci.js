@@ -1,4 +1,4 @@
-var ports = [91, 93, 95, 96, 97];
+var ports = [91, 92, 93, 95, 96, 97];
 
 var rgbCorrespondences = {
     95: 'salone',
