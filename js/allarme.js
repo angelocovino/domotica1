@@ -36,8 +36,8 @@ loadXMLcallback = function (port, portArray){
 function loadingBar(){
     loadBar = document.getElementById("loadBar");
     loadBar.value ++;
-    if((loadBar.value<60) && (statoAllarmeT==2) || (statoAllarmeP ==2) ){
-        setTimeout(loadingBar,1000);    
+    if((loadBar.value<60) && ((statoAllarmeT==2) || (statoAllarmeP ==2))){
+        setTimeout(loadingBar, 1000);    
     }else{
         load = 0;
         loadBar = document.getElementById("loadBar").value = 0;
