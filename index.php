@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <link rel="shortcut icon" type="image/png" href="immagini/favicon.png"/>
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
         <link href="css/index.css" rel="stylesheet" />
         <script>

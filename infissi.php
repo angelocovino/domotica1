@@ -74,8 +74,8 @@
         ),
         "serranda bagno ospiti" => array(
             "stato" => saIO::btn(10, 93),
-            "abbassa" => saIO::led(3, 94),
-            "Alza" => saIO::led(1, 94)
+            "abbassa" => saIO::led(11, 94),
+            "Alza" => saIO::led(3, 94)
         )
     );
     foreach($gestioni as $nome => $luci){

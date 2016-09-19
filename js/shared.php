@@ -63,25 +63,6 @@ loadScript("js/jquery.min.js", function () {
                 $(".titolo").find("img").removeClass('ruotami');
             }
         });
-
-        // INPUT TYPE RANGE
-        var calculatedHeight = $("input[type=range]").closest(".fatto").prev().find("td").height();
-        $("input[type=range]").parent().css({
-            "vertical-align" : "middle",
-            "height" : (calculatedHeight+5) + "px",
-            "padding" : "5px 0 0 0"
-        });
-        
-        $("input[type=range]").change(function(){
-            var port = $(this).parents("tr").attr('data-port');
-            var led = $(this).parents("tr").attr('data-led');
-            setLed(port, led, false);
-        });
-
-        $(document).on('input', '[type=range]', function(){
-            var id = $(this).attr("id");
-            $("#" + id + "_span").html($(this).val() + "%");
-        });
     });
     loadScript("io/io.js", function(){});
 <?php
@@ -126,7 +107,9 @@ function reloadColor(baseColor, stanza){
             var str = color1['h'] + "_" + color1['s'] + "_" + color1['l'];
             $('#rgb_' + stanza).parent().find('.sp-preview-img').attr('src', 'shared/drawLamp.php?color=' + str);
             str = pad(color.toRed(), 3) + "" + pad(color.toGreen(), 3) + "" + color.toBlue();
-            setLed(95, str, true);
+            console.log($('#rgb_' + stanza).parents("tr").attr("data-port"));
+            setLed(95, str, "rgb");
+            // RICORDATI DI METTERE TUTTI I LED
         }
     });
 }

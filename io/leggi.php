@@ -38,7 +38,7 @@ if(isset($_GET['ports'])){
         if($porta > 95 ){
             $response[$porta] = $response[95];
         }else{
-            if($xml->open($server . ':' . $basePort . $porta . '/' . $page)){
+            if(@$xml->open($server . ':' . $basePort . $porta . '/' . $page)){
                 while($xml->read()){
                     switch($xml->nodeType){
                         case (XMLReader::ELEMENT):
