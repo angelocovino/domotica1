@@ -8,10 +8,10 @@ loadXMLcallback = function (port, portArray){
     statoAllarmeT = portArray['allT'];
     statoAllarmeP = portArray['allP'];
     var stato = $("#statoAllarme");
-    if((portArray['allT'] == "1") && (portArray['Cntdebug'] == "0")){//Allarme attivo totale
+    if((portArray['allT'] >= "1") && (portArray['Cntdebug'] == "0")){//Allarme attivo totale
         stato.html("Attivo totale");
         $("#loadBar").hide();
-    }else if((portArray['allP'] == "1") && (portArray['Cntdebug'] == "0")){//Allarme attivo parziale
+    }else if((portArray['allP'] >= "1") && (portArray['Cntdebug'] == "0")){//Allarme attivo parziale
         stato.html("Attivo parziale");
         $("#loadBar").hide();
     }else if((portArray['led11'] == '0' ) && (portArray["Cntdebug"] == "0")){//Allarme pronto
