@@ -81,5 +81,5 @@ loadXMLcallback = function (port, portArray){
         stato = off;
         if(portArray["ReleTemp"] == "1"){ stato = on; }
         $("#" + selectedClimate + " .automatico").attr('src', stato);
-    }ì
+    }
 }
