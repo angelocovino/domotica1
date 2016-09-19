@@ -14,8 +14,8 @@ function loadXMLStatus(ports, callback){
             };
         })
     })
-    .error(function(){
-        console.log("Errore di connessione");
+    .error(function(obj,ErrorStr){
+        console.log("Errore di connessione " + ErrorStr);
     })
     .complete(function(xhr, textStatus){
         if(xhr.status == 200){

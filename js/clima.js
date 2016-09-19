@@ -8,13 +8,16 @@ loadXMLcallback = function (port, portArray){
 
         if(port == 91 && tagName == 'led8'){//Leggo se acceso caldo
             stato = "Spento";
-            if(value == "1") stato = "Acceso"
+            if(value == "1") stato = "Acceso";
+            console.log(stato);
             $("#Caldo #stato").html(stato);
+            console.log( $("#Caldo #stato"));
         }
         if(port == 93 && tagName == 'led8'){//Leggo se acceso freddo
             stato = "Spento";
-            if(value == "1") stato = "Acceso"
+            if(value == "1") stato = "Acceso";
             $("#Freddo #stato").html(stato);
+            console.log( $("#Freddo #stato"));
         }                
         if(port == 91 && tagName == 'temp'){//Leggo temperatura sensore caldo
             $("#Caldo #Temperatura").html(value);
