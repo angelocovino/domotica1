@@ -10,6 +10,9 @@ function loadXMLStatus(ports, callback){
     .done(function(el){
         $.each(el, function(port, portArray){
             if((typeof callback !== "undefined") && ($.isFunction(callback))){
+                if(portArray.length < 1){
+                    console.log("port " + port + " is down");
+                }
                 callback(port, portArray);
             };
         })

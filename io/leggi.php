@@ -32,25 +32,27 @@ if(isset($_GET['ports'])){
     $page = 'status.xml';
     $xml = new XMLReader();
     $response = array();
-    foreach($arrayRichieste as $key => $porta){
-        $response[$porta] = array();
-        //if($xml->open($server . '.' . $key . ':' . $basePort . $porta . '/' . $page)){
-        if($porta > 95 ){
-            $response[$porta] = $response[95];
-        }else{
-            if(@$xml->open($server . ':' . $basePort . $porta . '/' . $page)){
-                while($xml->read()){
-                    switch($xml->nodeType){
-                        case (XMLReader::ELEMENT):
-                            $tagName = $xml->localName;
-                            $xml->read();
-                            if($xml->depth > 1 ){
-                                $response[$porta][$tagName] = $xml->value;
-                            }
-                            break;
+    if(isset($arrayRichieste)){
+        foreach($arrayRichieste as $key => $porta){
+            $response[$porta] = array();
+            //if($xml->open($server . '.' . $key . ':' . $basePort . $porta . '/' . $page)){
+            if($porta > 95 ){
+                $response[$porta] = $response[95];
+            }else{
+                if(@$xml->open($server . ':' . $basePort . $porta . '/' . $page)){
+                    while($xml->read()){
+                        switch($xml->nodeType){
+                            case (XMLReader::ELEMENT):
+                                $tagName = $xml->localName;
+                                $xml->read();
+                                if($xml->depth > 1 ){
+                                    $response[$porta][$tagName] = $xml->value;
+                                }
+                                break;
+                        }
                     }
+                $xml->close();
                 }
-            $xml->close();
             }
         }
     }
