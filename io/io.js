@@ -22,7 +22,7 @@ function loadXMLStatus(ports, callback){
     })
     .complete(function(xhr, textStatus){
         if(xhr.status == 200){
-            setTimeout(loadXMLStatus(ports, callback), 100);
+            setTimeout(loadXMLStatus(ports, callback), 1000);
         }else{
             setTimeout(loadXMLStatus(ports, callback), 500);
         }
@@ -32,7 +32,9 @@ function loadXMLStatus(ports, callback){
 var setTypes = [
     "led",
     "rgb",
-    "pwm3"
+    "pwm3",
+    "all",
+    "modalit"
 ];
 
 function setLed(port, value, type="led"){
