@@ -35,6 +35,7 @@ class dbmanagment{
                 mese INTEGER,
                 anno INTEGER,
                 comando INTEGER,
+                eseguito  INTEGER DEFAULT 0,
                 FOREIGN KEY(comando) REFERENCES Comando(Id))");            
         }
     }
@@ -154,7 +155,7 @@ class dbmanagment{
     }
     
     function deleteEvents($id){
-        $str = "DELETE FROM Evento WHERE id={$str}";
+        $str = "DELETE FROM Evento WHERE id={$id}";
         $this->pdo->exec($str);
     }
     

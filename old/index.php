@@ -14,13 +14,20 @@
     $db->opendatabase();
     $db->createDB();
 
-   /*  $db->addEvents(10,10,19,9,2016,8);
+  /*   $db->addEvents(10,10,19,9,2016,8);
      $db->addEvents(11,10,19,9,2016,8);
      $db->addEvents(12,10,19,9,2016,8);
      $db->addEvents(10,10,20,9,2016,8);
      $db->addEvents(10,10,20,9,2016,8);*/
 
     $str = $db->getEventsWithParams(9,2016);
+
+    //$db->deleteEvents(1);
+    echo "<pre>";
+
+    var_dump($str);
+
+    echo "</pre>";
 
 
 
