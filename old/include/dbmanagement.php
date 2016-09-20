@@ -144,10 +144,7 @@ class dbmanagment{
                 'id' => $cose['id'],
                 'comandoNome' => $cose['nome']
             );
-        }
-        echo "<pre>";
-        var_dump($arr);
-            
+        }   
         return $arr;
     }
     
@@ -156,6 +153,10 @@ class dbmanagment{
         $this->pdo->exec($str);
     }
     
+    function deleteEvents($id){
+        $str = "DELETE FROM Evento WHERE id={$str}";
+        $this->pdo->exec($str);
+    }
     
     
     private function tableExists($table) {
