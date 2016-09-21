@@ -38,7 +38,18 @@ class dbmanagment{
                 eseguito  INTEGER DEFAULT 0,
                 FOREIGN KEY(comando) REFERENCES Comando(Id))");            
         }
+        if($this->tableExists("EventiProgrammati") == FALSE){
+                 $this->pdo->exec("CREATE TABLE EventiProgrammati(
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                ora INTEGER,
+                minuti INTEGER,
+                giorni TEXT,
+                comando INTEGER,
+                enable INTEGER DEFAULT 1,
+                FOREIGN KEY(comando) REFERENCES Comando(Id))");            
+        }
     }
+    
 
     function insertComandi(){
 
@@ -141,11 +152,27 @@ class dbmanagment{
         $result = $result->fetchAll();
         $arr = array();
         foreach($result as $i => $cose){
-            $arr[$cose['giorno']][$cose['ora']] = array(
+            $arr[$cose['giorno']][$cose['ora']][] = array(
                 'id' => $cose['id'],
                 'comandoNome' => $cose['nome']
             );
-        }   
+        }
+        $query = "SELECT Comando.nome, EventiProgrammati.id , EventiProgrammati.giorni , (EventiProgrammati.ora || ':' || EventiProgrammati.minuti) as ora
+        FROM EventiProgrammati INNER JOIN Comando ON EventiProgrammati.comando = Comando.id 
+        WHERE enable = 1 
+        ORDER BY ora , minuti";
+        $result = $this->pdo->query($query);
+        $result = $result->fetchAll();
+        $arr['programmati'] = "";
+        foreach($result as $i => $cose){
+           $day = explode(",",$cose['giorni']);
+            foreach($day as $d){
+                $arr['programmati'][$d][$cose['ora']][] = array(
+                    'id' => $cose['id'],
+                    'comandoNome' => $cose['nome']
+                );
+            }
+        }
         return $arr;
     }
     
@@ -156,6 +183,31 @@ class dbmanagment{
     
     function deleteEvents($id){
         $str = "DELETE FROM Evento WHERE id={$id}";
+        $this->pdo->exec($str);
+    }
+    
+    function addEventsScheduled($ora,$minuti,$giorni,$comando){
+        $str = "INSERT INTO EventiProgrammati (ora, minuti, giorni, comando) VALUES ({$ora},{$minuti},\"{$giorni}\",{$comando});";
+        var_dump($str);
+        $this->pdo->exec($str);
+    }
+    
+    function deleteEventsScheduled($id){
+        $str = "DELETE FROM EventiProgrammati WHERE id={$id}";
+        $this->pdo->exec($str);
+    }
+    
+    function disableEventScheduled($id){
+        $str = "UPDATE EventiProgrammati
+        SET enable = 0
+        where id = {$id}";
+        $this->pdo->exec($str);
+    }
+    
+    function enableEventScheduled($id){
+        $str = "UPDATE EventiProgrammati
+        SET enable = 1
+        where id = {$id}";
         $this->pdo->exec($str);
     }
     

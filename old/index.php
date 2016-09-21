@@ -14,14 +14,21 @@
     $db->opendatabase();
     $db->createDB();
 
-  /*   $db->addEvents(10,10,19,9,2016,8);
+    /* $db->addEvents(10,10,19,9,2016,8);
      $db->addEvents(11,10,19,9,2016,8);
      $db->addEvents(12,10,19,9,2016,8);
      $db->addEvents(10,10,20,9,2016,8);
      $db->addEvents(10,10,20,9,2016,8);*/
 
+   /* $db->addEventsScheduled(12,30,"1,2,4",8);
+    $db->addEventsScheduled(12,30,"2,3,4",8);
+    $db->addEventsScheduled(12,30,"1,2,4",2);*/
+
     $str = $db->getEventsWithParams(9,2016);
 
+
+    $db->disableEventScheduled(1);
+    //enableEventScheduled
     //$db->deleteEvents(1);
     echo "<pre>";
 
