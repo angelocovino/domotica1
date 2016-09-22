@@ -83,7 +83,7 @@ function calendarEventPrintScheduled(eventArray){
     var startTime, evento, str = "";
     for(startTime in eventArray) {
         for(evento in eventArray[startTime]){
-            str += "<tr>";
+            str += "<tr class='scheduledEvent'>";
                 str += "<td>";
                     str += startTime;
                 str += "</td>";
