@@ -1,30 +1,4 @@
 <?php @include('shared/header.php'); ?>
-<script>
-    var str;
-    var climateOperations = ['automatic', 'manual', 'update'];
-    function climateManagement(operation, scheda){
-        if(climateOperations.indexOf(operation) > -1){
-            switch(operation){
-                case 'automatic':
-                    str="SogliaTemp.htm?ReleTemp=1";
-                    break;
-                case 'manual':
-                    str = "forms.htm?all=C";
-                    break;
-                case 'update':
-                    str = "SogliaTemp.htm?soglia=" + $(".sogliaSelect").val();
-                    break;
-            }
-            $.ajax({
-                dataType: "json",
-                type: "get",
-                url: "http://domotica.smart.homepc.it:80" + scheda + "/" + str
-            })
-            .done(function(el){})
-            .error(function(obj,str1){});
-        }
-    }
-</script>
 <?php
     class climate{
         public $name;

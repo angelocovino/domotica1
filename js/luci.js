@@ -56,7 +56,6 @@ function appicciaStuta (elem, isClick = false){
         // TURN OFF WHITE LED BUTTON
         if(typeof turnoff !== "undefined" && turnoff == 1){
             setLed(port, 0, "pwm3");
-        console.log("zero");
         }else{
             setLed(port, led);
         }

@@ -70,6 +70,8 @@
 				echo "var comandi=" . json_encode($comandi) . ";";
 				echo "var currentMonth=" . $currentMonth . ";";
 				echo "var currentYear=" . $currentYear . ";";
+				echo "var month=" . $month . ";";
+				echo "var year=" . $year . ";";
 			?>
 		</script>
 		<div id="popupBackground">&nbsp;</div>

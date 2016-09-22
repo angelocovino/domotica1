@@ -35,18 +35,13 @@ function calendarEventClose(time = 500, callback = null){
 }
 function calendarEventsGet(day){
     var eventTime, str;
-    str = "<form id='addEvent' action='managmentEvent.php' method='post' name='addEvent'>";
+    str = "<form id='addEvent' action='eventManagement.php' method='post' name='addEvent'>";
         str += "<table cellspacing='4px' cellpadding='0'>";
         var d, dow;
         d = new Date(currentYear, currentMonth - 1, day, 0, 0, 0, 0);
         dow = d.getDay();
         if(dow == 0){dow = 6;}
         else{dow--;}
-        /*
-        console.log(dow);
-        console.log(events);
-        console.log("poi");
-        */
         if(dow in events["programmati"]){
             str += calendarEventPrintScheduled(events["programmati"][dow]);
         }
@@ -72,7 +67,7 @@ function calendarEventPrint(eventArray, startTime){
             str += "<td>";
                 str += startTime;
             str += "</td>";
-            str += "<td>";
+            str += "<td data-id='" + eventArray[evento]["id"] + "'>";
                 str += eventArray[evento]["comandoNome"];
             str += "</td>";
         str += "</tr>";
@@ -115,8 +110,9 @@ function calendarEventAddPrint(day){
     str += "<tr id='eventAddRowSubmit'>";
         str += "<td class='noBorder' colspan='2'>";
                 str += "<input type='hidden' name='eventDay' value='" + day + "' />";
-                str += "<input type='hidden' name='eventMonth' value='" + currentMonth + "' />";
-                str += "<input type='hidden' name='eventYear' value='" + currentYear + "' />";
+                str += "<input type='hidden' name='eventMonth' value='" + month + "' />";
+                str += "<input type='hidden' name='eventYear' value='" + year + "' />";
+                str += "<input type='hidden' name='evetnType' value='0' />";
                 str += "<input type='submit' value='Salva' />";
         str += "</td>";
     str += "</tr>";
@@ -134,6 +130,7 @@ function calendarEventGetCommands(){
 }
 
 $(document).ready(function(){
+    var tdDeleteOldValue = [];
     $(".day").click(function(){
         var td = $(this);
         var day = td.attr("data-day");
@@ -154,5 +151,43 @@ $(document).ready(function(){
             $("#eventAddRow").fadeIn(500);
             $("#eventAddRowSubmit").fadeIn(500);
         });
+    });
+    $("body").on("mouseover", "#calendarEvents tr:not(.scheduledEvent):not(#eventAddRow) td:last-child:not(.noBorder)", function (){
+        tdDeleteOldValue[$(this).attr("data-id")] = $(this).html();
+        $(this).fadeOut(250, function(){
+            $(this).addClass("removable");
+            $(this).html("ELIMINA");
+            $(this).css("color", "red");
+            $(this).css("cursor", "pointer");
+            $(this).fadeIn(250);
+        });
+    });
+    $("body").on("mouseout", "#calendarEvents tr:not(.scheduledEvent):not(#eventAddRow) td:last-child:not(.noBorder)", function (){
+        $(this).fadeOut(250, function(){
+            $(this).removeClass("removable");
+            $(this).html(tdDeleteOldValue[$(this).attr("data-id")]);
+            $(this).css("color", "black");
+            $(this).css("cursor", "default");
+            $(this).fadeIn(250);
+        });
+    });
+    $("body").on("click", ".removable", function (){
+        if(confirm("Sicuro di voler eliminare questo evento?")){
+            var idEvento = $(this).attr("data-id");
+            $.ajax({
+                dataType: "json",
+                type: "post",
+                url: "eventManagement.php",
+                data: {id: idEvento, eventType: 2}
+            })
+            .done(function(el){
+                console.log("eliminato");
+                window.location.href = window.location.href;
+            })
+            .error(function(obj,ErrorStr){
+                console.log("errore eliminazione");
+                console.log(obj);
+            });
+        }
     });
 });

@@ -20,17 +20,17 @@ function appicciaStuta (elem, isClick = false){
         if(isClick){
             setLed(port, led);
         }else{
-            if(tr.attr("data-acceso") == 1){
-                img.attr("src", lampadinaAccesa);
-            }else{
-                img.attr("src", lampadinaSpenta);
+            if(tr.attr("data-acceso") == 'up'){
+                img.attr("src", tapparellaAbbassata);
+            }if(tr.attr("data-acceso") == 'dwn'){
+                img.attr("src", tapparellaAlzata);
             }
         }
     }else{
         if(tr.attr("data-acceso") == 'up'){
-            img.attr("src", lampadinaAccesa);
+            img.attr("src", tapparellaAbbassata);
         }if(tr.attr("data-acceso") == 'dwn'){
-            img.attr("src", lampadinaSpenta);
+            img.attr("src", tapparellaAlzata);
         }
     }
 }

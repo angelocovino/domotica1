@@ -101,6 +101,16 @@ loadScript("js/jquery.min.js", function () {
 
 var lampadinaAccesa = "immagini/lamp-2.svg";
 var lampadinaSpenta = "immagini/lamp-3.svg";
+
+var on = "immagini/switchOn.svg";
+var off = "immagini/switchOff.svg";
+
+var presaAccesa = "immagini/plug.svg";
+var presaSpenta = "immagini/socket.svg";
+
+var tapparellaAbbassata = "immagini/TapparellaAbbassata.svg";
+var tapparellaAlzata = "immagini/TapparellaAlzata.svg";
+
 var below801 = false;
 
 function pad (str, max) {
