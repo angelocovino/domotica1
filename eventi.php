@@ -35,13 +35,12 @@
     $db->opendatabase();
     $db->createDB();
     $esempi = $db->getEventsWithParams($month, $year);
-    
     $comandi = $db->getComando();
 	
 	$countDaysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 	
 	$months = array(
-		1=>'Gennaio',
+		1 => 'Gennaio',
 		'Febbraio',
 		'Marzo',
 		'Aprile',
@@ -64,26 +63,6 @@
 		'Sabato',
 		'Domenica'
 	);
-/*
-	$comandi = array(
-		1 => array(
-			"id" => 30,
-			"nome" => "caldaia esplode"
-		),
-		2 => array(
-			"id" => 30,
-			"nome" => "caldaia riparata"
-		),
-		3 => array(
-			"id" => 30,
-			"nome" => "caldaia distrutta"
-		),
-		4 => array(
-			"id" => 54,
-			"nome" => "specchio bevuto"
-		)
-	);
-*/
 ?>
 		<script>
 			<?php

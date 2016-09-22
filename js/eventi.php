@@ -34,31 +34,35 @@ function calendarEventClose(time = 500, callback = null){
     $("#calendarEventPopup").fadeOut(time);
 }
 function calendarEventsGet(day){
-    var eventTime, str = "<table cellspacing='4px' cellpadding='0'>";
-    var d, dow;
-    d = new Date(currentYear, currentMonth - 1, day, 0, 0, 0, 0);
-    dow = d.getDay();
-    if(dow == 0){dow = 6;}
-    else{dow--;}
-    /*
-    console.log(dow);
-    console.log(events);
-    console.log("poi");
-    */
-    if(dow in events["programmati"]){
-        str += calendarEventPrintScheduled(events["programmati"][dow]);
-    }
-    if(day in events){
-        for(eventTime in events[day]) {
-            str += calendarEventPrint(events[day][eventTime], eventTime);
-        }
-    }else{
-        str += "</table>";
-        str += "<div class='center'>Non ci sono eventi programmati per questo giorno</div>";
+    var eventTime, str;
+    str = "<form id='addEvent' action='db/addEvent.php' method='post' name='addEvent'>";
         str += "<table cellspacing='4px' cellpadding='0'>";
-    }
-    str += calendarEventAddPrint();
+        var d, dow;
+        d = new Date(currentYear, currentMonth - 1, day, 0, 0, 0, 0);
+        dow = d.getDay();
+        if(dow == 0){dow = 6;}
+        else{dow--;}
+        /*
+        console.log(dow);
+        console.log(events);
+        console.log("poi");
+        */
+        if(dow in events["programmati"]){
+            str += calendarEventPrintScheduled(events["programmati"][dow]);
+        }
+        if(day in events){
+            for(eventTime in events[day]) {
+                str += calendarEventPrint(events[day][eventTime], eventTime);
+            }
+        }else{
+            str += "</table>";
+            str += "<div class='center'>Non ci sono eventi programmati per questo giorno</div>";
+            str += "<table cellspacing='4px' cellpadding='0'>";
+        }
+        str += calendarEventAddPrint(day);
+        str += "</table>";
     str += "</table>";
+    str += "</form>";
     return str;
 }
 function calendarEventPrint(eventArray, startTime){
@@ -91,17 +95,18 @@ function calendarEventPrintScheduled(eventArray){
     }
     return (str);
 }
-function calendarEventAddPrint(){
-    var str = "<tr id='eventAddRowButton'>";
+function calendarEventAddPrint(day){
+    var str;
+    str = "<tr id='eventAddRowButton'>";
         str += "<td class='noBorder' colspan='2'>";
             str += "<input type='button' value='Aggiungi' />";
         str += "</td>";
     str += "</tr>";
     str += "<tr id='eventAddRow'>";
         str += "<td>";
-            str += "<input class='eventAddTime' type='number' min='0' max='23' value='0' />";
+            str += "<input class='eventAddTime' name='eventHour' type='number' min='0' max='23' value='0' />";
             str += ":";
-            str += "<input class='eventAddTime' type='number' min='0' max='59' value='0' />";
+            str += "<input class='eventAddTime' name='eventMinute' type='number' min='0' max='59' value='0' />";
         str += "</td>";
         str += "<td>";
             str += calendarEventGetCommands();
@@ -109,14 +114,17 @@ function calendarEventAddPrint(){
     str += "</tr>";
     str += "<tr id='eventAddRowSubmit'>";
         str += "<td class='noBorder' colspan='2'>";
-            str += "<input type='button' value='Salva' />";
+                str += "<input type='hidden' name='eventDay' value='" + day + "' />";
+                str += "<input type='hidden' name='eventMonth' value='" + currentMonth + "' />";
+                str += "<input type='hidden' name='eventYear' value='" + currentYear + "' />";
+                str += "<input type='submit' value='Salva' />";
         str += "</td>";
     str += "</tr>";
     return (str);
 }
 function calendarEventGetCommands(){
     var comando;
-    var str = "<select id='eventCommand'>";
+    var str = "<select name='eventCommand' id='eventCommand'>";
     for(comando in comandi){
         comando = comandi[comando];
         str += "<option value='" + comando['id'] + "'>" + comando['nome'] + "</option>";
