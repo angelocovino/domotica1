@@ -113,6 +113,9 @@ body {
     width: 25%;
     text-align: center;
 }
+#calendarEvents table tr.scheduledEvent {
+    background: lightgray;
+}
 #calendarEvents table td:last-child{
 
 }
