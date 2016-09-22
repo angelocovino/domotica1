@@ -32,22 +32,22 @@
         $db->addEventsScheduled($ora,$minuti,$giorni,$comando);
     }
 
-    if(tipo == 2){
+    if($tipo == 2){
         $id =  $_POST['id'];
         $db->deleteEvents($id);
     }
 
-    if(tipo == 3){
+    if($tipo == 3){
         $id =  $_POST['id'];
         $db->deleteEventsScheduled($id);
     }
 
-    if(tipo == 4){
+    if($tipo == 4){
         $id =  $_POST['id'];
         $db->enableEventScheduled($id);
     }
 
-    if(tipo == 5){
+    if($tipo == 5){
         $id =  $_POST['id'];
         $db->disableEventScheduled($id);
     }
