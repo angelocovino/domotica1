@@ -35,7 +35,7 @@ function calendarEventClose(time = 500, callback = null){
 }
 function calendarEventsGet(day){
     var eventTime, str;
-    str = "<form id='addEvent' action='db/addEvent.php' method='post' name='addEvent'>";
+    str = "<form id='addEvent' action='managmentEvent.php' method='post' name='addEvent'>";
         str += "<table cellspacing='4px' cellpadding='0'>";
         var d, dow;
         d = new Date(currentYear, currentMonth - 1, day, 0, 0, 0, 0);
