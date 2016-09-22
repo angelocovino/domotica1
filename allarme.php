@@ -1,5 +1,4 @@
 <?php @include('shared/header.php'); ?>
-
     <style>
         .button{
             width: 5%;
@@ -87,5 +86,4 @@
 
     </div>   
 </div>
-
 <?php @include('shared/footer.php'); ?>
