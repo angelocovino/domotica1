@@ -4,7 +4,7 @@
     $db = new dbmanagment();
     $db->opendatabase();
     $db->createDB();
- 
+    
     $tipo = $_POST['eventType'];
 
     // 0 = addEvento con data
@@ -21,7 +21,7 @@
         $mese = $_POST['eventMonth'];
         $anno = $_POST['eventYear'];
         $comando = $_POST['eventCommand'];
-        $db->addEvents($ora, $minuti, $giorno, $mese, $anno, $comando );
+        $db->addEvents($ora, $minuti, $giorno, $mese, $anno, $comando);
     }
 
     if($tipo == 1){
@@ -52,8 +52,9 @@
         $db->disableEventScheduled($id);
     }
 
-
-    $old = $_SERVER['HTTP_REFERER'];
-    header('Location: ' . $old);
-
+    if($tipo != 2){
+        $old = $_SERVER['HTTP_REFERER'];
+        header('Location: ' . $old);
+    }
+    echo (json_encode($tipo));
 ?>

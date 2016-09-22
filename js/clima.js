@@ -1,8 +1,5 @@
 var ports = [91, 93];
 
-var on = "immagini/switchOn.svg";
-var off = "immagini/switchOff.svg";
-
 var climateCorrespondences = {
     91 : "caldo",
     93 : "freddo"
@@ -33,5 +30,30 @@ loadXMLcallback = function (port, portArray){
         stato = off;
         if(portArray["ReleTemp"] == "1"){ stato = on; }
         $("#" + selectedClimate + " .automatico").attr('src', stato);
+    }
+}
+
+var str;
+var climateOperations = ['automatic', 'manual', 'update'];
+function climateManagement(operation, scheda){
+    if(climateOperations.indexOf(operation) > -1){
+        switch(operation){
+            case 'automatic':
+                str="SogliaTemp.htm?ReleTemp=1";
+                break;
+            case 'manual':
+                str = "forms.htm?all=C";
+                break;
+            case 'update':
+                str = "SogliaTemp.htm?soglia=" + $(".sogliaSelect").val();
+                break;
+        }
+        $.ajax({
+            dataType: "json",
+            type: "get",
+            url: "http://domotica.smart.homepc.it:80" + scheda + "/" + str
+        })
+        .done(function(el){})
+        .error(function(obj,str1){});
     }
 }

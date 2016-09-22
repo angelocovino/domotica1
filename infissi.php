@@ -90,7 +90,7 @@
                         echo "<table cellspacing='0'>";
                             echo "<tr" . $led->getData() . ">";
                                 echo "<td>";
-                                    echo "<img src='immagini/lamp-3.svg' />";
+                                    echo "<img src='immagini/TapparellaAlzata.svg' />";
                                 echo "</td>";
                                 echo "<td>";
                                     echo ucwords($luce);
@@ -115,7 +115,7 @@
                             echo "<table cellspacing='0'>";
                                 echo "<tr" . $str . ">";
                                 echo "<td>";
-                                    echo "<img src='immagini/lamp-3.svg' />";
+                                    echo "<img src='immagini/tapparellaAlzata.svg' />";
                                 echo "</td>";
                                 echo "<td>";
                                     echo "Aperto/Chiuso";
@@ -138,7 +138,7 @@
                             if(!empty($str)){
                                 echo "<tr" . $str . ">";
                                     echo "<td>";
-                                        echo "<img src='immagini/lamp-3.svg' />";
+                                        echo "<img src='immagini/tapparellaAlzata.svg' />";
                                     echo "</td>";
                                     echo "<td>";
                                         echo ucwords($name);
@@ -153,7 +153,7 @@
                             if(isset($luci['Alza']) && ($luci['Alza'] instanceof saIO)){ $str = $luci['Alza']->getData(); 
                                 echo "<tr" . $str . ">";
                                 echo "<td>";
-                                    echo "<img src='immagini/lamp-3.svg' />";
+                                    echo "<img src='immagini/tapparellaAlzata.svg' />";
                                 echo "</td>";
                                 echo "<td>";
                                     echo ucwords("alza");
