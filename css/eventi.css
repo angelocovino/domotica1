@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html,
+body {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+#calendarContainer {
+}
+#calendarContainer h3 {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+    margin: 10px 0;
+}
+#calendarContainer table {
+    width: 100%;
+    background-color: #006062;
+}
+#calendarContainer td,
+#calendarContainer th {
+    text-align: center;
+    width: 14%;
+}
+#calendarContainer th {
+    height: 30px;
+    font-size: 16px;
+    color: black;
+    background-color: lightgray;
+}
+#calendarContainer td {
+    background-color: white;
+    height: 100px;
+}
+#calendarContainer .day {
+    position: relative;
+    padding: 0 5px;
+    padding-top: 30px;
+    vertical-align: top;
+    text-align: left;
+}
+#calendarContainer .dayEmpty {
+    background-color: transparent;
+    /*background-color: gray;*/
+}
+#calendarContainer .currentDay {
+    background-color: #eee;
+}
+#calendarContainer .day .dayNumber{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+#calendarContainer .day:not(.currentDay) .dayNumber {
+    font-size: 1.2em;
+}
+#calendarContainer .currentDay .dayNumber {
+    font-size: 1.5em;
+    color: darkred;
+}
+
+#calendarEventPopup {
+    position: fixed;
+    z-index: 100;
+    top: calc(50% - 150px);
+    left: calc(50% - 200px);
+    width: 400px;
+    padding: 10px;
+    background-color: white;
+    border: 0px solid black;
+    display: none;
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    -o-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+}
+#calendarEventClose {
+    position: absolute;
+    content: '';
+    right: 13px;
+    top: 13px;
+    z-index: 101;
+    width: 20px;
+    height: 20px;
+    background: url('../immagini/close.png') transparent center center no-repeat;
+    background-size: 20px 20px;
+    cursor: pointer;
+}
+#calendarEventDate {
+    font-size: 1.5em;
+    text-align: center;
+    padding-bottom:10px;
+}
+#calendarEvents {
+}
+#calendarEvents table{
+    width: 100%;
+}
+#calendarEvents table td{
+    padding: 5px 10px;
+    font-size: 1.1em;
+}
+#calendarEvents table td:not(.noBorder){
+    border-bottom: 1px solid gray;
+}
+#calendarEvents table td:not(.noBorder):first-child{
+    border-right: 1px solid gray;
+    width: 25%;
+    text-align: center;
+}
+#calendarEvents table td:last-child{
+
+}
+#calendarEvents .eventAddTime{
+    width: 35px;
+    text-align: center;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+#popupBackground{
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+}
+#eventAddRow {
+    display: none;
+}
+#eventCommand {
+    width: 100%;
+}
+#eventAddRowButton input,
+#eventAddRowSubmit input {
+    width: 100%;
+    font-size: 1em;
+    padding: 5px;
+    text-transform: uppercase;
+}
+#eventAddRowSubmit {
+    display: none;
+}
+div.center {
+    text-align: center;
+}

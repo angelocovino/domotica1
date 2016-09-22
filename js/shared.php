@@ -25,6 +25,12 @@ function loadScript(url, callback){
 function loadStyle(url){
     $("head").append("<link rel='stylesheet' href='" + url + "' type='text/css' />");
 }
+function checkFileExists(url){
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    return http.status!=404;
+}
 loadScript("js/jquery.min.js", function () {
     $(document).ready(function(){
         // TITOLO TOGGLE
@@ -67,7 +73,11 @@ loadScript("js/jquery.min.js", function () {
     loadScript("io/io.js", function(){});
 <?php
         if(isset($page)):
-            echo "loadScript('js/" . $page . ".js', function () {});";
+            echo "if(checkFileExists('js/" . $page . ".js')){";
+                echo "loadScript('js/" . $page . ".js', function () {});";
+            echo "}else if(checkFileExists('js/" . $page . ".php')){";
+                echo "loadScript('js/" . $page . ".php', function () {});";
+            echo "}";
             if(strcasecmp($page, "perimetro") == 0):
 ?>
     loadStyle("css/jquerySVG/jquery.svg.css");
@@ -79,6 +89,10 @@ loadScript("js/jquery.min.js", function () {
 ?>
     loadStyle("css/spectrum.css");
     loadScript("js/spectrum.js", function(){});
+<?php
+            elseif(strcasecmp($page, "eventi") == 0):
+?>
+    loadStyle("css/eventi.css");
 <?php
             endif;
         endif;
