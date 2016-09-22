@@ -188,7 +188,6 @@ class dbmanagment{
     
     function addEventsScheduled($ora,$minuti,$giorni,$comando){
         $str = "INSERT INTO EventiProgrammati (ora, minuti, giorni, comando) VALUES ({$ora},{$minuti},\"{$giorni}\",{$comando});";
-        var_dump($str);
         $this->pdo->exec($str);
     }
     
