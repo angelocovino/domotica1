@@ -58,6 +58,7 @@ loadXMLcallback = function (port, portArray){
         $("#loadBar").hide();
     }else if(portArray["Cntdebug"]>0){//Allarme in attivazione
         if(load == 0){
+            loadBar = document.getElementById("loadBar").value = 0;
             if(portArray['allT'] == "2")stato.html("Attivazione allarme totate in corso ");
             if(portArray['allP'] == "2")stato.html("Attivazione allarme parziale in corso ");
             $("#loadBar").attr("max",portArray['DurataRele14']);
@@ -73,7 +74,7 @@ function loadingBar(){
     loadBar = document.getElementById("loadBar");
     loadBar.value ++;
     if(loadBar.value<61){
-        if(!((statoAllarmeT==2) || (statoAllarmeP ==2))){
+        if((!((statoAllarmeT==2) || (statoAllarmeP ==2))) && (contdebug > 0)){
             stato.html("Allarme disattivato, attendere la fine della procedura di attivazione");
         }
         setTimeout(loadingBar, 1000);    
