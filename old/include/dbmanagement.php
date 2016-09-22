@@ -178,7 +178,7 @@ class dbmanagment{
     
     function addEvents($ora, $minuti, $giorno, $mese, $anno, $comando ){
         $str = "INSERT INTO Evento (ora, minuti, giorno, mese, anno, comando) VALUES ({$ora},{$minuti},{$giorno},{$mese},{$anno},{$comando});";
-        $this->pdo->exec($str);
+        return $this->pdo->exec($str);
     }
     
     function deleteEvents($id){
