@@ -5,6 +5,10 @@
     $pagina = $pagina[0];
     $i = array_search($pagina, array_values($menu));
     $key = array_keys($menu)[$i];
+    if($i === false){
+        $i = array_search($pagina, array_values($perimetro));
+        $key = array_keys($perimetro)[$i];
+    }
     // IO CLASS
     @include("class/io.class.php");
 ?>
@@ -22,5 +26,7 @@
     <body>
         <header id="topMenu">
             <a href="index.php"><img class='icona home' src='immagini/cabin.svg'></a>
-            <table id="corrente"><tr><td><img class='icona' src='immagini/<?php echo $key; ?>.svg' /></td><td><?php echo $pagina; ?></td></tr></table>
+            <table id="corrente"><tr><td>
+                <img class='icona' src='immagini/<?php echo $key; ?>.svg' /></td><td><?php echo $pagina; ?>
+            </td></tr></table>
         </header>

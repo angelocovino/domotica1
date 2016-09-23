@@ -84,10 +84,6 @@
         display: inline-block;
         width: calc(20% - 26px);
     }
-    .bigDiv {
-        width: 40%;
-        max-width: 350px;
-    }
 }
 @media screen and (min-width: 1024px) and (max-width: 1468px) {
     .fatto.responsive {
@@ -114,14 +110,13 @@
     .stanza {
         display: inline-block;
         width: calc(100% - 40px);
-        border-radius: 20px;
         margin: 10px;
-        background-color: transparent;
-        box-shadow: 0 0 1px 1px darkgray;
         padding: 10px;
         border: 0px solid blue;
         color: black;
         font-size: 0.8em;
+        border-radius: 20px;
+        box-shadow: 0 0 1px 1px darkgray;
         cursor: pointer;
     }
     .stanza > .titolo {

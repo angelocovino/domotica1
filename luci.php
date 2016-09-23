@@ -80,7 +80,8 @@
             echo "</div>";
             echo "<div class='fatti'>";
                 foreach($luci as $luce => $led){
-                    echo "<div class='fatto responsive'>";
+                    echo "<div class='fatto'>";
+                    //echo "<div class='fatto responsive'>";
                         echo "<table class='gestione_luci' cellspacing='0'>";
                             $str = "";
                             if($led instanceof saIO){
