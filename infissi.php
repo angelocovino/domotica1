@@ -15,7 +15,7 @@
             "apri" => saIO::led(1, 93),
             ),
         "Porta blindata" => array(
-            "stato" => saIO::btn(1, 93),
+            "stato" => saIO::btn(1, 93)->setImage("immagini/door-1.svg", "immagini/door.svg"),
             "apri" => saIO::led(3, 93),
             ),
         "Finestra cucina" => array(
@@ -115,7 +115,11 @@
                             echo "<table cellspacing='0'>";
                                 echo "<tr" . $str . ">";
                                 echo "<td>";
-                                    echo "<img src='immagini/tapparellaAlzata.svg' />";
+                                    if($luci['stato']->getImageOff() != false){
+                                        echo "<img src='" . $luci['stato']->getImageOff() . "' />";
+                                    }else{
+                                        echo "<img src='immagini/tapparellaAlzata.svg' />";
+                                    }
                                 echo "</td>";
                                 echo "<td>";
                                     echo "Aperto/Chiuso";
