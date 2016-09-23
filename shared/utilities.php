@@ -10,4 +10,15 @@
         "bulb" => "luci",
         "hairdryer" => "clima"
     );
+    $perimetro = array(
+        "mirror" => "ingresso",
+        "window" => "esterno",
+        "towel" => "bagni",
+        "bed" => "matrimoniale",
+        "chimney" => "salone",
+        "microwave" => "cucina",
+        "bed-1" => "tony",
+        "bed-2" => "elisa",
+        "bed-3" => "andrea"
+    );
 ?>

@@ -80,10 +80,13 @@ loadScript("js/jquery.min.js", function () {
             echo "}";
             if(strcasecmp($page, "perimetro") == 0):
 ?>
+    loadStyle("css/index.css");
+    /*
     loadStyle("css/jquerySVG/jquery.svg.css");
     loadScript("js/jquerySVG/jquery.svg.js", function(){});
     loadScript("js/jquerySVG/jquery.svgdom.js", function(){});
     loadScript("js/jquerySVG/jquery.svganim.js", function(){});
+    */
 <?php
             elseif(strcasecmp($page, "luci") == 0):
 ?>

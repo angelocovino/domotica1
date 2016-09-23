@@ -37,6 +37,18 @@
     $esempi = $db->getEventsWithParams($month, $year);
     $comandi = $db->getComando();
 	
+/*
+    $db->addEvents(10,10,19,9,2016,8);
+     $db->addEvents(11,10,19,9,2016,8);
+     $db->addEvents(12,10,19,9,2016,8);
+     $db->addEvents(10,10,20,9,2016,8);
+     $db->addEvents(10,10,20,9,2016,8);
+    
+    $db->addEventsScheduled(12,30,"1,2,4",8);
+    $db->addEventsScheduled(12,30,"2,3,4",8);
+    $db->addEventsScheduled(12,30,"1,2,4",2);
+*/
+    
 	$countDaysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 	
 	$months = array(
@@ -110,11 +122,14 @@
 								echo "<div class='dayNumber'>{$day}</div>";
 								echo "<div class='dayEvents'>";
 									$count = 0;
+                                    $exit = false;
 									if(array_key_exists(6 - $daysToNextRow, $esempi['programmati'])){
-										$count = stampaEventi(6 - $daysToNextRow, $esempi['programmati'], 2);
+										$temp = stampaEventi(6 - $daysToNextRow, $esempi['programmati'], 2);
+                                        $count = $temp['count'];
+                                        $exit = $temp['exit'];
 									}
 									if(array_key_exists($day, $esempi)){
-										stampaEventi($day, $esempi, 2, $count);
+										stampaEventi($day, $esempi, 2, $count, $exit);
 									}
 								echo "</div>";
 							echo "</td>";
@@ -124,17 +139,23 @@
 				echo "</tbody>"; 
 			echo "</table>";
 			
-			function stampaEventi($day, $events, $limit = 2, $startOffset = 0){
-				$exit = false;
+			function stampaEventi($day, $events, $limit = 2, $startOffset = 0, $exit = false){
 				$count = $startOffset;
 				if($limit > 0 && $limit >= $count){
 					foreach($events[$day] as $oraInizio => $events){
 						if($count >= $limit){
-							echo "...";
+                            if(!$exit){
+                                $exit = true;
+                                echo "...";
+                            }
 							break;
 						}
 						foreach($events as $index => $event){
 							if($count >= $limit){
+                                if(!$exit){
+                                    $exit = true;
+                                    echo "...";
+                                }
 								break;
 							}
 							echo $oraInizio . " ";
@@ -144,7 +165,7 @@
 						}
 					}
 				}
-				return ($count);
+				return (array("count" => $count, "exit" => $exit));
 			}
 ?>
 		</div>

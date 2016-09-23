@@ -8,15 +8,24 @@
     cursor: pointer;
     text-transform: uppercase;
 }
-table, td {
+#tabellaCentrativa {
     width: 100%;
     height: 100%;
 }
-.icona {
+#tabellaCentrativa:not(.noHeader) {
+    height: calc(100% - 70px);
+}
+#tabellaCentrativa td {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+}
+#container .icona {
     margin-bottom: 5px;
 }
 @media screen and (min-width: 801px) {
-    .icona {
+    #container .icona {
         width: 100px;
     }
     #container > div {
@@ -35,8 +44,9 @@ table, td {
 }
 
 @media screen and (max-width: 800px) {
-    .icona {
+    #container .icona {
         width: 100%;
+        margin: 0;
     }
     #container > div {
         display: inline-block;

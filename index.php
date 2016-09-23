@@ -12,7 +12,7 @@
         </script>
     </head>
     <body>
-        <table><tr><td style="vertical-align: middle; text-align: center;">
+        <table id="tabellaCentrativa" class="noHeader"><tr><td>
             <div id="container">
                 <?php
                     @include('shared/utilities.php');
