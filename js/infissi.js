@@ -16,21 +16,33 @@ function appicciaStuta (elem, isClick = false){
     led = tr.attr('data-led');
     btn = tr.attr('data-btn');
     img = tr.find("img");
+    imageOn = tr.attr("data-image-on");
+    imageOff = tr.attr("data-image-off");
+    tempImageOn = tapparellaAbbassata;
+    console.log(imageOn);
+    tempImageOff = tapparellaAlzata;
+    if(imageOn != undefined && imageOff != undefined){
+        tempImageOn = imageOn;
+        tempImageOff = imageOff;
+    }
     if(led != undefined){
         if(isClick){
             setLed(port, led);
         }else{
             if(tr.attr("data-acceso") == 'up'){
-                img.attr("src", tapparellaAbbassata);
+                setImage(img, tempImageOn);
             }if(tr.attr("data-acceso") == 'dwn'){
-                img.attr("src", tapparellaAlzata);
+                setImage(img, tempImageOff);
             }
         }
     }else{
         if(tr.attr("data-acceso") == 'up'){
-            img.attr("src", tapparellaAbbassata);
+            setImage(img, tempImageOn);
         }if(tr.attr("data-acceso") == 'dwn'){
-            img.attr("src", tapparellaAlzata);
+            setImage(img, tempImageOff);
         }
     }
+}
+function setImage(imgElement, image){
+    imgElement.attr("src", image);
 }
