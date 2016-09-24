@@ -131,17 +131,32 @@ function calendarEventGetCommands(){
 
 $(document).ready(function(){
     var tdDeleteOldValue = [];
-    $(".day").click(function(){
-        var td = $(this);
-        var day = td.attr("data-day");
-        var month = td.attr("data-month");
-        var monthName = td.parents("tbody").attr("data-month-name");
-        var year = td.attr("data-year");
-        calendarEventToggle(500, function(){
-            //$("#calendarEventDate").html(pad(day, 2) + "/" + pad(month, 2) + "/" + year);
-            $("#calendarEventDate").html(day + " " + monthName + " " + year);
-            $("#calendarEvents").html(calendarEventsGet(day));
-        });
+    $(".day").click(function(e){
+        if($("#calendarCells").is(":visible") && !$(this).find(".dayEvents").is(":visible")){
+            $(this).find(".dayEvents").fadeIn(500);
+        }else{
+            if($("#calendarCells").is(":visible") && e.target.className == "dayNumber"){
+                $(this).find(".dayEvents").fadeOut(500);
+            }else{
+                var td = $(this);
+                var day = td.attr("data-day");
+                var month, monthName, year;
+                month = td.parents("tbody").attr("data-month");
+                if(month != undefined){
+                    monthName = td.parents("tbody").attr("data-month-name");
+                    year = td.parents("tbody").attr("data-year");
+                }else{
+                    month = $("#calendarCells").attr("data-month");
+                    monthName = $("#calendarCells").attr("data-month-name");
+                    year = $("#calendarCells").attr("data-year");
+                }
+                calendarEventToggle(500, function(){
+                    //$("#calendarEventDate").html(pad(day, 2) + "/" + pad(month, 2) + "/" + year);
+                    $("#calendarEventDate").html(day + " " + monthName + " " + year);
+                    $("#calendarEvents").html(calendarEventsGet(day));
+                });
+            }
+        }
     });
     $("#calendarEventClose").click(function(){
         calendarEventToggle(500);
@@ -189,5 +204,8 @@ $(document).ready(function(){
                 console.log(obj);
             });
         }
+    });
+    $("#scheduledEventsButton").click(function(){
+        document.location = 'eventiSettimanali.php';
     });
 });

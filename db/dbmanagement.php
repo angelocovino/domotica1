@@ -2,7 +2,11 @@
 class dbmanagment{
     private $pdo;
     function __construct__(){
-        $pdo=null;
+    }
+    static function open(){
+        $db = new dbmanagment();
+        $db->opendatabase();
+        return ($db);
     }
 
     function opendatabase(){
@@ -12,6 +16,7 @@ class dbmanagment{
                 $this->pdo->setAttribute(PDO::ATTR_ERRMODE, 
                             PDO::ERRMODE_EXCEPTION);
             }
+            $this->createDB();
         }catch(PDOException $e){
             // logerror($e->getMessage(), "opendatabase");
             print "Error in openhrsedb ".$e->getMessage();

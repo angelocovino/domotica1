@@ -9,58 +9,137 @@ body {
     width: 100%;
 }
 #calendarContainer {
+    position: relative;
+}
+@media screen and (min-width: 1281px) {
+    #calendarTable {
+        display: table;
+    }
+    #calendarCells {
+        display: none;
+    }
+    #calendarContainer h3 {
+        font-size: 1.2em;
+    }
+}
+@media screen and (max-width: 1280px) {
+    #calendarTable {
+        display: none;
+    }
+    #calendarCells {
+        display: block;
+    }
+    #calendarContainer h3 {
+        font-size: 1em;
+    }
+}
+#scheduledEventsButton {
+    text-transform: uppercase;
+    font-size: 0.75em;
+    margin-bottom: 20px;
+    padding: 10px;
+    display: inline-block;
+    font-weight: normal;
+    box-shadow: 0px 0px 1px 1px darkgray;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    border-radius: 10px;
 }
 #calendarContainer h3 {
     display: inline-block;
     width: 100%;
     text-align: center;
-    font-size: 2em;
-    margin: 10px 0;
+    margin: 10px 0 0 0;
+    text-transform: uppercase;
 }
 #calendarContainer table {
+    margin-top: 10px;
     width: 100%;
-    background-color: #006062;
+    /*background-color: #006062;*/
+    border-radius: 10px;
 }
 #calendarContainer td,
 #calendarContainer th {
     text-align: center;
     width: 14%;
+    border-radius: 10px;
 }
 #calendarContainer th {
     height: 30px;
-    font-size: 16px;
+    font-size: 0.75em;
     color: black;
-    background-color: lightgray;
+    background-color: rgba(120, 185, 235, 0.1);
+    box-shadow: 0px 1px 1px 1px darkgray;
+    text-transform: uppercase;
+}
+.commandEvent {
+    border-left: 2px solid rgba(120, 185, 235, 0.8);
+    margin: 4px 0;
+    margin-left: 5px;
+    padding-left: 5px;
+}
+.commandName {
+    padding-left: 10px;
+    font-size: 0.8em;
 }
 #calendarContainer td {
     background-color: white;
     height: 100px;
+    text-transform: uppercase;
+    font-size: 0.9em;
 }
-#calendarContainer .day {
+#calendarContainer table .day {
     position: relative;
     padding: 0 5px;
     padding-top: 30px;
     vertical-align: top;
+    box-shadow: 0px 1px 1px 1px darkgray;
     text-align: left;
+}
+#calendarCells .day {
+    position: relative;
+    border-radius: 5px;
+    background-color: rgb(235, 235, 235);
+    box-shadow: 0 0 1px 1px darkgray;
+    padding: 4px;
+    padding-top: 25px;
+    border: 0px solid blue;
+    margin: 10px 5px;
 }
 #calendarContainer .dayEmpty {
     background-color: transparent;
-    /*background-color: gray;*/
+    /*background-color: #ddd;*/
 }
 #calendarContainer .currentDay {
-    background-color: #eee;
+    background-color: rgba(120, 185, 235, 0.3);
 }
-#calendarContainer .day .dayNumber{
+#calendarContainer table .day .dayNumber{
     position: absolute;
     top: 5px;
     left: 5px;
 }
-#calendarContainer .day:not(.currentDay) .dayNumber {
-    font-size: 1.2em;
+#calendarCells .day .dayNumber{
+    position: absolute;
+    top: 0px;
+    border-radius: 5px;
+    padding: 5px;
+    width: calc(100% - 10px);
+    left: 0px;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    box-shadow: 0px 1px 1px 1px darkgray;
+}
+#calendarCells .day .dayEvents{
+    padding-top: 15px;
+    display: none;
+}
+#calendarContainer table .day:not(.currentDay) .dayNumber {
+    font-size: 1.4em;
 }
 #calendarContainer .currentDay .dayNumber {
     font-size: 1.5em;
-    color: darkred;
+    font-weight: bold;
+    color: #1A6FB0;
 }
 
 #calendarEventPopup {
@@ -96,8 +175,7 @@ body {
     text-align: center;
     padding-bottom:10px;
 }
-#calendarEvents {
-}
+#calendarEvents {}
 #calendarEvents table{
     width: 100%;
 }
@@ -124,14 +202,6 @@ body {
     text-align: center;
     border: 1px solid lightgray;
     border-radius: 5px;
-}
-#popupBackground{
-    position: fixed;
-    z-index: 99;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: none;
 }
 #eventAddRow {
     display: none;
