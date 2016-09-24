@@ -1,7 +1,7 @@
 <?php
     $menu = array(
         "fence" => "perimetro",
-        "umbrella" => "scenario",
+        "remote-control" => "scenario",
         "clock-1" => "eventi",
         "key" => "allarme",
         "door" => "infissi",

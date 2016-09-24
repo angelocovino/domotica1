@@ -176,6 +176,26 @@ class dbmanagment{
         return $arr;
     }
     
+    function getScheduledEventsWithParams(){
+        $query = "SELECT Comando.nome, EventiProgrammati.id , EventiProgrammati.giorni , (EventiProgrammati.ora || ':' || EventiProgrammati.minuti) as ora
+        FROM EventiProgrammati INNER JOIN Comando ON EventiProgrammati.comando = Comando.id 
+        WHERE enable = 1 
+        ORDER BY ora , minuti";
+        $result = $this->pdo->query($query);
+        $result = $result->fetchAll();
+        foreach($result as $i => $cose){
+           $day = explode(",",$cose['giorni']);
+            foreach($day as $d){
+                $arr[$d][$cose['ora']][] = array(
+                    'id' => $cose['id'],
+                    'comandoNome' => $cose['nome']
+                );
+            }
+        }
+        return $arr;
+    }
+    
+    
     function addEvents($ora, $minuti, $giorno, $mese, $anno, $comando ){
         $str = "INSERT INTO Evento (ora, minuti, giorno, mese, anno, comando) VALUES ({$ora},{$minuti},{$giorno},{$mese},{$anno},{$comando});";
         $this->pdo->exec($str);
