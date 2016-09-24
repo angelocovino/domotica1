@@ -130,6 +130,8 @@ if(isset($_GET['color'])){
     //$colorChiaro = "#" . $_GET['rgb'];
 }else{
     $color = "#FFD422";
+    //$colorScuro = "#" . $_GET['rgb'];
+    //$colorChiaro = "#" . $_GET['rgb'];
 };
 
 header('Content-type: image/svg+xml');
