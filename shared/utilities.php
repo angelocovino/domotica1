@@ -21,4 +21,10 @@
         "bed-2" => "elisa",
         "bed-3" => "andrea"
     );
+    $others = array(
+        "clock-1" => "eventiSettimanali"
+    );
+    $othersNames = array(
+        "eventi settimanali"
+    );
 ?>
