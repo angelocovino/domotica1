@@ -186,9 +186,8 @@ class dbmanagment{
     }
     
     function getScheduledEventsWithParams(){
-        $query = "SELECT Comando.nome, EventiProgrammati.id , EventiProgrammati.giorni , EventiProgrammati.ora , EventiProgrammati.minuti
-        FROM EventiProgrammati INNER JOIN Comando ON EventiProgrammati.comando = Comando.id 
-        WHERE enable = 1 
+        $query = "SELECT EventiProgrammati.enable, Comando.nome, EventiProgrammati.id , EventiProgrammati.giorni , EventiProgrammati.ora , EventiProgrammati.minuti
+        FROM EventiProgrammati INNER JOIN Comando ON EventiProgrammati.comando = Comando.id
         ORDER BY ora , minuti";
         $result = $this->pdo->query($query);
         $result = $result->fetchAll();
@@ -199,7 +198,8 @@ class dbmanagment{
             foreach($day as $d){
                 $arr[$d][$ora][] = array(
                     'id' => $cose['id'],
-                    'comandoNome' => $cose['nome']
+                    'comandoNome' => $cose['nome'],
+                    'enable' => $cose['enable']
                 );
             }
         }
