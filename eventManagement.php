@@ -52,7 +52,7 @@
         $db->disableEventScheduled($id);
     }
 
-    if($tipo != 2){
+    if($tipo == 0){
         $old = $_SERVER['HTTP_REFERER'];
         header('Location: ' . $old);
     }

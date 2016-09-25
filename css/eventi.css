@@ -90,11 +90,13 @@ body {
 }
 #calendarContainer table .day {
     position: relative;
-    padding: 0 5px;
-    padding-top: 30px;
+    padding: 5px;
     vertical-align: top;
     box-shadow: 0px 1px 1px 1px darkgray;
     text-align: left;
+}
+#calendarContainer table .day:not(.noMargin) {
+    padding-top: 30px;
 }
 #calendarCells .day {
     position: relative;
