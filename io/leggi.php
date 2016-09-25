@@ -16,6 +16,7 @@ if(isset($_GET['ports'])){
         }
     }
 }else{
+    /*
     $arrayRichieste = array(
         201 => 91,
         202 => 92,
@@ -25,6 +26,8 @@ if(isset($_GET['ports'])){
         206 => 96,
         207 => 97
     );
+    */
+    $arrayRichieste = array();
 }
     //$server = 'http://192.168.1';
     $server = 'http://domotica.smart.homepc.it';

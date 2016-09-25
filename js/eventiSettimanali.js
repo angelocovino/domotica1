@@ -2,6 +2,15 @@ var ports = [];
 
 loadXMLcallback = function (port, portArray){}
 
+var days = [
+    'Lunedi',
+    'Martedi',
+    'Mercoledi',
+    'Giovedi',
+    'Venerdi',
+    'Sabato',
+    'Domenica'
+];
 function isFunction(functionToCheck) {
     var getType = {};
     return (functionToCheck && getType.toString.call(functionToCheck) === '[object Function]');
@@ -80,17 +89,33 @@ function calendarEventAddPrint(day){
     str += "</tr>";
     str += "<tr id='eventAddRow'>";
         str += "<td>";
+            str += "Ore";
+            str += "<br />";
             str += "<input class='eventAddTime' name='eventHour' type='number' min='0' max='23' value='0' />";
-            str += ":";
+            str += "<br />";
+            str += "<br />";
+            str += "Minuti";
+            str += "<br />";
             str += "<input class='eventAddTime' name='eventMinute' type='number' min='0' max='59' value='0' />";
         str += "</td>";
         str += "<td>";
+            str += "Comando";
+            str += "<br />";
             str += calendarEventGetCommands();
+            str += "<br />";
+            str += "<br />";
+            str += "Giorni";
+            str += "<br />";
+            str += "<select multiple name='eventDays[]' size='7'>";
+                for(day in days){
+                    str += "<option value='" + day + "'>" + days[day] + "</option>"; //.substring(0, 3)
+                }
+            str += "</select>";
         str += "</td>";
     str += "</tr>";
     str += "<tr id='eventAddRowSubmit'>";
         str += "<td class='noBorder' colspan='2'>";
-                str += "<input type='hidden' name='eventType' value='0' />";
+                str += "<input type='hidden' name='eventType' value='1' />";
                 str += "<input type='submit' value='Salva' />";
         str += "</td>";
     str += "</tr>";
@@ -109,15 +134,6 @@ function calendarEventGetCommands(){
 
 $(document).ready(function(){
     var tdDeleteOldValue = [];
-    var days = [
-		'Lunedi',
-		'Martedi',
-		'Mercoledi',
-		'Giovedi',
-		'Venerdi',
-		'Sabato',
-		'Domenica'
-	];
     $(".day").click(function(e){
         if($("#calendarCells").is(":visible") && !$(this).find(".dayEvents").is(":visible")){
             $(this).find(".dayEvents").fadeIn(500);
@@ -180,6 +196,11 @@ $(document).ready(function(){
                 console.log(obj);
             });
         }
+    });
+    $("body").on("mousedown", "#eventAddRow option", function (e){
+        e.preventDefault();
+        $(this).prop('selected', !$(this).prop('selected'));
+        return (false);
     });
     $("#scheduledEventsButton").click(function(){
         document.location = 'eventiSettimanali.php';

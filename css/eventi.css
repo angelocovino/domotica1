@@ -200,13 +200,20 @@ body {
 
 }
 #calendarEvents .eventAddTime{
-    width: 35px;
-    text-align: center;
+    width: 100%;
+    text-align: left;
     border: 1px solid lightgray;
     border-radius: 5px;
 }
 #eventAddRow {
     display: none;
+}
+#eventAddRow td{
+    text-align: left !important;
+    vertical-align: top;
+}
+#eventAddRow select{
+    width: 100%;
 }
 #eventCommand {
     width: 100%;
