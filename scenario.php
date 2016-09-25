@@ -2,7 +2,7 @@
 
 <style>
     
-@media screen and (min-width: 801px) {
+@media screen and (min-width: 1800px) {
     .table{
         display: inline-block;
         width: 35%;  
@@ -30,7 +30,39 @@
     }
 }
     
+@media screen and (min-width: 801px) and (max-width: 1799px){
+ .table{
+        display: inline-block;
+        width: 54%;  
+        box-shadow: 0 0 1px 1px darkgray;
+        border-radius: 20px;
+        margin: 1%;
+        font-size: 0.8em;
+    }
+    
+    .single .image{
+        width: 40%;
+        font-size: 0.7em;
+    }
 
+     .single .image img{
+        width: 50px;
+     }
+    
+     .image{
+        width: 35%;
+        margin: 10px;
+        display: inline-block;
+        text-align: center;
+        background-color: lightgray;
+        box-shadow: 0 0 1px 1px darkgray;
+        padding: 10px;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+}
+    
+    
 @media screen and (max-width: 800px) {
 
     .table{
@@ -84,7 +116,7 @@
     }
 
    
-</style>
+♀</style>
 
 <div class="content">
 

@@ -151,18 +151,21 @@ class dbmanagment{
         return $result;
     }
     
+    
+    
     function getEventsWithParams($mese,$anno){
-        $query = "SELECT Comando.nome, Evento.id, (Evento.ora || ':' || Evento.minuti) as ora, Evento.giorno FROM Evento INNER JOIN Comando ON Evento.comando = Comando.id WHERE mese = {$mese} and anno = {$anno} ORDER BY giorno , ora , minuti";
+        $query = "SELECT Comando.nome, Evento.id, Evento.ora, Evento.minuti, Evento.giorno FROM Evento INNER JOIN Comando ON Evento.comando = Comando.id WHERE mese = {$mese} and anno = {$anno} ORDER BY giorno , ora , minuti";
         $result = $this->pdo->query($query);
         $result = $result->fetchAll();
         $arr = array();
         foreach($result as $i => $cose){
-            $arr[$cose['giorno']][$cose['ora']][] = array(
+            $ora = str_pad($cose['ora'], 2, "0", STR_PAD_LEFT) . ":" . str_pad($cose['minuti'], 2, "0", STR_PAD_LEFT);
+            $arr[$cose['giorno']][$ora][] = array(
                 'id' => $cose['id'],
                 'comandoNome' => $cose['nome']
             );
         }
-        $query = "SELECT Comando.nome, EventiProgrammati.id , EventiProgrammati.giorni , (EventiProgrammati.ora || ':' || EventiProgrammati.minuti) as ora
+        $query = "SELECT Comando.nome, EventiProgrammati.id , EventiProgrammati.giorni ,EventiProgrammati.ora ,EventiProgrammati.minuti
         FROM EventiProgrammati INNER JOIN Comando ON EventiProgrammati.comando = Comando.id 
         WHERE enable = 1 
         ORDER BY ora , minuti";
@@ -170,9 +173,10 @@ class dbmanagment{
         $result = $result->fetchAll();
         $arr['programmati'] = [];
         foreach($result as $i => $cose){
+           $ora = str_pad($cose['ora'], 2, "0", STR_PAD_LEFT) . ":" . str_pad($cose['minuti'], 2, "0", STR_PAD_LEFT);
            $day = explode(",",$cose['giorni']);
             foreach($day as $d){
-                $arr['programmati'][$d][$cose['ora']][] = array(
+                $arr['programmati'][$d][$ora][] = array(
                     'id' => $cose['id'],
                     'comandoNome' => $cose['nome']
                 );
@@ -182,7 +186,7 @@ class dbmanagment{
     }
     
     function getScheduledEventsWithParams(){
-        $query = "SELECT Comando.nome, EventiProgrammati.id , EventiProgrammati.giorni , (EventiProgrammati.ora || ':' || EventiProgrammati.minuti) as ora
+        $query = "SELECT Comando.nome, EventiProgrammati.id , EventiProgrammati.giorni , EventiProgrammati.ora , EventiProgrammati.minuti) as ora
         FROM EventiProgrammati INNER JOIN Comando ON EventiProgrammati.comando = Comando.id 
         WHERE enable = 1 
         ORDER BY ora , minuti";
@@ -190,9 +194,10 @@ class dbmanagment{
         $result = $result->fetchAll();
         $arr = [];
         foreach($result as $i => $cose){
+           $ora = str_pad($cose['ora'], 2, "0", STR_PAD_LEFT) . ":" . str_pad($cose['minuti'], 2, "0", STR_PAD_LEFT);
            $day = explode(",",$cose['giorni']);
             foreach($day as $d){
-                $arr[$d][$cose['ora']][] = array(
+                $arr[$d][$ora][] = array(
                     'id' => $cose['id'],
                     'comandoNome' => $cose['nome']
                 );
