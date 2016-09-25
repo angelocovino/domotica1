@@ -6,7 +6,7 @@
         "key" => "allarme",
         "door" => "infissi",
         "oven" => "elettrodomestici",
-        "faucet" => "utense",
+        "faucet" => "utenze",
         "bulb" => "luci",
         "hairdryer" => "clima"
     );
