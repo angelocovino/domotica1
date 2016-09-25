@@ -48,31 +48,6 @@
 */
     
 	$countDaysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-	
-	$months = array(
-		1 => 'Gennaio',
-		'Febbraio',
-		'Marzo',
-		'Aprile',
-		'Maggio',
-		'Giugno',
-		'Luglio',
-		'Agosto',
-		'Settembre',
-		'Ottobre',
-		'Novembre',
-		'Dicembre'
-	);
-
-	$days = array(
-		'Lunedi',
-		'Martedi',
-		'Mercoledi',
-		'Giovedi',
-		'Venerdi',
-		'Sabato',
-		'Domenica'
-	);
 ?>
 		<script>
 <?php
@@ -125,7 +100,7 @@
 		<div id="calendarContainer">
 <?php
 			echo "<h3>";
-                echo"{$months[$month]} {$year}";
+                echo "{$months[$month]} {$year}";
             echo "</h3>";
 			echo "<table cellspacing='6px' cellpadding='0' id='calendarTable'>";  
 				echo "<thead>";

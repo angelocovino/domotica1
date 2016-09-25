@@ -27,4 +27,27 @@
     $othersNames = array(
         "eventi settimanali"
     );
+	$days = array(
+		'Lunedi',
+		'Martedi',
+		'Mercoledi',
+		'Giovedi',
+		'Venerdi',
+		'Sabato',
+		'Domenica'
+	);
+	$months = array(
+		1 => 'Gennaio',
+		'Febbraio',
+		'Marzo',
+		'Aprile',
+		'Maggio',
+		'Giugno',
+		'Luglio',
+		'Agosto',
+		'Settembre',
+		'Ottobre',
+		'Novembre',
+		'Dicembre'
+	);
 ?>
