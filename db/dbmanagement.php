@@ -188,6 +188,7 @@ class dbmanagment{
         ORDER BY ora , minuti";
         $result = $this->pdo->query($query);
         $result = $result->fetchAll();
+        $arr = [];
         foreach($result as $i => $cose){
            $day = explode(",",$cose['giorni']);
             foreach($day as $d){
