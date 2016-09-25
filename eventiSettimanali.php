@@ -3,8 +3,6 @@
     @include("db/dbmanagement.php");
     $db = dbmanagment::open();
     $esempi = $db->getScheduledEventsWithParams();
-var_dump("<pre>");
-var_dump($esempi);
     $comandi = $db->getComando();
 ?>
 		<script>
@@ -15,7 +13,9 @@ var_dump($esempi);
     function stampaEventi($day, $events){
         foreach($events[$day] as $oraInizio => $events){
             foreach($events as $index => $event){
-                echo "<div class='commandEvent'>";
+                echo "<div class='commandEvent'";
+                    echo " data-enabled='" . $event['enable'] . "'";
+                echo ">";
                     echo $oraInizio;
                     echo "<div class='commandName'>";
                         echo strtolower($event['comandoNome']) . "<br />";

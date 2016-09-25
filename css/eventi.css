@@ -73,10 +73,15 @@ body {
     text-transform: uppercase;
 }
 .commandEvent {
-    border-left: 2px solid rgba(120, 185, 235, 0.8);
     margin: 4px 0;
     margin-left: 5px;
     padding-left: 5px;
+}
+.commandEvent[data-enabled='1'] {
+    border-left: 2px solid rgba(120, 185, 235, 0.8);
+}
+.commandEvent[data-enabled='0'] {
+    border-left: 2px solid darkred;
 }
 .commandName {
     padding-left: 10px;

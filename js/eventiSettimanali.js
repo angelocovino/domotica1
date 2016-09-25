@@ -69,7 +69,7 @@ function calendarEventPrintScheduled(eventArray){
     for(startTime in eventArray) {
         for(evento in eventArray[startTime]){
             str += "<tr>";
-                str += "<td>";
+                str += "<td data-enabled='" + eventArray[startTime][evento]["enable"] + "'>";
                     str += startTime;
                 str += "</td>";
                 str += "<td data-id='" + eventArray[startTime][evento]["id"] + "'>";
@@ -180,10 +180,14 @@ $(document).ready(function(){
         });
     });
     $("body").on("mouseover", "#calendarEvents tr:not(.scheduledEvent):not(#eventAddRow) td:first-child:not(.noBorder)", function (){
-        tdEnableOldValue[$(this).attr("data-id")] = $(this).html();
+        tdEnableOldValue[$(this).parent().find("td:last-child").attr("data-id")] = $(this).html();
         $(this).fadeOut(250, function(){
             $(this).addClass("activable");
-            $(this).html("ABILITA");
+            if($(this).attr("data-enabled") == 1){
+                $(this).html("DISABILITA");
+            }else{
+                $(this).html("ABILITA");
+            }
             $(this).css("color", "red");
             $(this).css("cursor", "pointer");
             $(this).fadeIn(250);
@@ -192,7 +196,7 @@ $(document).ready(function(){
     $("body").on("mouseout", "#calendarEvents tr:not(.scheduledEvent):not(#eventAddRow) td:first-child:not(.noBorder)", function (){
         $(this).fadeOut(250, function(){
             $(this).removeClass("activable");
-            $(this).html(tdEnableOldValue[$(this).attr("data-id")]);
+            $(this).html(tdEnableOldValue[$(this).parent().find("td:last-child").attr("data-id")]);
             $(this).css("color", "black");
             $(this).css("cursor", "default");
             $(this).fadeIn(250);
@@ -218,13 +222,19 @@ $(document).ready(function(){
         }
     });
     $("body").on("click", ".activable", function (){
-        if(confirm("Sicuro di voler eliminare questo evento?")){
-            var idEvento = $(this).attr("data-id");
+        var tdEventType = 4;
+        var str = "abilitare";
+        if($(this).attr("data-enabled") == 1){
+            tdEventType = 5;
+            str = "disabilitare";
+        }
+        if(confirm("Sicuro di voler " + str + " questo evento?")){
+            var idEvento = $(this).parent().find("td:last-child").attr("data-id");
             $.ajax({
                 dataType: "json",
                 type: "post",
                 url: "eventManagement.php",
-                data: {id: idEvento, eventType: 3}
+                data: {id: idEvento, eventType: tdEventType}
             })
             .done(function(el){
                 console.log("eliminato");
