@@ -3,6 +3,8 @@
     @include("db/dbmanagement.php");
     $db = dbmanagment::open();
     $esempi = $db->getScheduledEventsWithParams();
+var_dump("<pre>");
+var_dump($esempi);
     $comandi = $db->getComando();
 ?>
 		<script>

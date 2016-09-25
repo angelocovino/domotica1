@@ -134,6 +134,7 @@ function calendarEventGetCommands(){
 
 $(document).ready(function(){
     var tdDeleteOldValue = [];
+    var tdEnableOldValue = [];
     $(".day").click(function(e){
         if($("#calendarCells").is(":visible") && !$(this).find(".dayEvents").is(":visible")){
             $(this).find(".dayEvents").fadeIn(500);
@@ -178,7 +179,45 @@ $(document).ready(function(){
             $(this).fadeIn(250);
         });
     });
+    $("body").on("mouseover", "#calendarEvents tr:not(.scheduledEvent):not(#eventAddRow) td:first-child:not(.noBorder)", function (){
+        tdEnableOldValue[$(this).attr("data-id")] = $(this).html();
+        $(this).fadeOut(250, function(){
+            $(this).addClass("activable");
+            $(this).html("ABILITA");
+            $(this).css("color", "red");
+            $(this).css("cursor", "pointer");
+            $(this).fadeIn(250);
+        });
+    });
+    $("body").on("mouseout", "#calendarEvents tr:not(.scheduledEvent):not(#eventAddRow) td:first-child:not(.noBorder)", function (){
+        $(this).fadeOut(250, function(){
+            $(this).removeClass("activable");
+            $(this).html(tdEnableOldValue[$(this).attr("data-id")]);
+            $(this).css("color", "black");
+            $(this).css("cursor", "default");
+            $(this).fadeIn(250);
+        });
+    });
     $("body").on("click", ".removable", function (){
+        if(confirm("Sicuro di voler eliminare questo evento?")){
+            var idEvento = $(this).attr("data-id");
+            $.ajax({
+                dataType: "json",
+                type: "post",
+                url: "eventManagement.php",
+                data: {id: idEvento, eventType: 3}
+            })
+            .done(function(el){
+                console.log("eliminato");
+                window.location.href = window.location.href;
+            })
+            .error(function(obj,ErrorStr){
+                console.log("errore eliminazione");
+                console.log(obj);
+            });
+        }
+    });
+    $("body").on("click", ".activable", function (){
         if(confirm("Sicuro di voler eliminare questo evento?")){
             var idEvento = $(this).attr("data-id");
             $.ajax({

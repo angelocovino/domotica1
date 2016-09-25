@@ -186,7 +186,7 @@ class dbmanagment{
     }
     
     function getScheduledEventsWithParams(){
-        $query = "SELECT Comando.nome, EventiProgrammati.id , EventiProgrammati.giorni , EventiProgrammati.ora , EventiProgrammati.minuti) as ora
+        $query = "SELECT Comando.nome, EventiProgrammati.id , EventiProgrammati.giorni , EventiProgrammati.ora , EventiProgrammati.minuti
         FROM EventiProgrammati INNER JOIN Comando ON EventiProgrammati.comando = Comando.id 
         WHERE enable = 1 
         ORDER BY ora , minuti";

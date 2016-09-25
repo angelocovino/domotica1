@@ -56,5 +56,5 @@
         $old = $_SERVER['HTTP_REFERER'];
         header('Location: ' . $old);
     }
-    echo (json_encode($tipo);
+    echo (json_encode($tipo));
 ?>
