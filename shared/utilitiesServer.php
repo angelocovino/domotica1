@@ -1,6 +1,6 @@
 <?php
     $server = array(
-        "server" => 'http://domotica.smart.homepc.it', // 'http://192.168.1';
+        "server" => 'http://192.168.1',
         "serverPort" => '80',
         "serverPage" => 'status.xml',
         "isDebug" => true,

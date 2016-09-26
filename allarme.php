@@ -89,6 +89,7 @@ calendarEvents table{
     border-radius: 5px;
 }
     </style>
+<?php if(isset($_POST['pass']) && md5($_POST['pass']) == md5("1234545")):?>
 
 <?php 
     $sensori = array(
@@ -171,4 +172,18 @@ calendarEvents table{
     
     <button onclick="popupOpen()">stato</button>
 </div>
+
+<?php else: ?>
+    
+    <?php if(isset($_POST['pass'])){
+        echo "<p>Password errata!</p>";
+    } ?>
+    <form method="post">
+        <input type="password" name="pass">
+        <input type="submit" name="Entra">
+
+    </form>
+
+<?php endif ?>
+
 <?php @include('shared/footer.php'); ?>
