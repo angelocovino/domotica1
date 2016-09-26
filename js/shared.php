@@ -96,9 +96,9 @@ loadScript("js/jquery.min.js", function () {
     */
 <?php
             elseif(
-                strcasecmp($page, "luci") == 0 ||
-                strcasecmp($page, "bagni") == 0 ||
-                strcasecmp($page, "matrimoniale") == 0 ||
+                strcasecmp($page, "luci") == 0 || 
+                strcasecmp($page, "bagni") == 0 || 
+                strcasecmp($page, "matrimoniale") == 0 || 
                 strcasecmp($page, "salone") == 0
             ):
 ?>

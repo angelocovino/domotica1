@@ -27,6 +27,7 @@
     $othersNames = array(
         "eventi settimanali"
     );
+    
 	$days = array(
 		'Lunedi',
 		'Martedi',
