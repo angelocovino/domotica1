@@ -19,6 +19,7 @@ function appicciaStuta (elem, isClick = false){
     imageOn = tr.attr("data-image-on");
     imageOff = tr.attr("data-image-off");
     tempImageOn = tapparellaAbbassata;
+    console.log(imageOn);
     tempImageOff = tapparellaAlzata;
     if(imageOn != undefined && imageOff != undefined){
         tempImageOn = imageOn;

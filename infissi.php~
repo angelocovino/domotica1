@@ -142,7 +142,7 @@
                             if(!empty($str)){
                                 echo "<tr" . $str . ">";
                                     echo "<td>";
-                                        echo "<img src='immagini/TapparellaAlzata.svg' />";
+                                        echo "<img src='immaginiTapparellaAlzata.svg' />";
                                     echo "</td>";
                                     echo "<td>";
                                         echo ucwords($name);
