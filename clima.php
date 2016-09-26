@@ -35,14 +35,14 @@
                                 echo "<option value=\"{$i}\">{$i}</option>";
                             }
                         echo "</select>";
-                        echo "<button onClick=\"climateManagement('update',{$clima->port})\">Salva</button><br />";
+                        echo "<button onClick=\"climateManagement('{$clima->name}', 'update',{$clima->port})\">Salva</button><br />";
                     echo "</div>";
                 echo "</li>";
                 echo "<li>";
                     echo "<span class='automaticManual'>Automatico/Manuale</span><br />";
                     echo "<div class='comparoScomparo'>";
-                        echo "<div class='automatico' onClick=\"climateManagement('automatic',{$clima->port})\"><img src='immagini/switchOff.svg' class='automatico' /> Automatico</div>";
-                        echo "<div class='manuale' onClick=\"climateManagement('manual',{$clima->port})\"><img src='immagini/switchOff.svg' class='manuale' /> Manuale</div>";
+                        echo "<div class='automatico' onClick=\"climateManagement('{$clima->name}', 'automatic',{$clima->port})\"><img src='immagini/switchOff.svg' class='automatico' /> Automatico</div>";
+                        echo "<div class='manuale' onClick=\"climateManagement('{$clima->name}', 'manual',{$clima->port})\"><img src='immagini/switchOff.svg' class='manuale' /> Manuale</div>";
                     echo "</div>";
                 echo "</li>";
                 echo "</ul>";

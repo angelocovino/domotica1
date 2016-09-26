@@ -112,4 +112,5 @@ calendarEvents table{
 #pwdZone input[type='submit'] {
     margin-top: 10px;
     width: 100%;
+    cursor: pointer;
 }

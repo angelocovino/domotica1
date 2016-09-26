@@ -42,26 +42,19 @@ loadXMLcallback = function (port, portArray){
 
 var str;
 var climateOperations = ['automatic', 'manual', 'update'];
-function climateManagement(operation, scheda){
+function climateManagement(clima, operation, scheda){
     if(climateOperations.indexOf(operation) > -1){
         switch(operation){
             case 'automatic':
-                str="SogliaTemp.htm?ReleTemp=1";
+                setLed(scheda, 1, "ReleTemp");
                 break;
             case 'manual':
-                str = "forms.htm?all=C";
+                setLed(scheda, "C", "all");
                 break;
             case 'update':
-                str = "SogliaTemp.htm?soglia=" + $(".sogliaSelect").val();
+                setLed(scheda, $("#" + clima + " .sogliaSelect").val(), "soglia");
                 break;
         }
-        $.ajax({
-            dataType: "json",
-            type: "get",
-            url: "http://domotica.smart.homepc.it:80" + scheda + "/" + str
-        })
-        .done(function(el){})
-        .error(function(obj,str1){});
     }
 }
 
