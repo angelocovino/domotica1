@@ -142,7 +142,7 @@
                             if(!empty($str)){
                                 echo "<tr" . $str . ">";
                                     echo "<td>";
-                                        echo "<img src='immagini/tapparellaAlzata.svg' />";
+                                        echo "<img src='immagini/arrowDown.svg' />";
                                     echo "</td>";
                                     echo "<td>";
                                         echo ucwords($name);
@@ -157,7 +157,7 @@
                             if(isset($luci['Alza']) && ($luci['Alza'] instanceof saIO)){ $str = $luci['Alza']->getData(); 
                                 echo "<tr" . $str . ">";
                                 echo "<td>";
-                                    echo "<img src='immagini/tapparellaAlzata.svg' />";
+                                    echo "<img src='immagini/arrowUp.svg' />";
                                 echo "</td>";
                                 echo "<td>";
                                     echo ucwords("alza");

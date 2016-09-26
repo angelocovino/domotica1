@@ -65,6 +65,8 @@
 								echo "<div class='dayEvents'>";
                                     if(array_key_exists($day, $esempi)){
                                         stampaEventi($day, $esempi);
+                                    }else{
+                                        echo "Nessun evento presente";
                                     }
                                 echo "</div>";
                             echo "</div>";
