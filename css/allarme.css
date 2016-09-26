@@ -1,0 +1,115 @@
+.centeredContainer {
+    text-align: center;
+    width: 100%;
+}
+.centeredContainer td > * {
+    vertical-align: top;
+}
+.button{
+    width: 5%;
+    margin: 1%;
+    display: inline-block;
+    text-align: center;
+    background-color: lightgray;
+    box-shadow: 0 0 1px 1px darkgray;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+#Riciclo{
+    display: inline-block;
+    width: 20%;
+    background-color: lightgray;
+    box-shadow: 0 0 1px 1px darkgray;
+    padding: 10px;
+    border-radius: 20px;
+}
+.stato{
+    width: 10%;
+}
+.cont{
+    margin: 1%;
+    text-align: center;
+}
+.riciclo{
+    width: 48%;
+    display: inline-block;
+}
+.riciclo img{
+    width: 50%;
+}
+.elemList{
+    background-color: #fff;
+    border-radius: 20px;
+    line-height: 26px;
+    height: 30px;
+    box-shadow: 0 0 1px 1px darkgray;
+    cursor: pointer;
+}
+.sirena{
+    cursor: pointer;
+}
+.reset{
+    display: inline-block;
+}
+#calendarEventPopup {
+    position: fixed;
+    z-index: 100;
+    top: calc(50% - 150px);
+    left: calc(50% - 200px);
+    width: 400px;
+    padding: 10px;
+    background-color: white;
+    border: 0px solid black;
+    display: none;
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    -o-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+}
+calendarEvents table{
+    width: 100%;
+}
+#calendarEvents table td{
+    padding: 5px 10px;
+    font-size: 1.1em;
+}
+#calendarEvents table td:not(.noBorder){
+    border-bottom: 1px solid gray;
+}
+#calendarEvents table td:not(.noBorder):first-child{
+    border-right: 1px solid gray;
+    width: 25%;
+    text-align: center;
+}
+#calendarEvents table tr.scheduledEvent {
+    background: lightgray;
+}
+#calendarEvents .eventAddTime{
+    width: 100%;
+    text-align: left;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+#pwdZone {
+    width: 275px;
+    margin: 0 auto;
+}
+#pwdZone input {
+    padding: 5px;
+}
+#pwdZone input[type='password'] {
+    width: calc(100% - 10px);
+    border: 0;
+    margin: 0;
+    -webkit-box-shadow: 0px 0px 1px 1px lightgray;
+    -moz-box-shadow: 0px 0px 1px 1px lightgray;
+    -o-box-shadow: 0px 0px 1px 1px lightgray;
+    box-shadow: 0px 0px 1px 1px lightgray;
+}
+#pwdZone input[type='submit'] {
+    margin-top: 10px;
+    width: 100%;
+}
