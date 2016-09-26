@@ -30,7 +30,7 @@
             }else{
                 $xmlOpenString = $server . '.' . $key . ':' . $serverPort . $porta . '/' . $serverPage;
                 if($isDebug == true){
-                    $xmlOpenString = $server . ':' . $serverPort . $porta . '/' . $serverPage;
+                    $xmlOpenString = $serverDebug . ':' . $serverDebugPort . $porta . '/' . $serverDebugPage;
                 }
                 if(@$xml->open($xmlOpenString)){
                     while($xml->read()){
