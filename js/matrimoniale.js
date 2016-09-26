@@ -1,4 +1,4 @@
-var ports = [92, 96];
+var ports = [92, 93, 94, 97];
 
 var rgbCorrespondences = {
     95: 'salone',
@@ -84,7 +84,7 @@ function setImage(imgElement, image){
 
 
 $(document).ready(function(){
-    reloadColor("ffffff", "bagno");
+    reloadColor("ffffff", "matrimoniale");
 
     // INPUT TYPE RANGE
     var calculatedHeight = $("input[type=range]").closest(".fatto").prev().find("td").height();

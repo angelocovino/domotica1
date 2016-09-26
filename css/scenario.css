@@ -51,6 +51,14 @@ div.sun {
     background: url('../immagini/sun1.svg') center bottom transparent no-repeat;
     background-size: 50px 50px;
 }
+div.moon {
+    background: url('../immagini/moon-on.svg') center bottom transparent no-repeat;
+    background-size: 50px 50px;
+}
+div.bulb {
+    background: url('../immagini/bulb.svg') center bottom transparent no-repeat;
+    background-size: 50px 50px;
+}
 
 .single{
     display: inline-block;

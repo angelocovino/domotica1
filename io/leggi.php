@@ -39,8 +39,10 @@ if(isset($_GET['ports'])){
         foreach($arrayRichieste as $key => $porta){
             $response[$porta] = array();
             //if($xml->open($server . '.' . $key . ':' . $basePort . $porta . '/' . $page)){
-            if($porta > 95 ){
-                $response[$porta] = $response[95];
+            if($porta > 95){
+                if(in_array(205, $arrayRichieste)){
+                    $response[$porta] = $response[95];
+                }
             }else{
                 if(@$xml->open($server . ':' . $basePort . $porta . '/' . $page)){
                     while($xml->read()){

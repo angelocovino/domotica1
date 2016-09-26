@@ -8,10 +8,10 @@
             "soft" => saIO::led(11, 92)
         ),
         "serranda tony" => array(
-            "stato serranda" => saIO::btn(9, 93)->setImage("immagini/TapparellaAbbassata.svg", "immagini/TapparellaAlzata.svg"),
-            "abbassa" => saIO::led(9, 94),
-            "alza" => saIO::led(1, 94)
-        ),
+            "stato serranda" => saIO::btn(9, 93)->setImage("immagini/TapparellaAlzata.svg", "immagini/TapparellaAbbassata.svg"),
+            "abbassa" => saIO::led(9, 94)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),
+            "alza" => saIO::led(1, 94)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
+        )
     );
     foreach($stanze as $nome => $luci){
         echo "<div class='stanza stanzaSingola'>";
@@ -25,14 +25,10 @@
                             }
                             echo "<tr" . $str . ">";
                                 echo "<td>";
-                                    if($led->getImageOff() != false){
-                                        echo "<img src='" . $led->getImageOff() . "' />";
-                                    }else{
-                                        echo "<img src='immagini/lamp-3.svg' />";
-                                    }
+                                    echo "<img src='immagini/lamp-3.svg' />";
                                 echo "</td>";
                                 echo "<td>";
-                                        echo ucwords($luce);
+                                    echo ucwords($luce);
                                 echo "</td>";
                             echo "</tr>";
                         echo "</table>";

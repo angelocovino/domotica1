@@ -95,7 +95,12 @@ loadScript("js/jquery.min.js", function () {
     loadScript("js/jquerySVG/jquery.svganim.js", function(){});
     */
 <?php
-            elseif(strcasecmp($page, "luci") == 0):
+            elseif(
+                strcasecmp($page, "luci") == 0 ||
+                strcasecmp($page, "bagni") == 0 ||
+                strcasecmp($page, "matrimoniale") == 0 ||
+                strcasecmp($page, "salone") == 0
+            ):
 ?>
     loadStyle("css/spectrum.css");
     loadScript("js/spectrum.js", function(){});
