@@ -1,0 +1,107 @@
+.centeredContainer {
+    text-align: center;
+    width: 100%;
+}
+.centeredContainer td > * {
+    vertical-align: top;
+}
+.bigDiv {
+    margin: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: left;
+    display: inline-block;
+    background-color: lightgray;
+    box-shadow: 0 0 1px 1px darkgray;
+    border-radius: 20px;
+}
+.bigDiv h1 {
+    display: block;
+    padding: 10px;
+    font-size: 0.8em;
+    padding-left: 50px;
+    text-transform: uppercase;
+}
+.bigDiv .bigDivChild {
+    padding: 0 10px;
+    text-transform: uppercase;
+    font-size: 0.8em;
+}
+.bigDiv:first-child h1 {
+    background: url('../immagini/sun.svg') 10px center transparent no-repeat;
+    background-size: 30px;
+}
+.bigDiv:last-child h1 {
+    background: url('../immagini/snowflake.svg') 10px center transparent no-repeat;
+    background-size: 30px;
+}
+div.manuale,
+div.automatico {
+    display: block;
+    margin: 5px;
+    cursor: pointer;
+}
+div.manuale > *,
+div.automatico > * {
+    vertical-align: bottom;
+}
+img.manuale,
+img.automatico {
+    height: 15px;
+}
+.stato,
+.temperature,
+.soglia {
+    display: inline-block;
+}
+.stato {
+    font-size: 0.8em; 
+}
+.comparoScomparo {
+    border-top: 1px solid lightgray;
+    margin-top: 5px;
+    padding-top: 5px;
+    cursor: default;
+    display: none;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+ul li {
+    background-color: #eee;
+    box-shadow: 0 0 1px 1px darkgray;
+    border-radius: 10px;
+    margin: 5px 0;
+    padding: 5px;
+}
+ul li select{
+    border: 0px;
+    box-shadow: 0 0 1px 1px darkgray;
+    background: white;
+    padding: 2px;
+    margin: 0px 5px;
+}
+ul li button{
+    width: calc(100% - 0px);
+    border: 0px;
+    box-shadow: 0 0 1px 1px darkgray;
+    border-radius: 10px;
+    background: white;
+    padding: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+@media screen and (min-width: 801px ){
+    .bigDiv {
+        width: 40%;
+        max-width: 350px;
+    }
+}
+@media screen and (max-width: 800px) {
+    .bigDiv {
+        width: calc(80%);
+        max-width: 250px;
+    }
+}
