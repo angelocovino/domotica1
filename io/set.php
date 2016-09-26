@@ -1,6 +1,5 @@
 <?php
     include("../shared/utilitiesServer.php");
-
     $correspondences = array(
             91 => 201,
             92 => 202,
@@ -12,7 +11,6 @@
     );
 
     $port = $_GET['port'];
-    $address = $_GET['address'];
     $page = "leds.cgi";
     if(isset($_GET['led'])){
         $value = $_GET['led'];
@@ -24,7 +22,7 @@
         $value = $_GET['pwm3'];
         $str = "pwm3=";
         $page = "index.htm";
-    }elseif($_GET['all']){
+    }elseif(isset($_GET['all'])){
         $page = "forms.htm";
         $str = "all=";
         $value = $_GET['all'];
@@ -38,12 +36,17 @@
         $page = "index0.htm";
         $str = "Mon" . $_GET['Mon'] ."=";
         $value = "1";
+    }elseif(isset($_GET['soglia'])){
+        $page = "SogliaTemp.htm";
+        $str = "soglia=";
+        $value = $_GET['soglia'];
+    }elseif(isset($_GET['ReleTemp'])){
+        $page = "SogliaTemp.htm";
+        $str = "ReleTemp=";
+        $value = $_GET['ReleTemp'];
     }
 
-
-
     $str .= $value;
-               
     $final = $server . '.' . $correspondences[$port] . ":". $serverPort . $port . "/" . $page . "?" . $str;
     echo $final . "<br>";
     if($isDebug == true){

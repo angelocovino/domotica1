@@ -8,18 +8,18 @@
         "oven" => "elettrodomestici",
         "faucet" => "utenze",
         "bulb" => "luci",
-        "hairdryer" => "clima"
+        "thermometer" => "clima"
     );
     $perimetro = array(
         "mirror" => "ingresso",
         "window" => "esterno",
         "towel" => "bagni",
-        "bed" => "matrimoniale",
+        "bed-red" => "matrimoniale",
         "chimney" => "salone",
         "microwave" => "cucina",
-        "bed-1" => "tony",
-        "bed-2" => "elisa",
-        "bed-3" => "andrea"
+        "bed-green" => "tony",
+        "bed-pink" => "elisa",
+        "bed-blue" => "andrea"
     );
     $others = array(
         "clock-1" => "eventiSettimanali"

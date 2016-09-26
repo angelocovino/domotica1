@@ -84,16 +84,16 @@
             </div>
             <?php else: ?>
                 <?php if(isset($_POST['pass'])): ?>
-                    <p>Password errata!</p>
+                    <h3>Password errata!</h3>
                 <?php else: ?>
                     <h3>Pagina protetta da Password</h3>
+                <?php endif; ?>
                     <div id="pwdZone">
                         <form method="post">
                             <input type="password" name="pass" placeholder='Password' /><br />
                             <input type="submit" name="Entra" value="Entra" />
                         </form>
                     </div>
-                <?php endif; ?>
             <?php endif; ?>
         </td>
     </tr>

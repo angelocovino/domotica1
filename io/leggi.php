@@ -23,7 +23,7 @@
     if(isset($arrayRichieste)){
         foreach($arrayRichieste as $key => $porta){
             $response[$porta] = array();
-            if($porta > 95){
+            if($isDebug == true && $porta > 95){
                 if(in_array(205, $arrayRichieste)){
                     $response[$porta] = $response[95];
                 }

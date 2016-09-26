@@ -7,14 +7,14 @@
             "luce balcone" => saIO::led(4, 93),
             "luce scala condominio" => saIO::led(2, 93),
             "luce ripostiglio" => saIO::led(9, 93),
-            "apri cancello pedonale" => saIO::led(1, 93),
+            "apri cancello pedonale" => saIO::led(1, 93)->setImage("immagini/arrowRight.svg", "immagini/arrowRight.svg"),
         ),
         "Porta blindata" => array(
             "Porta blindata" => saIO::btn(1, 93)->setImage("immagini/door-1.svg", "immagini/door.svg"),
-            "apri" => saIO::led(3, 93),
+            "apri" => saIO::led(3, 93)->setImage("immagini/arrowRight.svg", "immagini/arrowRight.svg")
         ),
         "elettrodomestici" => array(
-            "irrigazione balcone" => saIO::led(5, 93),
+            "irrigazione balcone" => saIO::led(5, 93)->setImage("immagini/socketPlugged.svg", "immagini/socket.svg")
         )
     );
 

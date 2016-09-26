@@ -120,7 +120,7 @@ var lampadinaSpenta = "immagini/lamp-3.svg";
 var on = "immagini/switchOn.svg";
 var off = "immagini/switchOff.svg";
 
-var presaAccesa = "immagini/plug.svg";
+var presaAccesa = "immagini/socketPlugged.svg";
 var presaSpenta = "immagini/socket.svg";
 
 var tapparellaAbbassata = "immagini/TapparellaAbbassata.svg";

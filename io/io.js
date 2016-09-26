@@ -31,22 +31,23 @@ function loadXMLStatus(ports, callback){
     }
 }
 
-var setTypes = [
-    "led",
-    "rgb",
-    "pwm3",
-    "all",
-    "modalit",
-    "Mon"
-];
-
 function setLed(port, value, type="led"){
+    var setTypes = [
+        "led",
+        "rgb",
+        "pwm3",
+        "all",
+        "modalit",
+        "Mon",
+        "soglia",
+        "ReleTemp"
+    ];
+    
     if(type == "rgb" && value == 0){
         value = "0000000";
     }
     if(setTypes.indexOf(type) > -1){
-        address = "io/set.php?address=" + 0 + "&port=" + port + "&" + type + "=" + value;
-        //address = "/set.php?address=" + assPorte[port] + "&port=" + port + "&led=" + led;
+        address = "io/set.php?port=" + port + "&" + type + "=" + value;
         $.ajax({
             type:"get",
             url: address
@@ -58,7 +59,7 @@ function setLed(port, value, type="led"){
 
 $(document).ready(function(){
     if(
-        typeof ports !== "undefined" &&
+        (typeof ports !== "undefined") &&
         (typeof loadXMLcallback !== "undefined") && ($.isFunction(loadXMLcallback))
     ){
         loadXMLStatus(ports, loadXMLcallback);

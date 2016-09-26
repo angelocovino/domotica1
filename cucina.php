@@ -13,10 +13,10 @@
             "Alza Telo oscurante" => saIO::led(17, 94)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
         ),
         "Finestra cucina" => array(
-            "stato Finestra" => saIO::btn(2, 93)->setImage("immagini/TapparellaAlzata.svg", "immagini/TapparellaAbbassata.svg")
+            "stato Finestra" => saIO::btn(2, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
         ),
         "Finestra giorno" => array(
-            "stato Finestra giorno" => saIO::btn(3, 93)->setImage("immagini/TapparellaAlzata.svg", "immagini/TapparellaAbbassata.svg")
+            "stato Finestra giorno" => saIO::btn(3, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
         ),
         "Telo oscurante giorno" => array(
             "abbassa Telo oscurante giorno" => saIO::led(16, 94)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),
@@ -27,8 +27,8 @@
             "Alza Telo oscurante cucina/salotto" => saIO::led(6, 93)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
         ),
         "elettrodomestici" => array(
-            "carico forno" => saIO::led(14, 91),
-            "macchina caffe'" => saIO::led(4, 91)
+            "carico forno" => saIO::led(14, 91)->setImage("immagini/socketPlugged.svg", "immagini/socket.svg"),
+            "macchina caffe'" => saIO::led(4, 91)->setImage("immagini/socketPlugged.svg", "immagini/socket.svg")
         )
     );
     foreach($stanze as $nome => $luci){
