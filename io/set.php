@@ -1,4 +1,16 @@
 <?php
+    include("../shared/utilitiesServer.php");
+
+    $correspondences = array(
+            91 => 201,
+            92 => 202,
+            93 => 203,
+            94 => 204,
+            95 => 205,
+            96 => 206,
+            97 => 207
+    );
+
     $port = $_GET['port'];
     $address = $_GET['address'];
     $page = "leds.cgi";
@@ -31,7 +43,12 @@
 
 
     $str .= $value;
-    //$final = "http://192.168.1.{$address}:80{$port}/leds.cgi?led={$led}";
+               
+    $final = $server . '.' . $correspondences[$port] . ":". $serverPort . $port . "/" . $page . "?" . $str;
+    echo $final . "<br>";
+    if($isDebug == true){
+        $final = $serverDebug . ":" . $serverDebugPort . $port  . "/" . $page . "?" . $str;
+    }
     $final = "http://domotica.smart.homepc.it:80" . $port . "/" . $page . "?" . $str;
     echo $final;
     $pippo = file_get_contents($final);
