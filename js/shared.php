@@ -73,10 +73,17 @@ loadScript("js/jquery.min.js", function () {
     loadScript("io/io.js", function(){});
 <?php
         if(isset($page)):
+            // JAVASCRIPT
             echo "if(checkFileExists('js/" . $page . ".js')){";
                 echo "loadScript('js/" . $page . ".js', function () {});";
             echo "}else if(checkFileExists('js/" . $page . ".php')){";
                 echo "loadScript('js/" . $page . ".php', function () {});";
+            echo "}";
+            //  CSS
+            echo "if(checkFileExists('css/" . $page . ".css')){";
+                echo "loadStyle('css/" . $page . ".css');";
+            echo "}else if(checkFileExists('css/" . $page . ".php')){";
+                echo "loadStyle('css/" . $page . ".php');";
             echo "}";
             if(strcasecmp($page, "perimetro") == 0):
 ?>
@@ -88,12 +95,17 @@ loadScript("js/jquery.min.js", function () {
     loadScript("js/jquerySVG/jquery.svganim.js", function(){});
     */
 <?php
-            elseif(strcasecmp($page, "luci") == 0):
+            elseif(
+                strcasecmp($page, "luci") == 0 ||
+                strcasecmp($page, "bagni") == 0 ||
+                strcasecmp($page, "matrimoniale") == 0 ||
+                strcasecmp($page, "salone") == 0
+            ):
 ?>
     loadStyle("css/spectrum.css");
     loadScript("js/spectrum.js", function(){});
 <?php
-            elseif(strcasecmp($page, "eventi") == 0 || strcasecmp($page, "eventisettimanali") == 0):
+            elseif(strcasecmp($page, "eventisettimanali") == 0):
 ?>
     loadStyle("css/eventi.css");
 <?php

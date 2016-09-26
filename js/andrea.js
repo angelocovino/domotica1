@@ -1,4 +1,4 @@
-var ports = [93, 94];
+var ports = [92, 93, 94];
 
 loadXMLcallback = function (port, portArray){
     setLedView(port, portArray, appicciaStuta);
@@ -18,8 +18,8 @@ function appicciaStuta (elem, isClick = false){
     img = tr.find("img");
     imageOn = tr.attr("data-image-on");
     imageOff = tr.attr("data-image-off");
-    tempImageOn = tapparellaAlzata;
-    tempImageOff = tapparellaAbbassata;
+    tempImageOn = lampadinaAccesa;
+    tempImageOff = lampadinaSpenta;
     if(imageOn != undefined && imageOff != undefined){
         tempImageOn = imageOn;
         tempImageOff = imageOff;
@@ -28,16 +28,16 @@ function appicciaStuta (elem, isClick = false){
         if(isClick){
             setLed(port, led);
         }else{
-            if(tr.attr("data-acceso") == 'up'){
+            if(tr.attr("data-acceso") == 'up' || tr.attr("data-acceso") == 1){
                 setImage(img, tempImageOn);
-            }if(tr.attr("data-acceso") == 'dwn'){
+            }if(tr.attr("data-acceso") == 'dwn' || tr.attr("data-acceso") == 0){
                 setImage(img, tempImageOff);
             }
         }
     }else{
-        if(tr.attr("data-acceso") == 'up'){
+        if(tr.attr("data-acceso") == 'up' || tr.attr("data-acceso") == 1){
             setImage(img, tempImageOn);
-        }if(tr.attr("data-acceso") == 'dwn'){
+        }if(tr.attr("data-acceso") == 'dwn' || tr.attr("data-acceso") == 0){
             setImage(img, tempImageOff);
         }
     }

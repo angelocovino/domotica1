@@ -13,11 +13,11 @@
     $stanze = array(
        "cancello pedonale" => array(
             "apri" => saIO::led(1, 93),
-            ),
+        ),
         "Porta blindata" => array(
             "stato" => saIO::btn(1, 93)->setImage("immagini/door-1.svg", "immagini/door.svg"),
-            "apri" => saIO::led(3, 93),
-            ),
+            "apri" => saIO::led(3, 93)
+        ),
         "Finestra cucina" => array(
             "stato" => saIO::btn(2, 93)
         ),

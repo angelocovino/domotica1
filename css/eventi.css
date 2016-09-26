@@ -148,7 +148,6 @@ body {
     font-weight: bold;
     color: #1A6FB0;
 }
-
 #calendarEventPopup {
     position: fixed;
     z-index: 100;

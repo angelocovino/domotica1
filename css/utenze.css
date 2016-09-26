@@ -1,0 +1,39 @@
+.centeredContainer {
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+}
+.centeredContainer td > * {
+    vertical-align: top;
+}
+.centeredContainer .button {
+    display: inline-block;
+    text-align: center;
+    background-color: lightgray;
+    box-shadow: 0 0 1px 1px darkgray;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.8em;
+}
+.centeredContainer .button img {
+    margin: 5px 0;
+    margin-top: 20px;
+}
+.centeredContainer .button span {
+    font-size: 0.8em;
+}
+@media screen and (min-width: 601px){
+    .centeredContainer .button {
+        width: 150px;
+        margin: 10px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .centeredContainer .button {
+        width: calc(30% - 30px);
+        font-size: 0.65em;
+        margin: 5px;
+    }
+}

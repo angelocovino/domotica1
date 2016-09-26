@@ -5,13 +5,16 @@
     $paginaVisualizzata = $pagina = $pagina[0];
     $i = array_search($pagina, array_values($menu));
     $key = array_keys($menu)[$i];
+    $menuUtilizzato = 0;
     if($i === false){
         $i = array_search($pagina, array_values($perimetro));
         $key = array_keys($perimetro)[$i];
+        $menuUtilizzato = 1;
         if($i === false){
             $i = array_search($pagina, array_values($others));
             $key = array_keys($others)[$i];
             $paginaVisualizzata = $othersNames[$i];
+            $menuUtilizzato = 2;
         }
     }
     // IO CLASS
@@ -31,7 +34,21 @@
     <body>
 		<div id="popupBackground">&nbsp;</div>
         <header id="topMenu">
+<?php
+    switch($menuUtilizzato){
+        default:
+        case 0:
+?>
             <a href="index.php"><img class='icona home' src='immagini/cabin.svg'></a>
+<?php
+            break;
+        case 1:
+?>
+            <a href="perimetro.php"><img class='icona home' src='immagini/fence.svg'></a>
+<?php
+            break;
+    }
+?>
             <table id="corrente"><tr><td>
                 <img class='icona' src='immagini/<?php echo $key; ?>.svg' /></td><td><?php echo $paginaVisualizzata; ?>
             </td></tr></table>

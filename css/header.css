@@ -48,37 +48,6 @@
     padding: 4px;
     border: 0px solid blue;
 }
-.centeredContainer {
-    text-align: center;
-}
-.bigDiv {
-    margin: 10px;
-    margin-top: 20px;
-    padding: 10px;
-    text-align: left;
-    display: inline-block;
-    background-color: lightgray;
-    box-shadow: 0 0 1px 1px darkgray;
-    border-radius: 20px;
-}
-.bigDiv h1 {
-    display: block;
-    padding: 10px;
-    font-size: 0.8em;
-    padding-left: 50px;
-    text-transform: uppercase;
-}
-.bigDiv .bigDivChild {
-    padding: 0 10px;
-}
-.bigDiv:first-child h1 {
-    background: url('../immagini/sun.svg') 10px center transparent no-repeat;
-    background-size: 30px;
-}
-.bigDiv:last-child h1 {
-    background: url('../immagini/snowflake.svg') 10px center transparent no-repeat;
-    background-size: 30px;
-}
 @media screen and (min-width: 1468px) {
     .fatto.responsive {
         display: inline-block;
@@ -140,10 +109,6 @@
         text-align: right;
         padding-bottom: 5px;
     }
-    .bigDiv {
-        width: 40%;
-        max-width: 350px;
-    }
 }
 @media screen and (max-width: 800px) {
     /* STANZE */
@@ -185,10 +150,6 @@
         padding-bottom: 5px;
         width: 60px;
     }
-    .bigDiv {
-        width: calc(80%);
-        max-width: 250px;
-    }
 }
 #popupBackground{
     position: fixed;
@@ -197,10 +158,4 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
     display: none;
-}
-.manuale, .automatico {
-    width: 50px;
-}
-.stato, .temperature, .soglia {
-    display: inline-block;
 }

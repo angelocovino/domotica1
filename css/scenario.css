@@ -1,0 +1,108 @@
+.table{
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 20px;
+    height: 50px;
+}
+.content{
+    text-align: center;
+}
+.table > div:first-child {
+    margin-right: 35px;
+}
+.table > div:nth-child(2) {
+    margin-left: 35px;
+}
+h3 {
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    padding: 0;
+}
+h3:first-child {
+    margin: 15px 0 5px 0;
+}
+h3:not(:first-child) {
+    margin: 30px 0 5px 0;
+}
+.table .button{
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    background-color: lightgray;
+    box-shadow: 0 0 1px 1px darkgray;
+    text-transform: uppercase;
+    padding: 0px;
+    height: 50px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.table .button{
+    width: calc(50% - 40px);
+}
+.table .button table {
+    width: 100%;
+    height: 100%;
+}
+.table .button td {
+    vertical-align: middle;
+}
+div.sun {
+    background: url('../immagini/sun1.svg') center bottom transparent no-repeat;
+    background-size: 50px 50px;
+}
+div.moon {
+    background: url('../immagini/moon-on.svg') center bottom transparent no-repeat;
+    background-size: 50px 50px;
+}
+div.bulb {
+    background: url('../immagini/bulb.svg') center bottom transparent no-repeat;
+    background-size: 50px 50px;
+}
+
+.single{
+    display: inline-block;
+    margin: 1%;
+    cursor: pointer;
+}
+.single .button{
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    background-color: lightgray;
+    box-shadow: 0 0 1px 1px darkgray;
+    text-transform: uppercase;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.single .button img{
+    width: 50px;
+}
+@media screen and (min-width: 1800px) {
+    .table{
+        width: 35%;
+    }
+    .single .button{
+        font-size: 1em;
+    }
+}
+@media screen and (min-width: 801px) and (max-width: 1799px){
+    .table{
+        width: 54%;
+        font-size: 0.8em;
+    }
+    .single .button{
+        font-size: 0.7em;
+    }
+}
+@media screen and (max-width: 800px) {
+    .table{
+        width: 95%;
+        font-size: 0.8em;
+    }
+    .single .button{
+        width: 70px;
+        font-size: 0.7em;
+    }
+}

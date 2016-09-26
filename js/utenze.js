@@ -1,19 +1,30 @@
 var ports = [93];
 
 loadXMLcallback = function (port, portArray){
-    if(portArray['led13']=="0"){//antincendio
-        $("#Anti img").attr("src","immagini/estintore-fuoco.svg");
-    }else{
+    if(portArray['led13']=="1"){//antincendio
         $("#Anti img").attr("src","immagini/extinguisher.svg");
+        $("#Anti span").html("acceso");
+    }else{
+        $("#Anti img").attr("src","immagini/estintore-fuoco.svg");
+        $("#Anti span").html("spento");
     }  
-    if(portArray['led14']=="0"){//metano
-        $("#Gas img").attr("src","immagini/gas-off.svg");
-    }else{
+    $("#Anti").attr("data-enabled", portArray['led13']);
+    
+    if(portArray['led14']=="1"){//metano
         $("#Gas img").attr("src","immagini/gas-on.svg");
-    }
-    if(portArray['led15']=="0"){//acqua
-        $("#Acqua img").attr("src","immagini/faucet-off.svg");
+        $("#Gas span").html("acceso");
     }else{
-        $("#Acqua img").attr("src","immagini/faucet.svg");
+        $("#Gas img").attr("src","immagini/gas-off.svg");
+        $("#Gas span").html("spento");
     }
+    $("#Gas").attr("data-enabled", portArray['led14']);
+    
+    if(portArray['led15']=="1"){//acqua
+        $("#Acqua img").attr("src","immagini/faucet.svg");
+        $("#Acqua span").html("accesa");
+    }else{
+        $("#Acqua img").attr("src","immagini/faucet-off.svg");
+        $("#Acqua span").html("spenta");
+    }
+    $("#Acqua").attr("data-enabled", portArray['led15']);
 }

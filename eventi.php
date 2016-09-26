@@ -173,6 +173,8 @@
                                 }
                                 if(array_key_exists($day, $esempi)){
                                     stampaEventi($day, $esempi, 2, $count, $exit);
+                                }else{
+                                    echo "Nessun evento presente";
                                 }
                                 echo "</div>";
                             echo "</div>";

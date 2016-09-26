@@ -3,18 +3,18 @@
 ?>
 <?php
     $stanze = array(
-        "Esterno" => array(
-            "luce balcone" => saIO::led(4, 93),
-            "luce scala condominio" => saIO::led(2, 93),
-            "luce ripostiglio" => saIO::led(9, 93),
-            "apri cancello pedonale" => saIO::led(1, 93),
+        "stanza elisa" => array(
+            "luce" => saIO::led(14, 92),
+            "soft" => saIO::led(15, 92)
         ),
-        "Porta blindata" => array(
-            "Porta blindata" => saIO::btn(1, 93)->setImage("immagini/door-1.svg", "immagini/door.svg"),
-            "apri" => saIO::led(3, 93),
+        "Finestra Elisa" => array(
+            "stato Finestra" => saIO::btn(6, 93)->setImage("immagini/TapparellaAlzata.svg", "immagini/TapparellaAbbassata.svg")
+        ),
+        "Telo oscurante Elisa" => array(
+            "abbassa Telo oscurante" => saIO::led(13, 94)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),
+            "Alza Telo oscurante" => saIO::led(5, 94)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
         )
     );
-
     foreach($stanze as $nome => $luci){
         echo "<div class='stanza stanzaSingola'>";
             echo "<div class='fatti'>";
@@ -27,10 +27,10 @@
                             }
                             echo "<tr" . $str . ">";
                                 echo "<td>";
-                                        echo "<img src='immagini/lamp-3.svg' />";
+                                    echo "<img src='immagini/lamp-3.svg' />";
                                 echo "</td>";
                                 echo "<td>";
-                                        echo ucwords($luce);
+                                    echo ucwords($luce);
                                 echo "</td>";
                             echo "</tr>";
                         echo "</table>";

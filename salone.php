@@ -3,25 +3,38 @@
 ?>
 <?php
     $stanze = array(
-        "bagno di servizio" => array(
-            "luce" => saIO::led(2, 92),
-            "luce area wc" => saIO::led(4, 92)
+        "salone" => array(
+            "luce tavolo giorno" => saIO::led(6, 91),
+            "luce area giorno" => saIO::led(7, 91),
+            "faretti parete tv" => saIO::led(10, 91)
         ),
-        "bagno ospiti" => array(
-            "luce" => saIO::led(5, 92),
-            "luce servizio" => saIO::led(6, 92),
-            "luce specchio lavabi" => saIO::led(3, 92)
-        ),
-        "bagno ospiti led RGB" => array(
+        "salone  led RGB" => array(
             "spegni led RGB" => saIO::led(0, 0),
-            "accendi/colora led RGB" => saIO::rgb(96)
+            "accendi/colora led RGB" => saIO::rgb(95)
         ),
-        "bagno ospiti led White" => array(
-            "spegni led white" => saIO::white(96, true),
-            "accendi/regola led white" => saIO::white(96)
+        "salone led White" => array(
+            "spegni led White" => saIO::white(95, true),
+            "accendi/regola led White" => saIO::white(95)
+        ),
+        "Finestra salotto" => array(
+            "stato Finestra" => saIO::btn(4, 93)->setImage("immagini/TapparellaAlzata.svg", "immagini/TapparellaAbbassata.svg")
+        ),
+        "Telo oscurante salotto" => array(
+            "abbassa Telo oscurante" => saIO::led(15, 94)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),
+            "Alza Telo oscurante" => saIO::led(7, 94)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
+        ),
+        "Finestra giorno" => array(
+            "stato Finestra giorno" => saIO::btn(3, 93)->setImage("immagini/TapparellaAlzata.svg", "immagini/TapparellaAbbassata.svg")
+        ),
+        "Telo oscurante giorno" => array(
+            "abbassa Telo oscurante giorno" => saIO::led(16, 94)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),
+            "Alza Telo oscurante giorno" => saIO::led(8, 94)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
+        ),
+        "Telo oscurante cucina/salotto" => array(
+            "abbassa Telo oscurante cucina/salotto" => saIO::led(7, 93)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),
+            "Alza Telo oscurante cucina/salotto" => saIO::led(6, 93)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
         )
     );
-
     foreach($stanze as $nome => $luci){
         echo "<div class='stanza stanzaSingola'>";
             echo "<div class='fatti'>";

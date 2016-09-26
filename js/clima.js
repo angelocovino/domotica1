@@ -16,6 +16,7 @@ loadXMLcallback = function (port, portArray){
         $("#" + selectedClimate + " .stato").html(stato);
         
         // READ TEMPERATURE
+        portArray["temp"] = portArray["temp"].replace("---", "-");
         $("#" + selectedClimate + " .temperature").html(portArray["temp"]);
         
         // READ SOGLIA TEMPERATURA
@@ -25,11 +26,17 @@ loadXMLcallback = function (port, portArray){
         stato = off;
         if(portArray["allC"] == "1"){ stato = on; }
         $("#" + selectedClimate + " .manuale").attr('src', stato);
+        if(stato == on){
+            $("#" + selectedClimate + " .automaticManual").html("Manuale");
+        }
         
         // READ AUTOMATIC ACCESO/SPENTO
         stato = off;
         if(portArray["ReleTemp"] == "1"){ stato = on; }
         $("#" + selectedClimate + " .automatico").attr('src', stato);
+        if(stato == on){
+            $("#" + selectedClimate + " .automaticManual").html("Automatico");
+        }
     }
 }
 
@@ -57,3 +64,12 @@ function climateManagement(operation, scheda){
         .error(function(obj,str1){});
     }
 }
+
+$(document).ready(function(){
+    $(".comparoScomparo").parent().click(function(e){
+        if ($(e.target).is('li')){
+            $(this).find(".comparoScomparo").fadeToggle(500);
+        }
+    });
+    $(".comparoScomparo").parent().css('cursor', 'pointer');
+});
