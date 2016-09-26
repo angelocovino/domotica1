@@ -1,32 +1,34 @@
 var ports, loadXMLcallback;
 
 function loadXMLStatus(ports, callback){
-    $.ajax({
-        dataType: "json",
-        type: "get",
-        url: "io/leggi.php",
-        data: {ports: ports}
-    })
-    .done(function(el){
-        $.each(el, function(port, portArray){
-            if((typeof callback !== "undefined") && ($.isFunction(callback))){
-                if(portArray.length < 1){
-                    console.log("port " + port + " is down");
-                }
-                callback(port, portArray);
-            };
+    if(ports.length > 0){
+        $.ajax({
+            dataType: "json",
+            type: "get",
+            url: "io/leggi.php",
+            data: {ports: ports}
         })
-    })
-    .error(function(obj,ErrorStr){
-        console.log("Errore di connessione " + ErrorStr);
-    })
-    .complete(function(xhr, textStatus){
-        if(xhr.status == 200){
-            setTimeout(loadXMLStatus(ports, callback), 1000);
-        }else{
-            setTimeout(loadXMLStatus(ports, callback), 500);
-        }
-    });
+        .done(function(el){
+            $.each(el, function(port, portArray){
+                if((typeof callback !== "undefined") && ($.isFunction(callback))){
+                    if(portArray.length < 1){
+                        console.log("port " + port + " is down");
+                    }
+                    callback(port, portArray);
+                };
+            })
+        })
+        .error(function(obj,ErrorStr){
+            console.log("Errore di connessione " + ErrorStr);
+        })
+        .complete(function(xhr, textStatus){
+            if(xhr.status == 200){
+                setTimeout(loadXMLStatus(ports, callback), 1000);
+            }else{
+                setTimeout(loadXMLStatus(ports, callback), 500);
+            }
+        });
+    }
 }
 
 var setTypes = [
