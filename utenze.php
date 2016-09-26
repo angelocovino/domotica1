@@ -13,23 +13,16 @@
         }
 </style>
 <div>
-    <div class="button">
+    <div onclick="setLed(93,14)" class="button" id="Gas">
         <img src="immagini/gas-on.svg" />
     </div>
-    <div class="button">
-        <img src="immagini/gas-off.svg" />
+    <div onclick="setLed(93,15)" class="button" id="Acqua">
+        <img src="immagini/faucet.svg" />
     </div>
-    <div class="button">
+    <div onclick="setLed(93,13)" class="button" id="Anti">
         <img src="immagini/estintore-fuoco.svg" />
     </div>
-    <div class="button">
-        <img src="immagini/extinguisher.svg" />
-    </div>
-    <div class="button">
-        <img src="immagini/faucet.svg" /></div>
-    <div class="button">
-        <img src="immagini/faucet-off.svg" />
-    </div>
+
     
 </div>
 

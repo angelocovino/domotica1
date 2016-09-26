@@ -47,6 +47,23 @@
         .reset{
             display: inline-block;
         }
+        
+#calendarEventPopup {
+    position: fixed;
+    z-index: 100;
+    top: calc(50% - 150px);
+    left: calc(50% - 200px);
+    width: 400px;
+    padding: 10px;
+    background-color: white;
+    border: 0px solid black;
+    display: none;
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    -o-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+}
     </style>
 
 <div class="cont">
