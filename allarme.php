@@ -163,9 +163,10 @@ calendarEvents table{
                 <div class="elemList disattivo" onclick="setLed('93','0','modalit')">Disattiva</div>             
              </div>
          </div>
-         
+    </div><br>
+    
+    <a href="http://smarthome2.altervista.org/email_log_VarricchioArturo06.txt">Registro</a>
+    
     <button onclick="popupOpen()">stato</button>
-
-    </div>   
 </div>
 <?php @include('shared/footer.php'); ?>
