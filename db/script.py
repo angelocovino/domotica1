@@ -12,7 +12,8 @@ import string
 con = None
 
 try:
-    con = lite.connect('domotica.sqlite3')
+    path = "/var/www/html/domoticaVarr/db/domotica.sqlite3"
+    con = lite.connect(path)
     
     con.row_factory = lite.Row
     
@@ -40,7 +41,7 @@ try:
         response = conn.getresponse()
         print response.status, response.reason
 
-    query = "SELECT * FROM EventiProgrammati INNER JOIN Comando ON EventiProgrammati.comando = Comando.id WHERE enable = 1 and ora <=" + str(ora) + " and minuti <=" + str(minuto)
+    query = "SELECT * FROM EventiProgrammati INNER JOIN Comando ON EventiProgrammati.comando = Comando.id WHERE enable = 1 and ora =" + str(ora) + " and minuti =" + str(minuto)
 
     cur.execute(query);
     
@@ -50,7 +51,7 @@ try:
     for row in rows:
         giorni = string.split(row['giorni'], ",")
         if(str(dow) in giorni):
-            #print row['istruzione'] ,row['nome']
+            print row['istruzione'] ,row['nome']
             param = "/index.htm?execute=" + str(row['istruzione'])
             conn.request("GET", param)
             response = conn.getresponse()
