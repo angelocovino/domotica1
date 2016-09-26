@@ -28,6 +28,10 @@
             $this->imageOff = $imageOff;
             return ($this);
         }
+        public function setImageTapparella(){
+            $this->setImage();
+            return ($this);
+        }
         public function getData(){
             $str = "";
             if(strcasecmp($this->type, "rgb") == 0){
