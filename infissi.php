@@ -133,7 +133,7 @@
                             $str = "";
                             $name = "";
                             if(isset($luci['abbassa']) && ($luci['abbassa'] instanceof saIO)){ 
-                                $str = $luci['abbassa']->getData();
+                                $str = $luci['abbassa']->getData(); 
                                 $name = "abbassa";
                             }else if(isset($luci['apri']) && ($luci['apri'] instanceof saIO)){ 
                                 $str = $luci['apri']->getData();
