@@ -34,7 +34,9 @@
     $db->opendatabase();
     $db->createDB();
     $esempi = $db->getEventsWithParams($month, $year);
-	
+    $esempi = $db->getScheduledEventsWithParams();
+	echo "<pre>";
+var_dump($esempi);
 	$countDaysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 	
 

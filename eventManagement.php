@@ -15,7 +15,7 @@
     // 5 = DisabledEventGiornaliero
 
     if($tipo == 0){
-        $ora =  $_POST['eventHour'];
+        $ora = $_POST['eventHour'];
         $minuti = $_POST['eventMinute'];
         $giorno = $_POST['eventDay'];
         $mese = $_POST['eventMonth'];
@@ -25,9 +25,10 @@
     }
 
     if($tipo == 1){
-        $ora =  $_POST['eventHour'];
-        $minuti = $_POST['eventMinute'];
+        $ora = str_pad($_POST['eventHour'], 2 , "0", STR_PAD_LEFT);
+        $minuti = str_pad($_POST['eventMinute'], 2 , "0", STR_PAD_LEFT);
         $giorni = $_POST['eventDays'];
+        $giorni = implode(',', $giorni);
         $comando = $_POST['eventCommand'];        
         $db->addEventsScheduled($ora,$minuti,$giorni,$comando);
     }
@@ -51,8 +52,7 @@
         $id =  $_POST['id'];
         $db->disableEventScheduled($id);
     }
-
-    if($tipo != 2){
+    if($tipo == 0 || $tipo == 1){
         $old = $_SERVER['HTTP_REFERER'];
         header('Location: ' . $old);
     }

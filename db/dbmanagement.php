@@ -2,7 +2,11 @@
 class dbmanagment{
     private $pdo;
     function __construct__(){
-        $pdo=null;
+    }
+    static function open(){
+        $db = new dbmanagment();
+        $db->opendatabase();
+        return ($db);
     }
 
     function opendatabase(){
@@ -12,6 +16,7 @@ class dbmanagment{
                 $this->pdo->setAttribute(PDO::ATTR_ERRMODE, 
                             PDO::ERRMODE_EXCEPTION);
             }
+            $this->createDB();
         }catch(PDOException $e){
             // logerror($e->getMessage(), "opendatabase");
             print "Error in openhrsedb ".$e->getMessage();
@@ -146,18 +151,21 @@ class dbmanagment{
         return $result;
     }
     
+    
+    
     function getEventsWithParams($mese,$anno){
-        $query = "SELECT Comando.nome, Evento.id, (Evento.ora || ':' || Evento.minuti) as ora, Evento.giorno FROM Evento INNER JOIN Comando ON Evento.comando = Comando.id WHERE mese = {$mese} and anno = {$anno} ORDER BY giorno , ora , minuti";
+        $query = "SELECT Comando.nome, Evento.id, Evento.ora, Evento.minuti, Evento.giorno FROM Evento INNER JOIN Comando ON Evento.comando = Comando.id WHERE mese = {$mese} and anno = {$anno} ORDER BY giorno , ora , minuti";
         $result = $this->pdo->query($query);
         $result = $result->fetchAll();
         $arr = array();
         foreach($result as $i => $cose){
-            $arr[$cose['giorno']][$cose['ora']][] = array(
+            $ora = str_pad($cose['ora'], 2, "0", STR_PAD_LEFT) . ":" . str_pad($cose['minuti'], 2, "0", STR_PAD_LEFT);
+            $arr[$cose['giorno']][$ora][] = array(
                 'id' => $cose['id'],
                 'comandoNome' => $cose['nome']
             );
         }
-        $query = "SELECT Comando.nome, EventiProgrammati.id , EventiProgrammati.giorni , (EventiProgrammati.ora || ':' || EventiProgrammati.minuti) as ora
+        $query = "SELECT Comando.nome, EventiProgrammati.id , EventiProgrammati.giorni ,EventiProgrammati.ora ,EventiProgrammati.minuti
         FROM EventiProgrammati INNER JOIN Comando ON EventiProgrammati.comando = Comando.id 
         WHERE enable = 1 
         ORDER BY ora , minuti";
@@ -165,9 +173,10 @@ class dbmanagment{
         $result = $result->fetchAll();
         $arr['programmati'] = [];
         foreach($result as $i => $cose){
+           $ora = str_pad($cose['ora'], 2, "0", STR_PAD_LEFT) . ":" . str_pad($cose['minuti'], 2, "0", STR_PAD_LEFT);
            $day = explode(",",$cose['giorni']);
             foreach($day as $d){
-                $arr['programmati'][$d][$cose['ora']][] = array(
+                $arr['programmati'][$d][$ora][] = array(
                     'id' => $cose['id'],
                     'comandoNome' => $cose['nome']
                 );
@@ -175,6 +184,28 @@ class dbmanagment{
         }
         return $arr;
     }
+    
+    function getScheduledEventsWithParams(){
+        $query = "SELECT EventiProgrammati.enable, Comando.nome, EventiProgrammati.id , EventiProgrammati.giorni , EventiProgrammati.ora , EventiProgrammati.minuti
+        FROM EventiProgrammati INNER JOIN Comando ON EventiProgrammati.comando = Comando.id
+        ORDER BY ora , minuti";
+        $result = $this->pdo->query($query);
+        $result = $result->fetchAll();
+        $arr = [];
+        foreach($result as $i => $cose){
+           $ora = str_pad($cose['ora'], 2, "0", STR_PAD_LEFT) . ":" . str_pad($cose['minuti'], 2, "0", STR_PAD_LEFT);
+           $day = explode(",",$cose['giorni']);
+            foreach($day as $d){
+                $arr[$d][$ora][] = array(
+                    'id' => $cose['id'],
+                    'comandoNome' => $cose['nome'],
+                    'enable' => $cose['enable']
+                );
+            }
+        }
+        return $arr;
+    }
+    
     
     function addEvents($ora, $minuti, $giorno, $mese, $anno, $comando ){
         $str = "INSERT INTO Evento (ora, minuti, giorno, mese, anno, comando) VALUES ({$ora},{$minuti},{$giorno},{$mese},{$anno},{$comando});";

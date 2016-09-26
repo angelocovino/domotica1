@@ -93,7 +93,7 @@ loadScript("js/jquery.min.js", function () {
     loadStyle("css/spectrum.css");
     loadScript("js/spectrum.js", function(){});
 <?php
-            elseif(strcasecmp($page, "eventi") == 0):
+            elseif(strcasecmp($page, "eventi") == 0 || strcasecmp($page, "eventisettimanali") == 0):
 ?>
     loadStyle("css/eventi.css");
 <?php

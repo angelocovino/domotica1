@@ -2,6 +2,15 @@ var ports = [];
 
 loadXMLcallback = function (port, portArray){}
 
+var days = [
+    'Lunedi',
+    'Martedi',
+    'Mercoledi',
+    'Giovedi',
+    'Venerdi',
+    'Sabato',
+    'Domenica'
+];
 function isFunction(functionToCheck) {
     var getType = {};
     return (functionToCheck && getType.toString.call(functionToCheck) === '[object Function]');
@@ -34,24 +43,19 @@ function calendarEventClose(time = 500, callback = null){
     $("#calendarEventPopup").fadeOut(time);
 }
 function calendarEventsGet(day){
-    var eventTime, str;
+    var str;
     str = "<form id='addEvent' action='eventManagement.php' method='post' name='addEvent'>";
         str += "<table cellspacing='4px' cellpadding='0'>";
         var d, dow;
-        d = new Date(currentYear, currentMonth - 1, day, 0, 0, 0, 0);
-        dow = d.getDay();
+        dow = day;
         if(dow == 0){dow = 6;}
         else{dow--;}
-        if(dow in events["programmati"]){
-            str += calendarEventPrintScheduled(events["programmati"][dow]);
-        }
-        if(day in events){
-            for(eventTime in events[day]) {
-                str += calendarEventPrint(events[day][eventTime], eventTime);
-            }
+        dow += 1;
+        if(dow in events){
+            str += calendarEventPrintScheduled(events[dow]);
         }else{
             str += "</table>";
-            str += "<div class='center'>Non ci sono eventi programmati per questo giorno</div>";
+            str += "<div class='center'>Non ci sono eventi programmati per questo giorno della settimana</div>";
             str += "<table cellspacing='4px' cellpadding='0'>";
         }
         str += calendarEventAddPrint(day);
@@ -60,29 +64,15 @@ function calendarEventsGet(day){
     str += "</form>";
     return str;
 }
-function calendarEventPrint(eventArray, startTime){
-    var str = "";
-    for(evento in eventArray) {
-        str += "<tr>";
-            str += "<td>";
-                str += startTime;
-            str += "</td>";
-            str += "<td data-id='" + eventArray[evento]["id"] + "'>";
-                str += eventArray[evento]["comandoNome"];
-            str += "</td>";
-        str += "</tr>";
-    }
-    return (str);
-}
 function calendarEventPrintScheduled(eventArray){
     var startTime, evento, str = "";
     for(startTime in eventArray) {
         for(evento in eventArray[startTime]){
-            str += "<tr class='scheduledEvent'>";
-                str += "<td>";
+            str += "<tr>";
+                str += "<td data-enabled='" + eventArray[startTime][evento]["enable"] + "'>";
                     str += startTime;
                 str += "</td>";
-                str += "<td>";
+                str += "<td data-id='" + eventArray[startTime][evento]["id"] + "'>";
                     str += eventArray[startTime][evento]["comandoNome"];
                 str += "</td>";
             str += "</tr>";
@@ -99,20 +89,33 @@ function calendarEventAddPrint(day){
     str += "</tr>";
     str += "<tr id='eventAddRow'>";
         str += "<td>";
+            str += "Ore";
+            str += "<br />";
             str += "<input class='eventAddTime' name='eventHour' type='number' min='0' max='23' value='0' />";
-            str += ":";
+            str += "<br />";
+            str += "<br />";
+            str += "Minuti";
+            str += "<br />";
             str += "<input class='eventAddTime' name='eventMinute' type='number' min='0' max='59' value='0' />";
         str += "</td>";
         str += "<td>";
+            str += "Comando";
+            str += "<br />";
             str += calendarEventGetCommands();
+            str += "<br />";
+            str += "<br />";
+            str += "Giorni";
+            str += "<br />";
+            str += "<select multiple name='eventDays[]' size='7'>";
+                for(day in days){
+                    str += "<option value='" + day + "'>" + days[day] + "</option>"; //.substring(0, 3)
+                }
+            str += "</select>";
         str += "</td>";
     str += "</tr>";
     str += "<tr id='eventAddRowSubmit'>";
         str += "<td class='noBorder' colspan='2'>";
-                str += "<input type='hidden' name='eventDay' value='" + day + "' />";
-                str += "<input type='hidden' name='eventMonth' value='" + month + "' />";
-                str += "<input type='hidden' name='eventYear' value='" + year + "' />";
-                str += "<input type='hidden' name='eventType' value='0' />";
+                str += "<input type='hidden' name='eventType' value='1' />";
                 str += "<input type='submit' value='Salva' />";
         str += "</td>";
     str += "</tr>";
@@ -131,6 +134,7 @@ function calendarEventGetCommands(){
 
 $(document).ready(function(){
     var tdDeleteOldValue = [];
+    var tdEnableOldValue = [];
     $(".day").click(function(e){
         if($("#calendarCells").is(":visible") && !$(this).find(".dayEvents").is(":visible")){
             $(this).find(".dayEvents").fadeIn(500);
@@ -140,19 +144,8 @@ $(document).ready(function(){
             }else{
                 var td = $(this);
                 var day = td.attr("data-day");
-                var month, monthName, year;
-                month = td.parents("tbody").attr("data-month");
-                if(month != undefined){
-                    monthName = td.parents("tbody").attr("data-month-name");
-                    year = td.parents("tbody").attr("data-year");
-                }else{
-                    month = $("#calendarCells").attr("data-month");
-                    monthName = $("#calendarCells").attr("data-month-name");
-                    year = $("#calendarCells").attr("data-year");
-                }
                 calendarEventToggle(500, function(){
-                    //$("#calendarEventDate").html(pad(day, 2) + "/" + pad(month, 2) + "/" + year);
-                    $("#calendarEventDate").html(day + " " + monthName + " " + year);
+                    $("#calendarEventDate").html(days[day]);
                     $("#calendarEvents").html(calendarEventsGet(day));
                 });
             }
@@ -186,6 +179,29 @@ $(document).ready(function(){
             $(this).fadeIn(250);
         });
     });
+    $("body").on("mouseover", "#calendarEvents tr:not(.scheduledEvent):not(#eventAddRow) td:first-child:not(.noBorder)", function (){
+        tdEnableOldValue[$(this).parent().find("td:last-child").attr("data-id")] = $(this).html();
+        $(this).fadeOut(250, function(){
+            $(this).addClass("activable");
+            if($(this).attr("data-enabled") == 1){
+                $(this).html("DISABILITA");
+            }else{
+                $(this).html("ABILITA");
+            }
+            $(this).css("color", "red");
+            $(this).css("cursor", "pointer");
+            $(this).fadeIn(250);
+        });
+    });
+    $("body").on("mouseout", "#calendarEvents tr:not(.scheduledEvent):not(#eventAddRow) td:first-child:not(.noBorder)", function (){
+        $(this).fadeOut(250, function(){
+            $(this).removeClass("activable");
+            $(this).html(tdEnableOldValue[$(this).parent().find("td:last-child").attr("data-id")]);
+            $(this).css("color", "black");
+            $(this).css("cursor", "default");
+            $(this).fadeIn(250);
+        });
+    });
     $("body").on("click", ".removable", function (){
         if(confirm("Sicuro di voler eliminare questo evento?")){
             var idEvento = $(this).attr("data-id");
@@ -193,7 +209,7 @@ $(document).ready(function(){
                 dataType: "json",
                 type: "post",
                 url: "eventManagement.php",
-                data: {id: idEvento, eventType: 2}
+                data: {id: idEvento, eventType: 3}
             })
             .done(function(el){
                 console.log("eliminato");
@@ -204,6 +220,36 @@ $(document).ready(function(){
                 console.log(obj);
             });
         }
+    });
+    $("body").on("click", ".activable", function (){
+        var tdEventType = 4;
+        var str = "abilitare";
+        if($(this).attr("data-enabled") == 1){
+            tdEventType = 5;
+            str = "disabilitare";
+        }
+        if(confirm("Sicuro di voler " + str + " questo evento?")){
+            var idEvento = $(this).parent().find("td:last-child").attr("data-id");
+            $.ajax({
+                dataType: "json",
+                type: "post",
+                url: "eventManagement.php",
+                data: {id: idEvento, eventType: tdEventType}
+            })
+            .done(function(el){
+                console.log("eliminato");
+                window.location.href = window.location.href;
+            })
+            .error(function(obj,ErrorStr){
+                console.log("errore eliminazione");
+                console.log(obj);
+            });
+        }
+    });
+    $("body").on("mousedown", "#eventAddRow option", function (e){
+        e.preventDefault();
+        $(this).prop('selected', !$(this).prop('selected'));
+        return (false);
     });
     $("#scheduledEventsButton").click(function(){
         document.location = 'eventiSettimanali.php';

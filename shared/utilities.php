@@ -1,12 +1,12 @@
 <?php
     $menu = array(
         "fence" => "perimetro",
-        "umbrella" => "scenario",
+        "remote-control" => "scenario",
         "clock-1" => "eventi",
         "key" => "allarme",
         "door" => "infissi",
         "oven" => "elettrodomestici",
-        "faucet" => "acqua e gas",
+        "faucet" => "utenze",
         "bulb" => "luci",
         "hairdryer" => "clima"
     );
@@ -21,4 +21,33 @@
         "bed-2" => "elisa",
         "bed-3" => "andrea"
     );
+    $others = array(
+        "clock-1" => "eventiSettimanali"
+    );
+    $othersNames = array(
+        "eventi settimanali"
+    );
+	$days = array(
+		'Lunedi',
+		'Martedi',
+		'Mercoledi',
+		'Giovedi',
+		'Venerdi',
+		'Sabato',
+		'Domenica'
+	);
+	$months = array(
+		1 => 'Gennaio',
+		'Febbraio',
+		'Marzo',
+		'Aprile',
+		'Maggio',
+		'Giugno',
+		'Luglio',
+		'Agosto',
+		'Settembre',
+		'Ottobre',
+		'Novembre',
+		'Dicembre'
+	);
 ?>

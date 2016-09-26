@@ -31,9 +31,7 @@
 	$month = getParameter("month");
 	$year = getParameter("year");
 
-    $db = new dbmanagment();
-    $db->opendatabase();
-    $db->createDB();
+    $db = dbmanagment::open();
     $esempi = $db->getEventsWithParams($month, $year);
     $comandi = $db->getComando();
 	
@@ -50,43 +48,50 @@
 */
     
 	$countDaysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-	
-	$months = array(
-		1 => 'Gennaio',
-		'Febbraio',
-		'Marzo',
-		'Aprile',
-		'Maggio',
-		'Giugno',
-		'Luglio',
-		'Agosto',
-		'Settembre',
-		'Ottobre',
-		'Novembre',
-		'Dicembre'
-	);
-
-	$days = array(
-		'Lunedi',
-		'Martedi',
-		'Mercoledi',
-		'Giovedi',
-		'Venerdi',
-		'Sabato',
-		'Domenica'
-	);
 ?>
 		<script>
-			<?php
-				echo "var events=" . json_encode($esempi) . ";";
-				echo "var comandi=" . json_encode($comandi) . ";";
-				echo "var currentMonth=" . $currentMonth . ";";
-				echo "var currentYear=" . $currentYear . ";";
-				echo "var month=" . $month . ";";
-				echo "var year=" . $year . ";";
-			?>
+<?php
+    echo "var events=" . json_encode($esempi) . ";";
+    echo "var comandi=" . json_encode($comandi) . ";";
+    echo "var currentMonth=" . $currentMonth . ";";
+    echo "var currentYear=" . $currentYear . ";";
+    echo "var month=" . $month . ";";
+    echo "var year=" . $year . ";";
+
+    function stampaEventi($day, $events, $limit = 2, $startOffset = 0, $exit = false){
+        $count = $startOffset;
+        if($limit > 0 && $limit >= $count){
+            foreach($events[$day] as $oraInizio => $events){
+                if($count >= $limit){
+                    if(!$exit){
+                        $exit = true;
+                        echo "...";
+                    }
+                    break;
+                }
+                foreach($events as $index => $event){
+                    if($count >= $limit){
+                        if(!$exit){
+                            $exit = true;
+                            echo "...";
+                        }
+                        break;
+                    }
+                    echo "<div class='commandEvent'>";
+                        echo $oraInizio;
+                        echo "<div class='commandName'>";
+                            //echo $events['id'] . " ";
+                            echo strtolower($event['comandoNome']) . "<br />";
+                        echo "</div>";
+                    echo "</div>";
+                    $count++;
+                }
+            }
+        }
+        return (array("count" => $count, "exit" => $exit));
+    }
+?>
 		</script>
-		<div id="popupBackground">&nbsp;</div>
 		<div id="calendarEventPopup">
 			<div id="calendarEventClose">&nbsp;</div>
 			<div id="calendarEventDate">&nbsp;</div>
@@ -94,8 +99,10 @@
 		</div>
 		<div id="calendarContainer">
 <?php
-			echo "<h3>{$months[$month]} {$year}</h3>";
-			echo "<table cellspacing='2px' cellpadding='0'>";  
+			echo "<h3>";
+                echo "{$months[$month]} {$year}";
+            echo "</h3>";
+			echo "<table cellspacing='6px' cellpadding='0' id='calendarTable'>";  
 				echo "<thead>";
 					echo "<tr>";
 						for($day=0; $day<7; $day++){
@@ -103,7 +110,7 @@
 						}
 					echo "</tr>";
 				echo "</thead>";
-				echo "<tbody data-month-name='{$months[$month]}'>";
+				echo "<tbody data-month='{$month}' data-year='{$year}' data-month-name='{$months[$month]}'>";
 					echo "<tr>";
 						$weekDay = date('N', mktime(0, 0, 0, $month, 1, $year));
 						for($k=0; $k<$weekDay-1; $k++){ echo "<td class='dayEmpty'>&nbsp;</td>"; }
@@ -114,7 +121,7 @@
 								echo "</tr><tr>";
 								$daysToNextRow = 6;
 							};
-							echo "<td data-day='{$day}' data-month='{$month}' data-year='{$year}' class='day";
+							echo "<td data-day='{$day}' class='day";
 							if($day == $currentDay && $month == $currentMonth && $year == $currentYear){
 								echo " currentDay";
 							}
@@ -138,35 +145,64 @@
 					echo "</tr>";
 				echo "</tbody>"; 
 			echo "</table>";
-			
-			function stampaEventi($day, $events, $limit = 2, $startOffset = 0, $exit = false){
-				$count = $startOffset;
-				if($limit > 0 && $limit >= $count){
-					foreach($events[$day] as $oraInizio => $events){
-						if($count >= $limit){
-                            if(!$exit){
-                                $exit = true;
-                                echo "...";
-                            }
-							break;
+			echo "<div id='calendarCells' data-month='{$month}' data-year='{$year}' data-month-name='{$months[$month]}'>";
+/*
+						for($day=0; $day<7; $day++){
+							echo "<th>{$days[$day]}</th>";
 						}
-						foreach($events as $index => $event){
-							if($count >= $limit){
-                                if(!$exit){
-                                    $exit = true;
-                                    echo "...";
+*/
+//echo "<tbody data-month-name='{$months[$month]}'>";
+//for($k=0; $k<$weekDay-1; $k++){ echo "<td class='dayEmpty'>&nbsp;</td>"; }
+						$weekDay = date('N', mktime(0, 0, 0, $month, 1, $year));
+						$daysToNextRow = 7 - ($weekDay - 1);
+						for($day=1; $day<=$countDaysInMonth; $day++){
+							$daysToNextRow--;
+							if($daysToNextRow < 0){
+//echo "</tr><tr>";
+								$daysToNextRow = 6;
+							};
+                            echo "<div data-day='{$day}' class='day'>";
+								echo "<div class='dayNumber'>{$days[6 - $daysToNextRow]} {$day}</div>";
+								echo "<div class='dayEvents'>";
+                                $count = 0;
+                                $exit = false;
+                                if(array_key_exists(6 - $daysToNextRow, $esempi['programmati'])){
+                                    $temp = stampaEventi(6 - $daysToNextRow, $esempi['programmati'], 2);
+                                    $count = $temp['count'];
+                                    $exit = $temp['exit'];
                                 }
-								break;
+                                if(array_key_exists($day, $esempi)){
+                                    stampaEventi($day, $esempi, 2, $count, $exit);
+                                }
+                                echo "</div>";
+                            echo "</div>";
+/*
+							echo "<td data-day='{$day}' data-month='{$month}' data-year='{$year}' class='day";
+							if($day == $currentDay && $month == $currentMonth && $year == $currentYear){
+								echo " currentDay";
 							}
-							echo $oraInizio . " ";
-							//echo $events['id'] . " ";
-							echo strtolower($event['comandoNome']) . "<br />";
-							$count++;
+							echo "'>";
+								echo "<div class='dayNumber'>{$day}</div>";
+								echo "<div class='dayEvents'>";
+									$count = 0;
+                                    $exit = false;
+									if(array_key_exists(6 - $daysToNextRow, $esempi['programmati'])){
+										$temp = stampaEventi(6 - $daysToNextRow, $esempi['programmati'], 2);
+                                        $count = $temp['count'];
+                                        $exit = $temp['exit'];
+									}
+									if(array_key_exists($day, $esempi)){
+										stampaEventi($day, $esempi, 2, $count, $exit);
+									}
+								echo "</div>";
+							echo "</td>";
+*/
 						}
-					}
-				}
-				return (array("count" => $count, "exit" => $exit));
-			}
+//for($k=0; $k<$daysToNextRow; $k++){ echo "<td class='dayEmpty'>&nbsp;</td>"; }
+			echo "</div>";
+			echo "<h3>";
+            	echo "<div id='scheduledEventsButton'>gestione eventi settimanali</div>";
+            echo "</h3>";
 ?>
 		</div>
 <?php @include('shared/footer.php'); ?>
