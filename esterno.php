@@ -3,14 +3,14 @@
 ?>
 <?php
     $stanze = array(
-        "Esterno" => array(
+        "generali" => array(
             "luce balcone" => saIO::led(4, 93),
             "luce scala condominio" => saIO::led(2, 93),
             "luce ripostiglio" => saIO::led(9, 93),
             "apri cancello pedonale" => saIO::led(1, 93)->setImage("immagini/arrowRight.svg", "immagini/arrowRight.svg"),
         ),
         "Porta blindata" => array(
-            "Porta blindata" => saIO::btn(1, 93)->setImage("immagini/door-1.svg", "immagini/door.svg"),
+            "stato" => saIO::btn(1, 93)->setImage("immagini/door-1.svg", "immagini/door.svg"),
             "apri" => saIO::led(3, 93)->setImage("immagini/arrowRight.svg", "immagini/arrowRight.svg")
         ),
         "elettrodomestici" => array(
@@ -20,6 +20,10 @@
 
     foreach($stanze as $nome => $luci){
         echo "<div class='stanza stanzaSingola'>";
+            echo "<div class='titolo'>";
+                echo "&nbsp;&nbsp;<img src='immagini/down-arrow.svg' style='width:15px;' />&nbsp;&nbsp;";
+                echo strtoupper($nome);
+            echo "</div>";
             echo "<div class='fatti'>";
                 foreach($luci as $luce => $led){
                     echo "<div class='fatto responsive'>";

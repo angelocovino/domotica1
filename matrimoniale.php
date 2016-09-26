@@ -3,27 +3,31 @@
 ?>
 <?php
     $stanze = array(
-        "matrimoniale" => array(
+        "generali" => array(
             "luce" => saIO::led(7, 92),
             "soft alina" => saIO::led(8, 92),
             "soft arturo" => saIO::led(9, 92)
         ),
         "matrimoniale led RGB" => array(
-            "spegni led RGB" => saIO::rgb(97, true),
-            "accendi/colora led RGB" => saIO::rgb(97)
+            "spegni" => saIO::rgb(97, true),
+            "accendi/colora" => saIO::rgb(97)
         ),
         "matrimoniale led White" => array(
-            "spegni led white" => saIO::white(97, true),
-            "accendi/regola led white" => saIO::white(97)
+            "spegnie" => saIO::white(97, true),
+            "accendi/regola" => saIO::white(97)
         ),
-        "serranda matrimoniale" => array(
-            "stato serranda" => saIO::btn(7, 93)->setImage("immagini/TapparellaAlzata.svg", "immagini/TapparellaAbbassata.svg"),
-            "abbassa serranda" => saIO::led(12, 94)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),
-            "Alza serranda" => saIO::led(4, 94)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
+        "serranda" => array(
+            "stato" => saIO::btn(7, 93)->setImage("immagini/TapparellaAlzata.svg", "immagini/TapparellaAbbassata.svg"),
+            "abbassa" => saIO::led(12, 94)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),
+            "Alza" => saIO::led(4, 94)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
         )
     );
     foreach($stanze as $nome => $luci){
         echo "<div class='stanza stanzaSingola'>";
+            echo "<div class='titolo'>";
+                echo "&nbsp;&nbsp;<img src='immagini/down-arrow.svg' style='width:15px;' />&nbsp;&nbsp;";
+                echo strtoupper($nome);
+            echo "</div>";
             echo "<div class='fatti'>";
                 foreach($luci as $luce => $led){
                     echo "<div class='fatto responsive'>";

@@ -13,12 +13,12 @@
             "luce specchio lavabi" => saIO::led(3, 92)
         ),
         "bagno ospiti led RGB" => array(
-            "spegni led RGB" => saIO::rgb(96, true),
-            "accendi/colora led RGB" => saIO::rgb(96)
+            "spegni" => saIO::rgb(96, true),
+            "accendi/colora" => saIO::rgb(96)
         ),
         "bagno ospiti led White" => array(
-            "spegni led white" => saIO::white(96, true),
-            "accendi/regola led white" => saIO::white(96)
+            "spegni" => saIO::white(96, true),
+            "accendi/regola" => saIO::white(96)
         ),
         "elettrodomestici" => array(
             "estrattore" => saIO::led(16, 92)->setImage("immagini/socketPlugged.svg", "immagini/socket.svg"),
@@ -29,6 +29,10 @@
 
     foreach($stanze as $nome => $luci){
         echo "<div class='stanza stanzaSingola'>";
+            echo "<div class='titolo'>";
+                echo "&nbsp;&nbsp;<img src='immagini/down-arrow.svg' style='width:15px;' />&nbsp;&nbsp;";
+                echo strtoupper($nome);
+            echo "</div>";
             echo "<div class='fatti'>";
                 foreach($luci as $luce => $led){
                     echo "<div class='fatto responsive'>";

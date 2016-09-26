@@ -3,20 +3,24 @@
 ?>
 <?php
     $stanze = array(
-        "stanza elisa" => array(
+        "generali" => array(
             "luce" => saIO::led(14, 92),
             "soft" => saIO::led(15, 92)
         ),
-        "Finestra Elisa" => array(
-            "stato Finestra" => saIO::btn(6, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
+        "Finestra" => array(
+            "stato" => saIO::btn(6, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
         ),
-        "Telo oscurante Elisa" => array(
-            "abbassa Telo oscurante" => saIO::led(13, 94)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),
-            "Alza Telo oscurante" => saIO::led(5, 94)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
+        "Telo oscurante" => array(
+            "abbassa" => saIO::led(13, 94)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),
+            "Alza" => saIO::led(5, 94)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
         )
     );
     foreach($stanze as $nome => $luci){
         echo "<div class='stanza stanzaSingola'>";
+            echo "<div class='titolo'>";
+                echo "&nbsp;&nbsp;<img src='immagini/down-arrow.svg' style='width:15px;' />&nbsp;&nbsp;";
+                echo strtoupper($nome);
+            echo "</div>";
             echo "<div class='fatti'>";
                 foreach($luci as $luce => $led){
                     echo "<div class='fatto responsive'>";
