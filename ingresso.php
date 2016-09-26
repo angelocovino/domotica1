@@ -8,7 +8,7 @@
             "luce disimpegno notte" => saIO::led(1, 92)
         ),
         "elettromestici" => array(
-            "carico asciugatrice" => saIO::led(16, 91)
+            "carico asciugatrice" => saIO::led(16, 91)->setImage("immagini/socketPlugged.svg", "immagini/socket.svg")
         )
     );
 

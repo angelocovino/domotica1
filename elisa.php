@@ -8,7 +8,7 @@
             "soft" => saIO::led(15, 92)
         ),
         "Finestra Elisa" => array(
-            "stato Finestra" => saIO::btn(6, 93)->setImage("immagini/TapparellaAlzata.svg", "immagini/TapparellaAbbassata.svg")
+            "stato Finestra" => saIO::btn(6, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
         ),
         "Telo oscurante Elisa" => array(
             "abbassa Telo oscurante" => saIO::led(13, 94)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),

@@ -2,38 +2,38 @@
 <?php
     $gestioni = array(
         "gestione totale" => array(
-            "apertura" => saIO::led(19, 94),
-            "chiusura" => saIO::led(20, 94)
+            "apertura" => saIO::led(19, 94)->setImage("immagini/arrowRight.svg", "immagini/arrowRight.svg"),
+            "chiusura" => saIO::led(20, 94)->setImage("immagini/arrowLeft.svg", "immagini/arrowLeft.svg")
         ),
         "gestione parziale" => array(
-            "apertura 50%" => saIO::led(22, 94),
-            "apertura estiva" => saIO::led(21, 94)
+            "apertura 50%" => saIO::led(22, 94)->setImage("immagini/arrowRight.svg", "immagini/arrowRight.svg"),
+            "apertura estiva" => saIO::led(21, 94)->setImage("immagini/arrowRight.svg", "immagini/arrowRight.svg")
         )
     );
     $stanze = array(
        "cancello pedonale" => array(
-            "apri" => saIO::led(1, 93),
+            "apri" => saIO::led(1, 93)->setImage("immagini/arrowRight.svg", "immagini/arrowRight.svg")
         ),
         "Porta blindata" => array(
             "stato" => saIO::btn(1, 93)->setImage("immagini/door-1.svg", "immagini/door.svg"),
-            "apri" => saIO::led(3, 93)
+            "apri" => saIO::led(3, 93)->setImage("immagini/arrowRight.svg", "immagini/arrowRight.svg")
         ),
         "Finestra cucina" => array(
-            "stato" => saIO::btn(2, 93)
+            "stato" => saIO::btn(2, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
         ),
         "Telo oscurante cucina" => array(
             "abbassa" => saIO::led(18, 94),
             "Alza" => saIO::led(17, 94)
         ),
         "Finestra giorno" => array(
-            "stato" => saIO::btn(3, 93)
+            "stato" => saIO::btn(3, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
         ),
         "Telo oscurante giorno" => array(
             "abbassa" => saIO::led(16, 94),
             "Alza" => saIO::led(8, 94)
         ),
         "Finestra salotto" => array(
-            "stato" => saIO::btn(4, 93)
+            "stato" => saIO::btn(4, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
         ),
         "Telo oscurante salotto" => array(
             "abbassa" => saIO::led(15, 94),
@@ -44,14 +44,14 @@
             "Alza" => saIO::led(6, 93)
         ),
         "Finestra Andrea" => array(
-            "stato" => saIO::btn(5, 93),
+            "stato" => saIO::btn(5, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
         ),
         "Telo oscurante Andrea" => array(
             "abbassa" => saIO::led(14, 94),
             "Alza" => saIO::led(6, 94)
         ),
         "Finestra Elisa" => array(
-            "stato" => saIO::btn(6, 93)
+            "stato" => saIO::btn(6, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
         ),
         "Telo oscurante Elisa" => array(
             "abbassa" => saIO::led(13, 94),
@@ -85,20 +85,66 @@
                 echo strtoupper($nome);
             echo "</div>";
             echo "<div class='fatti'>";
-                foreach($luci as $luce => $led){
+                //foreach($luci as $luce => $led){
                     echo "<div class='fatto'>";
                         echo "<table cellspacing='0'>";
-                            echo "<tr" . $led->getData() . ">";
-                                echo "<td>";
-                                    echo "<img src='immagini/TapparellaAlzata.svg' />";
-                                echo "</td>";
-                                echo "<td>";
-                                    echo ucwords($luce);
-                                echo "</td>";
-                            echo "</tr>";
+                            $str = "";
+                            $name = "";
+                            if(isset($luci['apertura']) && ($luci['apertura'] instanceof saIO)){ 
+                                $str = $luci['apertura']->getData(); 
+                                $name = "apertura";
+                            }else if(isset($luci['apertura 50%']) && ($luci['apertura 50%'] instanceof saIO)){ 
+                                $str = $luci['apertura 50%']->getData();
+                                $name = "apertura 50%";
+                            }
+                            if(!empty($str)){
+                                echo "<tr" . $str . ">";
+                                    echo "<td>";
+                                        if(isset($luci['apertura']) && $luci['apertura']->getImageOff() != false){
+                                            echo "<img src='" . $luci['apertura']->getImageOff() . "' />";
+                                        }elseif(isset($luci['apertura 50%']) && $luci['apertura 50%']->getImageOff() != false){
+                                            echo "<img src='" . $luci['apertura 50%']->getImageOff() . "' />";
+                                        }else{
+                                            echo "<img src='immagini/TapparellaAlzata.svg' />";
+                                        }
+                                    echo "</td>";
+                                    echo "<td>";
+                                        echo ucwords($name);
+                                    echo "</td>";
+                                echo "</tr>";
+                            }
                         echo "</table>";
                     echo "</div>";
-                }
+                    echo "<div class='fatto'>";
+                        echo "<table cellspacing='0'>";
+                            $str = "";
+                            $name = "";
+                            if(isset($luci['chiusura']) && ($luci['chiusura'] instanceof saIO)){ 
+                                $str = $luci['chiusura']->getData(); 
+                                $name = "chiusura";
+                            }else if(isset($luci['apertura estiva']) && ($luci['apertura estiva'] instanceof saIO)){ 
+                                $str = $luci['apertura estiva']->getData();
+                                $name = "apertura estiva";
+                            }
+                            if(!empty($str)){
+                                echo "<tr" . $str . ">";
+                                    echo "<td>";
+                                        if(isset($luci['chiusura']) && $luci['chiusura']->getImageOff() != false){
+                                            echo "<img src='" . $luci['chiusura']->getImageOff() . "' />";
+                                        }elseif(isset($luci['apertura estiva']) && $luci['apertura estiva']->getImageOff() != false){
+                                        echo "<img src='" . $luci['apertura estiva']->getImageOff() . "' />";
+                                    }else{
+                                            echo "<img src='immagini/TapparellaAlzata.svg' />";
+                                        }
+                                    echo "</td>";
+                                    echo "<td>";
+                                        echo ucwords($name);
+                                    echo "</td>";
+                                echo "</tr>";
+                            }
+                        echo "</table>";
+                    echo "</div>";
+                //}
             echo "</div>";
         echo "</div>";
     }
@@ -142,7 +188,11 @@
                             if(!empty($str)){
                                 echo "<tr" . $str . ">";
                                     echo "<td>";
-                                        echo "<img src='immagini/arrowDown.svg' />";
+                                        if(isset($luci['apri']) && $luci['apri']->getImageOff() != false){
+                                            echo "<img src='" . $luci['apri']->getImageOff() . "' />";
+                                        }else{
+                                            echo "<img src='immagini/arrowDown.svg' />";
+                                        }
                                     echo "</td>";
                                     echo "<td>";
                                         echo ucwords($name);
@@ -157,7 +207,11 @@
                             if(isset($luci['Alza']) && ($luci['Alza'] instanceof saIO)){ $str = $luci['Alza']->getData(); 
                                 echo "<tr" . $str . ">";
                                 echo "<td>";
-                                    echo "<img src='immagini/arrowUp.svg' />";
+                                    if(isset($luci['Alza']) && $luci['Alza']->getImageOff() != false){
+                                        echo "<img src='" . $luci['Alza']->getImageOff() . "' />";
+                                    }else{
+                                        echo "<img src='immagini/arrowUp.svg' />";
+                                    }
                                 echo "</td>";
                                 echo "<td>";
                                     echo ucwords("alza");

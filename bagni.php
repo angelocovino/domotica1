@@ -21,9 +21,9 @@
             "accendi/regola led white" => saIO::white(96)
         ),
         "elettrodomestici" => array(
-            "estrattore" => saIO::led(16, 92),
-            "boiler" => saIO::led(13, 91),
-            "carico lavatrice" => saIO::led(15, 91)
+            "estrattore" => saIO::led(16, 92)->setImage("immagini/socketPlugged.svg", "immagini/socket.svg"),
+            "boiler" => saIO::led(13, 91)->setImage("immagini/socketPlugged.svg", "immagini/socket.svg"),
+            "carico lavatrice" => saIO::led(15, 91)->setImage("immagini/socketPlugged.svg", "immagini/socket.svg")
         )
     );
 

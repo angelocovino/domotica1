@@ -31,18 +31,18 @@ function loadXMLStatus(ports, callback){
     }
 }
 
-var setTypes = [
-    "led",
-    "rgb",
-    "pwm3",
-    "all",
-    "modalit",
-    "Mon",
-    "soglia",
-    "ReleTemp"
-];
-
 function setLed(port, value, type="led"){
+    var setTypes = [
+        "led",
+        "rgb",
+        "pwm3",
+        "all",
+        "modalit",
+        "Mon",
+        "soglia",
+        "ReleTemp"
+    ];
+    
     if(type == "rgb" && value == 0){
         value = "0000000";
     }
@@ -59,7 +59,7 @@ function setLed(port, value, type="led"){
 
 $(document).ready(function(){
     if(
-        typeof ports !== "undefined" &&
+        (typeof ports !== "undefined") &&
         (typeof loadXMLcallback !== "undefined") && ($.isFunction(loadXMLcallback))
     ){
         loadXMLStatus(ports, loadXMLcallback);
