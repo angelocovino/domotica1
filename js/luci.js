@@ -18,13 +18,18 @@ loadXMLcallback = function (port, portArray){
             g = portArray['PWM1'] / 2;
             r = portArray['PWM2'] / 2;
             b = portArray['PWM4'] / 2;
-            hexdecimal = pad(Number(r).toString(16), 2) + pad(Number(g).toString(16), 2) + pad(Number(b).toString(16), 2);
-            hex = pad(r, 3) + pad(g, 3) + pad(b, 3);
-            if(hexLast == false || (hexLast != hex)){
-                $("#rgb_" + stanza).spectrum("set", "#" + hexdecimal);
-                $('#rgb_' + stanza).parent().find('.sp-preview-img').attr('src', 'shared/drawLamp.php?rgb=' + hex);
+            if(g == 0 && r == 0 && b == 0){
+                $("#rgb_" + stanza).spectrum("set", "#000000");
+                $('#rgb_' + stanza).parent().find('.sp-preview-img').attr('src', 'immagini/lamp-3.svg');
+            }else{
+                hexdecimal = pad(Number(r).toString(16), 2) + pad(Number(g).toString(16), 2) + pad(Number(b).toString(16), 2);
+                hex = pad(r, 3) + pad(g, 3) + pad(b, 3);
+                if(hexLast == false || (hexLast != hex)){
+                    $("#rgb_" + stanza).spectrum("set", "#" + hexdecimal);
+                    $('#rgb_' + stanza).parent().find('.sp-preview-img').attr('src', 'shared/drawLamp.php?rgb=' + hex);
+                }
+                hexLast = hex;
             }
-            hexLast = hex;
         }
         // LED WHITE
         if($("#white_" + stanza).length > 0){
@@ -40,7 +45,7 @@ loadXMLcallback = function (port, portArray){
     }
 }
 
-var tr, port, led, img, turnoff, ampere;
+var tr, port, led, img, turnoff, turnoffrgb, ampere;
 function appicciaStuta (elem, isClick = false){
     if(elem.target){
         tr = $(elem.currentTarget);
@@ -53,9 +58,12 @@ function appicciaStuta (elem, isClick = false){
     img = tr.find("img");
     if(isClick){
         turnoff = tr.attr('data-turnoff');
+        turnoffrgb =  tr.attr('data-turnoff-rgb');
         // TURN OFF WHITE LED BUTTON
         if(typeof turnoff !== "undefined" && turnoff == 1){
             setLed(port, 0, "pwm3");
+        }else if(typeof turnoffrgb !== "undefined" && turnoffrgb == 1){
+            setLed(port, 0, "rgb");
         }else{
             setLed(port, led);
         }

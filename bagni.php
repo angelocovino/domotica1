@@ -13,12 +13,17 @@
             "luce specchio lavabi" => saIO::led(3, 92)
         ),
         "bagno ospiti led RGB" => array(
-            "spegni led RGB" => saIO::led(0, 0),
+            "spegni led RGB" => saIO::rgb(96, true),
             "accendi/colora led RGB" => saIO::rgb(96)
         ),
         "bagno ospiti led White" => array(
             "spegni led white" => saIO::white(96, true),
             "accendi/regola led white" => saIO::white(96)
+        ),
+        "elettrodomestici" => array(
+            "estrattore" => saIO::led(16, 92),
+            "boiler" => saIO::led(13, 91),
+            "carico lavatrice" => saIO::led(15, 91)
         )
     );
 

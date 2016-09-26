@@ -4,7 +4,7 @@ loadXMLcallback = function (port, portArray){
     setLedView(port, portArray, appicciaStuta);
 }
 
-var tr, port, led, img, turnoff, ampere;
+var tr, port, led, img, turnoff;
 function appicciaStuta (elem, isClick = false){
     if(elem.target){
         tr = $(elem.currentTarget);
@@ -32,5 +32,4 @@ function appicciaStuta (elem, isClick = false){
     }
 }
 
-$(document).ready(function(){
-});
+$(document).ready(function(){});

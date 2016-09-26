@@ -25,6 +25,10 @@
         "Telo oscurante cucina/salotto" => array(
             "abbassa Telo oscurante cucina/salotto" => saIO::led(7, 93)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),
             "Alza Telo oscurante cucina/salotto" => saIO::led(6, 93)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
+        ),
+        "elettrodomestici" => array(
+            "carico forno" => saIO::led(14, 91),
+            "macchina caffe'" => saIO::led(4, 91)
         )
     );
     foreach($stanze as $nome => $luci){

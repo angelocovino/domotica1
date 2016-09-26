@@ -9,7 +9,7 @@
             "soft arturo" => saIO::led(9, 92)
         ),
         "matrimoniale led RGB" => array(
-            "spegni led RGB" => saIO::led(0, 0),
+            "spegni led RGB" => saIO::rgb(97, true),
             "accendi/colora led RGB" => saIO::rgb(97)
         ),
         "matrimoniale led White" => array(

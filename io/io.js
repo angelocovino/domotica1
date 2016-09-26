@@ -41,6 +41,9 @@ var setTypes = [
 ];
 
 function setLed(port, value, type="led"){
+    if(type == "rgb" && value == 0){
+        value = "0000000";
+    }
     if(setTypes.indexOf(type) > -1){
         address = "io/set.php?address=" + 0 + "&port=" + port + "&" + type + "=" + value;
         //address = "/set.php?address=" + assPorte[port] + "&port=" + port + "&led=" + led;

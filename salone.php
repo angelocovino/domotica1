@@ -9,7 +9,7 @@
             "faretti parete tv" => saIO::led(10, 91)
         ),
         "salone  led RGB" => array(
-            "spegni led RGB" => saIO::led(0, 0),
+            "spegni led RGB" => saIO::rgb(95, true),
             "accendi/colora led RGB" => saIO::rgb(95)
         ),
         "salone led White" => array(
@@ -33,6 +33,11 @@
         "Telo oscurante cucina/salotto" => array(
             "abbassa Telo oscurante cucina/salotto" => saIO::led(7, 93)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),
             "Alza Telo oscurante cucina/salotto" => saIO::led(6, 93)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
+        ),
+        "elettrodomestici" => array(
+            "presa comandata 1" => saIO::led(9, 91),
+            "presa comandata 2" => saIO::led(11, 91),
+            "presa comandata 3" => saIO::led(12, 91)
         )
     );
     foreach($stanze as $nome => $luci){

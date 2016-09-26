@@ -19,7 +19,7 @@
             "faretti parete tv" => saIO::led(10, 91)
         ),
         "salone led RGB" => array(
-            "spegni" => saIO::led(0, 0),
+            "spegni" => saIO::rgb(95, true),
             "accendi/colora" => saIO::rgb(95)
         ),
         "salone led White" => array(
@@ -37,7 +37,7 @@
             "soft arturo" => saIO::led(9, 92)
         ),
         "matrimoniale led RGB" => array(
-            "spegni" => saIO::led(0, 0),
+            "spegni" => saIO::rgb(97, true),
             "accendi/colora" => saIO::rgb(97)
         ),
         "matrimoniale led White" => array(
@@ -63,7 +63,7 @@
             "luce specchio lavabi" => saIO::led(3, 92)
         ),
         "bagno ospiti led RGB" => array(
-            "spegni" => saIO::led(0, 0),
+            "spegni" => saIO::rgb(96, true),
             "accendi/colora" => saIO::rgb(96)
         ),
         "bagno ospiti led White" => array(
@@ -81,7 +81,6 @@
             echo "<div class='fatti'>";
                 foreach($luci as $luce => $led){
                     echo "<div class='fatto'>";
-                    //echo "<div class='fatto responsive'>";
                         echo "<table class='gestione_luci' cellspacing='0'>";
                             $str = "";
                             if($led instanceof saIO){

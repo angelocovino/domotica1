@@ -4,7 +4,7 @@ loadXMLcallback = function (port, portArray){
     setLedView(port, portArray, appicciaStuta);
 }
 
-var tr, port, led, btn, img;
+var tr, port, led, btn, turnoff, img;
 function appicciaStuta (elem, isClick = false){
     if(elem.target){
         tr = $(elem.currentTarget);
@@ -26,7 +26,13 @@ function appicciaStuta (elem, isClick = false){
     }
     if(led != undefined){
         if(isClick){
-            setLed(port, led);
+            turnoff = tr.attr('data-turnoff');
+            // TURN OFF WHITE LED BUTTON
+            if(typeof turnoff !== "undefined" && turnoff == 1){
+                setLed(port, 0, "pwm3");
+            }else{
+                setLed(port, led);
+            }
         }else{
             if(tr.attr("data-acceso") == 'up' || tr.attr("data-acceso") == 1){
                 setImage(img, tempImageOn);

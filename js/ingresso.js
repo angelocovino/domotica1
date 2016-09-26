@@ -1,4 +1,4 @@
-var ports = [92, 93, 94];
+var ports = [91, 92];
 
 loadXMLcallback = function (port, portArray){
     setLedView(port, portArray, appicciaStuta);
@@ -14,52 +14,28 @@ function appicciaStuta (elem, isClick = false){
     }
     port = tr.attr('data-port');
     led = tr.attr('data-led');
-    img = tr.find("img");
-    if(isClick){
-        setLed(port, led);
-    }else{
-        if(tr.attr("data-acceso") == 1){
-            img.attr("src", lampadinaAccesa);
-        }else if(tr.attr("data-acceso") == 0){
-            img.attr("src", lampadinaSpenta);
-        }
-    }
-}
-
-function appicciaStuta (elem, isClick = false){
-    if(elem.target){
-        tr = $(elem.currentTarget);
-        isClick = elem.data.isClick;
-    }else{
-        tr = $(elem);
-    }
-    port = tr.attr('data-port');
-    led = tr.attr('data-led');
     btn = tr.attr('data-btn');
     img = tr.find("img");
     imageOn = tr.attr("data-image-on");
     imageOff = tr.attr("data-image-off");
-    tempImageOn = tapparellaAbbassata;
-    console.log(imageOn);
-    tempImageOff = tapparellaAlzata;
+    tempImageOn = lampadinaAccesa;
+    tempImageOff = lampadinaSpenta;
     if(imageOn != undefined && imageOff != undefined){
         tempImageOn = imageOn;
         tempImageOff = imageOff;
     }
-    if(led != undefined){
-        if(isClick){
-            setLed(port, led);
+    if(isClick && led != undefined){
+        turnoff = tr.attr('data-turnoff');
+        // TURN OFF WHITE LED BUTTON
+        if(typeof turnoff !== "undefined" && turnoff == 1){
+            setLed(port, 0, "pwm3");
         }else{
-            if(tr.attr("data-acceso") == 'up'){
-                setImage(img, tempImageOn);
-            }if(tr.attr("data-acceso") == 'dwn'){
-                setImage(img, tempImageOff);
-            }
+            setLed(port, led);
         }
     }else{
-        if(tr.attr("data-acceso") == 'up'){
+        if(tr.attr("data-acceso") == 'up' || tr.attr("data-acceso") == 1){
             setImage(img, tempImageOn);
-        }if(tr.attr("data-acceso") == 'dwn'){
+        }if(tr.attr("data-acceso") == 'dwn' || tr.attr("data-acceso") == 0){
             setImage(img, tempImageOff);
         }
     }

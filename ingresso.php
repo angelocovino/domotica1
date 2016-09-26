@@ -6,8 +6,12 @@
         "ingresso" => array(
             "luce" => saIO::led(1, 91),
             "luce disimpegno notte" => saIO::led(1, 92)
+        ),
+        "elettromestici" => array(
+            "carico asciugatrice" => saIO::led(16, 91)
         )
     );
+
     foreach($stanze as $nome => $luci){
         echo "<div class='stanza stanzaSingola'>";
             echo "<div class='fatti'>";

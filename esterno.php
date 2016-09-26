@@ -12,6 +12,9 @@
         "Porta blindata" => array(
             "Porta blindata" => saIO::btn(1, 93)->setImage("immagini/door-1.svg", "immagini/door.svg"),
             "apri" => saIO::led(3, 93),
+        ),
+        "elettrodomestici" => array(
+            "irrigazione balcone" => saIO::led(5, 93),
         )
     );
 
