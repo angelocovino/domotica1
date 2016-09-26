@@ -46,18 +46,7 @@ loadXMLcallback = function (port, portArray){
         
     }
     
-    if(portArray['EnIn16']=="NON ABILITATO"){
-        $("#en16 button").html("Abilita");
-    }else{
-        $("#en16 button" ).html("Disabilita");
-    }    
- 
-    if(portArray['EnIn17']=="NON ABILITATO"){
-        $("#en17 button").html("Abilita");
-    }else{
-        $("#en17 button" ).html("Disabilita");
-    }    
-    
+
     
     $("#cnt16").html(portArray['Cntdebug16']);
     $("#cnt17").html(portArray['Cntdebug17']);

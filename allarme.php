@@ -121,7 +121,9 @@ calendarEvents table{
                 echo "<td>{$key}</td>";    
                 echo "<td id='stato{$i}'></td>";    
                 echo "<td id='cnt{$i}'></td>";    
-                echo "<td id='en{$i}'><button onclick=\"setLed('93','{$i}','Mon')\"></button></td>";    
+                echo "<td id='en{$i}'>";
+                if($i<16) echo "<button onclick=\"setLed('93','{$i}','Mon')\"></button>";
+                echo "</td>";    
                 echo "</tr>";
             }
         ?>
