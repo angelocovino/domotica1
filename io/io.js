@@ -34,7 +34,8 @@ var setTypes = [
     "rgb",
     "pwm3",
     "all",
-    "modalit"
+    "modalit",
+    "Mon"
 ];
 
 function setLed(port, value, type="led"){

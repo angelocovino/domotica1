@@ -64,7 +64,70 @@
     -o-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 }
+calendarEvents table{
+    width: 100%;
+}
+#calendarEvents table td{
+    padding: 5px 10px;
+    font-size: 1.1em;
+}
+#calendarEvents table td:not(.noBorder){
+    border-bottom: 1px solid gray;
+}
+#calendarEvents table td:not(.noBorder):first-child{
+    border-right: 1px solid gray;
+    width: 25%;
+    text-align: center;
+}
+#calendarEvents table tr.scheduledEvent {
+    background: lightgray;
+}
+#calendarEvents .eventAddTime{
+    width: 100%;
+    text-align: left;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
     </style>
+
+<?php 
+    $sensori = array(
+        1 => "Porta blindata",
+        2 => "Finestra cucina",
+        3 => "Finestra giorno",
+        4 => "Finestra salotto",
+        5 => "Finestra camera Andrea",
+        6 => "Finestra camera Elisa",
+        7 => "Serranda camera matrimoniale",
+        9 => "Serranda camera Tony",
+        10 => "Serranda bagnio di servizio",
+        11 => "Serranda bagnio ospiti",
+        16 => "Rilevamento incendio",
+        17 => "Rete elettrica"
+    )
+?>
+
+<div id="calendarEventPopup">
+    <table>
+        <tr>
+            <th>Sensore</th>
+            <th>Stato</th>
+            <th>Contatore</th>
+            <th>Abilita/disabilita</th>
+        </tr>
+        <?php
+            foreach($sensori as $i => $key){
+                echo "<tr>";
+                echo "<td>{$key}</td>";    
+                echo "<td id='stato{$i}'></td>";    
+                echo "<td id='cnt{$i}'></td>";    
+                echo "<td id='en{$i}'><button onclick=\"setLed('93','{$i}','Mon')\"></button></td>";    
+                echo "</tr>";
+            }
+        ?>
+    </table>
+    <button onclick="popupClose()">stato</button>
+</div>
 
 <div class="cont">
     <div class="stato">
@@ -73,6 +136,7 @@
         <progress style="display:none" id="loadBar" value="1" max="60"></progress>
     </div><br/>
 
+    
     <div class="button" onclick="setLed('93','T','all')">
         <img src="immagini/shieldRed.svg" />
         <p>Allarme totale</p>
@@ -100,6 +164,7 @@
              </div>
          </div>
          
+    <button onclick="popupOpen()">stato</button>
 
     </div>   
 </div>

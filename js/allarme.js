@@ -10,6 +10,61 @@ loadXMLcallback = function (port, portArray){
     statoAllarmeT = portArray['allT'];
     statoAllarmeP = portArray['allP'];
     
+    for($i=1;$i<8;$i++){
+        
+        $("#cnt" + $i).html(portArray['Cntdebug' + $i]);
+        
+        if(portArray['EnIn' + $i]=="NON ABILITATO"){
+            $("#en" + $i + " button").html("Abilita");
+        }else{
+            $("#en" + $i + " button" ).html("Disabilita");
+        }
+        
+        if(portArray['btn' + $i]=="up"){            
+            $("#stato" + $i).html("Aperta");
+        }else{
+           $("#stato" + $i).html("Chiusa");
+        }
+        
+    }
+    
+    for($i=9;$i<12;$i++){
+        
+        $("#cnt" + $i).html(portArray['Cntdebug' + $i]);
+        
+        if(portArray['EnIn' + $i]=="NON ABILITATO"){
+            $("#en" + $i + " button").html("Abilita");
+        }else{
+            $("#en" + $i + " button" ).html("Disabilita");
+        }
+        
+        if(portArray['btn' + $i]=="up"){            
+            $("#stato" + $i).html("Aperta");
+        }else{
+           $("#stato" + $i).html("Chiusa");
+        }
+        
+    }
+    
+    $("#EnIn16").html(portArray['Cntdebug16']);
+    $("#cnt17").html(portArray['Cntdebug17']);
+    
+    if(portArray['btn16']=="up")
+    
+    if(portArray['btn16']=="up"){
+        $("#stato16").html("Fumo presente");
+    }else{
+        $("#stato16").html("Fumo assente");
+    }
+    
+    if(portArray['btn17']=="up"){
+        $("#stato17").html("Assente");
+    }else{
+        $("#stato17").html("Presente");
+    }
+
+
+
     if(portArray['allR']=="1"){
         $(".reset").show();
     }else{
@@ -68,6 +123,15 @@ loadXMLcallback = function (port, portArray){
         }
     }
 
+}
+
+function popupOpen(time = 500){
+    $("#popupBackground").fadeIn(time);
+    $("#calendarEventPopup").fadeIn(time);
+}
+function popupClose(time = 500){
+    $("#popupBackground").fadeOut(time);
+    $("#calendarEventPopup").fadeOut(time);
 }
 
 function loadingBar(){

@@ -2,7 +2,6 @@
     $port = $_GET['port'];
     $address = $_GET['address'];
     $page = "leds.cgi";
-var_dump($_GET['modalit']);
     if(isset($_GET['led'])){
         $value = $_GET['led'];
         $str = "led=";
@@ -23,6 +22,10 @@ var_dump($_GET['modalit']);
         $str = "modalit=";
         $value = $_GET['modalit'];
         //forms.htm?all=T
+    }elseif(isset($_GET['Mon'])){
+        $page = "index0.htm";
+        $str = "Mon" . $_GET['Mon'] ."=";
+        $value = "1";
     }
 
 
