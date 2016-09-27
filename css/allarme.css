@@ -5,31 +5,50 @@
 .centeredContainer td > * {
     vertical-align: top;
 }
+.stato{
+    display: inline-block;
+    margin: 10px 0 20px 0;
+    background-color: #eee;
+    box-shadow: 0 0 1px 1px darkgray;
+    padding: 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.stato img,
+.button img {
+    margin-bottom: 10px;
+}
+.cont{
+    margin: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    display: inline-block;
+    background-color: lightgray;
+    box-shadow: 0 0 1px 1px darkgray;
+    border-radius: 20px;
+    text-align: center;
+}
+
 .button{
-    width: 5%;
-    margin: 1%;
+    margin: 0px 5px;
     display: inline-block;
     text-align: center;
-    background-color: lightgray;
+    background-color: #eee;
     box-shadow: 0 0 1px 1px darkgray;
     padding: 10px;
     border-radius: 20px;
     cursor: pointer;
+    text-transform: uppercase;
 }
 #Riciclo{
     display: inline-block;
-    width: 20%;
-    background-color: lightgray;
+    background-color: #eee;
     box-shadow: 0 0 1px 1px darkgray;
     padding: 10px;
+    margin: 20px 0 10px 0;
     border-radius: 20px;
-}
-.stato{
-    width: 10%;
-}
-.cont{
-    margin: 1%;
-    text-align: center;
+    width: calc(100% - 30px);
 }
 .riciclo{
     width: 48%;
@@ -46,6 +65,9 @@
     box-shadow: 0 0 1px 1px darkgray;
     cursor: pointer;
 }
+.elemList:not(:first-child){
+    margin-top: 10px;
+}
 .sirena{
     cursor: pointer;
 }
@@ -55,9 +77,6 @@
 #calendarEventPopup {
     position: fixed;
     z-index: 100;
-    top: calc(50% - 150px);
-    left: calc(50% - 200px);
-    width: 400px;
     padding: 10px;
     background-color: white;
     border: 0px solid black;
@@ -68,7 +87,8 @@
     -o-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 }
-calendarEvents table{
+#calendarEventPopup table,
+#calendarEvents table{
     width: 100%;
 }
 #calendarEvents table td{
@@ -113,4 +133,90 @@ calendarEvents table{
     margin-top: 10px;
     width: 100%;
     cursor: pointer;
+}
+.testoResponsive {
+    text-transform: uppercase;
+}
+button.testoResponsive{
+    width: calc(100% - 10px);
+    border: 0;
+    margin: 0;
+    margin-top: 10px;
+    background-color: #eee;
+    border-radius: 10px;
+    padding: 5px;
+    -webkit-box-shadow: 0px 0px 1px 1px darkgray;
+    -moz-box-shadow: 0px 0px 1px 1px darkgray;
+    -o-box-shadow: 0px 0px 1px 1px darkgray;
+    box-shadow: 0px 0px 1px 1px darkgray;
+    cursor: pointer;
+}
+a.testoResponsive {
+    width: calc(100% - 20px);
+    display: inline-block;
+    background-color: #eee;
+    border-radius: 10px;
+    padding: 5px;
+    -webkit-box-shadow: 0px 0px 1px 1px darkgray;
+    -moz-box-shadow: 0px 0px 1px 1px darkgray;
+    -o-box-shadow: 0px 0px 1px 1px darkgray;
+    box-shadow: 0px 0px 1px 1px darkgray;
+}
+a.testoResponsive,
+a.testoResponsive:link,
+a.testoResponsive:active,
+a.testoResponsive:visited,
+a.testoResponsive:hover {
+    text-decoration: none;
+    color: black;
+}
+@media screen and (min-width: 801px ){
+    .stato{
+        width: 150px;
+        font-size: 0.8em;
+    }
+    .button{
+        width: 100px;
+        font-size: 0.8em;
+    }
+    .riciclo{
+        font-size: 0.9em;
+    }
+    .testoResponsive{
+        font-size: 0.8em;
+    }
+    #calendarEventPopup {
+        top: calc(50% - 200px);
+        left: calc(50% - 300px);
+        width: 600px;
+    }
+}
+@media screen and (max-width: 800px){
+    .stato{
+        width: 100px;
+        font-size: 0.7em;
+    }
+    .button{
+        width: 50px;
+        font-size: 0.65em;
+    }
+    .riciclo{
+        font-size: 0.8em;
+    }
+    .testoResponsive{
+        font-size: 0.7em;
+    }
+    #calendarEventPopup {
+        top: 10px;
+        left: 10px;
+        width: calc(100% - 40px);
+    }
+    [id^=cnt],
+    [id^=stato] {
+        display: none;
+    }
+    #calendarEventPopup th:nth-child(2),
+    #calendarEventPopup th:nth-child(3){
+        display: none;
+    }
 }

@@ -51,8 +51,6 @@ loadXMLcallback = function (port, portArray){
     $("#cnt16").html(portArray['Cntdebug16']);
     $("#cnt17").html(portArray['Cntdebug17']);
     
-    if(portArray['btn16']=="up")
-    
     if(portArray['btn16']=="up"){
         $("#stato16").html("Fumo presente");
     }else{
@@ -92,8 +90,6 @@ loadXMLcallback = function (port, portArray){
         $(".riciclo .parziale").css("background-color","#fff");
         $(".riciclo .disattivo").css("background-color","#00d0ff");
     }
-    
-    
     
     if((portArray['allT'] >= "1") && (portArray['Cntdebug'] == "0")){//Allarme attivo totale
         if(portArray['allT'] == "2"){
