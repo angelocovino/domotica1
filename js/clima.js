@@ -60,7 +60,7 @@ function climateManagement(clima, operation, scheda){
 
 $(document).ready(function(){
     $(".comparoScomparo").parent().click(function(e){
-        if ($(e.target).is('li')){
+        if($(e.target).is('li') || $(e.target).is('span')){
             $(this).find(".comparoScomparo").fadeToggle(500);
         }
     });

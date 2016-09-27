@@ -28,16 +28,16 @@ function appicciaStuta (elem, isClick = false){
         if(isClick){
             setLed(port, led);
         }else{
-            if(tr.attr("data-acceso") == 'up'){
+            if(tr.attr("data-acceso") == 'up' || tr.attr("data-acceso") == 1){
                 setImage(img, tempImageOn);
-            }if(tr.attr("data-acceso") == 'dn'){
+            }else if(tr.attr("data-acceso") == 'dn' || tr.attr("data-acceso") == 0){
                 setImage(img, tempImageOff);
             }
         }
     }else{
-        if(tr.attr("data-acceso") == 'up'){
+        if(tr.attr("data-acceso") == 'up' || tr.attr("data-acceso") == 1){
             setImage(img, tempImageOn);
-        }if(tr.attr("data-acceso") == 'dn'){
+        }else if(tr.attr("data-acceso") == 'dn' || tr.attr("data-acceso") == 0){
             setImage(img, tempImageOff);
         }
     }
