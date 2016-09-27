@@ -20,19 +20,19 @@
             "stato" => saIO::btn(4, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
         ),
         "Telo oscurante salone" => array(
-            "abbassa" => saIO::led(15, 94)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),
-            "Alza" => saIO::led(7, 94)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
+            "abbassa" => saIO::led(15, 94)->setImage("immagini/arrowDownOn.svg", "immagini/arrowDown.svg"),
+            "Alza" => saIO::led(7, 94)->setImage("immagini/arrowUpOn.svg", "immagini/arrowUp.svg")
         ),
         "Finestra giorno" => array(
             "stato" => saIO::btn(3, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
         ),
         "Telo oscurante giorno" => array(
-            "abbassa" => saIO::led(16, 94)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),
-            "Alza" => saIO::led(8, 94)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
+            "abbassa" => saIO::led(16, 94)->setImage("immagini/arrowDownOn.svg", "immagini/arrowDown.svg"),
+            "Alza" => saIO::led(8, 94)->setImage("immagini/arrowUpOn.svg", "immagini/arrowUp.svg")
         ),
         "Telo oscurante cucina/salone" => array(
-            "abbassa" => saIO::led(7, 93)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),
-            "Alza" => saIO::led(6, 93)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
+            "abbassa" => saIO::led(7, 93)->setImage("immagini/arrowDownOn.svg", "immagini/arrowDown.svg"),
+            "Alza" => saIO::led(6, 93)->setImage("immagini/arrowUpOn.svg", "immagini/arrowUp.svg")
         ),
         "elettrodomestici" => array(
             "presa comandata 1" => saIO::led(9, 91)->setImage("immagini/socketPlugged.svg", "immagini/socket.svg"),

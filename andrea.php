@@ -11,8 +11,8 @@
             "stato" => saIO::btn(5, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
         ),
         "Telo oscurante" => array(
-            "abbassa" => saIO::led(14, 94)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),
-            "Alza" => saIO::led(6, 94)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
+            "abbassa" => saIO::led(14, 94)->setImage("immagini/arrowDownOn.svg", "immagini/arrowDown.svg"),
+            "Alza" => saIO::led(6, 94)->setImage("immagini/arrowUpOn.svg", "immagini/arrowUp.svg")
         )
     );
     foreach($stanze as $nome => $luci){
