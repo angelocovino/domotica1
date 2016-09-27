@@ -18,8 +18,8 @@
         ),
         "serranda" => array(
             "stato" => saIO::btn(7, 93)->setImage("immagini/TapparellaAlzata.svg", "immagini/TapparellaAbbassata.svg"),
-            "abbassa" => saIO::led(12, 94)->setImage("immagini/arrowDown.svg", "immagini/arrowDown.svg"),
-            "Alza" => saIO::led(4, 94)->setImage("immagini/arrowUp.svg", "immagini/arrowUp.svg")
+            "abbassa" => saIO::led(12, 94)->setImage("immagini/arrowDownOn.svg", "immagini/arrowDown.svg"),
+            "Alza" => saIO::led(4, 94)->setImage("immagini/arrowUpOn.svg", "immagini/arrowUp.svg")
         )
     );
     foreach($stanze as $nome => $luci){

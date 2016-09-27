@@ -22,60 +22,60 @@
             "stato" => saIO::btn(2, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
         ),
         "Telo oscurante cucina" => array(
-            "abbassa" => saIO::led(18, 94),
-            "Alza" => saIO::led(17, 94)
+            "abbassa" => saIO::led(18, 94)->setImage("immagini/arrowDownOn.svg", "immagini/arrowDown.svg"),
+            "Alza" => saIO::led(17, 94)->setImage("immagini/arrowUpOn.svg", "immagini/arrowUp.svg")
         ),
         "Finestra giorno" => array(
             "stato" => saIO::btn(3, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
         ),
         "Telo oscurante giorno" => array(
-            "abbassa" => saIO::led(16, 94),
-            "Alza" => saIO::led(8, 94)
+            "abbassa" => saIO::led(16, 94)->setImage("immagini/arrowDownOn.svg", "immagini/arrowDown.svg"),
+            "Alza" => saIO::led(8, 94)->setImage("immagini/arrowUpOn.svg", "immagini/arrowUp.svg")
         ),
         "Finestra salotto" => array(
             "stato" => saIO::btn(4, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
         ),
         "Telo oscurante salotto" => array(
-            "abbassa" => saIO::led(15, 94),
-            "Alza" => saIO::led(7, 94)
+            "abbassa" => saIO::led(15, 94)->setImage("immagini/arrowDownOn.svg", "immagini/arrowDown.svg"),
+            "Alza" => saIO::led(7, 94)->setImage("immagini/arrowUpOn.svg", "immagini/arrowUp.svg")
         ),
         "Telo oscurante cucina/salotto" => array(
-            "abbassa" => saIO::led(7, 93),
-            "Alza" => saIO::led(6, 93)
+            "abbassa" => saIO::led(7, 93)->setImage("immagini/arrowDownOn.svg", "immagini/arrowDown.svg"),
+            "Alza" => saIO::led(6, 93)->setImage("immagini/arrowUpOn.svg", "immagini/arrowUp.svg")
         ),
         "Finestra Andrea" => array(
             "stato" => saIO::btn(5, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
         ),
         "Telo oscurante Andrea" => array(
-            "abbassa" => saIO::led(14, 94),
-            "Alza" => saIO::led(6, 94)
+            "abbassa" => saIO::led(14, 94)->setImage("immagini/arrowDownOn.svg", "immagini/arrowDown.svg"),
+            "Alza" => saIO::led(6, 94)->setImage("immagini/arrowUpOn.svg", "immagini/arrowUp.svg")
         ),
         "Finestra Elisa" => array(
             "stato" => saIO::btn(6, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
         ),
         "Telo oscurante Elisa" => array(
-            "abbassa" => saIO::led(13, 94),
-            "Alza" => saIO::led(5, 94)
+            "abbassa" => saIO::led(13, 94)->setImage("immagini/arrowDownOn.svg", "immagini/arrowDown.svg"),
+            "Alza" => saIO::led(5, 94)->setImage("immagini/arrowUpOn.svg", "immagini/arrowUp.svg")
         ),
         "serranda matrimoniale" => array(
             "stato" => saIO::btn(7, 93),
-            "abbassa" => saIO::led(12, 94),
-            "Alza" => saIO::led(4, 94)
+            "abbassa" => saIO::led(12, 94)->setImage("immagini/arrowDownOn.svg", "immagini/arrowDown.svg"),
+            "Alza" => saIO::led(4, 94)->setImage("immagini/arrowUpOn.svg", "immagini/arrowUp.svg")
         ),
         "serranda tony" => array(
             "stato" => saIO::btn(9, 93),
-            "abbassa" => saIO::led(9, 94),
-            "Alza" => saIO::led(1, 94)
+            "abbassa" => saIO::led(9, 94)->setImage("immagini/arrowDownOn.svg", "immagini/arrowDown.svg"),
+            "Alza" => saIO::led(1, 94)->setImage("immagini/arrowUpOn.svg", "immagini/arrowUp.svg")
         ),
         "serranda bagno di servizio " => array(
             "stato" => saIO::btn(9, 93),
-            "abbassa" => saIO::led(10, 94),
-            "Alza" => saIO::led(2, 94)
+            "abbassa" => saIO::led(10, 94)->setImage("immagini/arrowDownOn.svg", "immagini/arrowDown.svg"),
+            "Alza" => saIO::led(2, 94)->setImage("immagini/arrowUpOn.svg", "immagini/arrowUp.svg")
         ),
         "serranda bagno ospiti" => array(
             "stato" => saIO::btn(10, 93),
-            "abbassa" => saIO::led(11, 94),
-            "Alza" => saIO::led(3, 94)
+            "abbassa" => saIO::led(11, 94)->setImage("immagini/arrowDownOn.svg", "immagini/arrowDown.svg"),
+            "Alza" => saIO::led(3, 94)->setImage("immagini/arrowUpOn.svg", "immagini/arrowUp.svg")
         )
     );
     foreach($gestioni as $nome => $luci){
