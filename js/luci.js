@@ -25,7 +25,7 @@ loadXMLcallback = function (port, portArray){
                 hexdecimal = pad(Number(r).toString(16), 2) + pad(Number(g).toString(16), 2) + pad(Number(b).toString(16), 2);
                 hex = pad(r, 3) + pad(g, 3) + pad(b, 3);
                 if(hexLast == false || (hexLast != hex)){
-                    $("#rgb_" + stanza).spectrum("set", "#" + hexdecimal);
+                    //$("#rgb_" + stanza).spectrum("set", "#" + hexdecimal);
                     $('#rgb_' + stanza).parent().find('.sp-preview-img').attr('src', 'shared/drawLamp.php?rgb=' + hex);
                 }
                 hexLast = hex;
