@@ -100,7 +100,9 @@
 		<div id="calendarContainer">
 <?php
 			echo "<h3>";
+                echo "<span id='prevMonth'>&lt;&lt;</span> ";
                 echo "{$months[$month]} {$year}";
+                echo " <span id='nextMonth'>&gt;&gt;</span>";
             echo "</h3>";
 			echo "<table cellspacing='6px' cellpadding='0' id='calendarTable'>";  
 				echo "<thead>";

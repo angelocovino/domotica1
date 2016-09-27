@@ -235,3 +235,8 @@ body {
 div.center {
     text-align: center;
 }
+#prevMonth,
+#nextMonth {
+    font-size: 0.8em;
+    cursor: pointer;
+}
