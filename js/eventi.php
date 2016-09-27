@@ -208,4 +208,26 @@ $(document).ready(function(){
     $("#scheduledEventsButton").click(function(){
         document.location = 'eventiSettimanali.php';
     });
+    $("#prevMonth").click(function(){
+        var month = $("#calendarTable tbody").attr("data-month");
+        var year = $("#calendarTable tbody").attr("data-year");
+        if(month == 1){
+            month = 12;
+            year = parseInt(year) - 1;
+        }else{
+            month = parseInt(month) - 1;
+        }
+        document.location = document.location.pathname + '?month=' + month + '&year=' + year;
+    });
+    $("#nextMonth").click(function(){
+        var month = $("#calendarTable tbody").attr("data-month");
+        var year = $("#calendarTable tbody").attr("data-year");
+        if(month == 12){
+            month = 1;
+            year = parseInt(year) + 1;
+        }else{
+            month = parseInt(month) + 1;
+        }
+        document.location = document.location.pathname + '?month=' + month + '&year=' + year;
+    });
 });
