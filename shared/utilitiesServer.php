@@ -3,7 +3,7 @@
         "server" => 'http://192.168.1',
         "serverPort" => '80',
         "serverPage" => 'status.xml',
-        "isDebug" => true,
+        "isDebug" => false,
         "serverDebug" => 'http://domotica.smart.homepc.it',
         "serverDebugPort" => '80',
         "serverDebugPage" => 'status.xml'
