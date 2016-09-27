@@ -123,8 +123,8 @@ loadScript("js/jquery.min.js", function () {
 var lampadinaAccesa = "immagini/lamp-2.svg";
 var lampadinaSpenta = "immagini/lamp-3.svg";
 
-var on = "immagini/switchOn.svg";
-var off = "immagini/switchOff.svg";
+var on = "immagini/switchOff.svg";
+var off = "immagini/switchOn.svg";
 
 var presaAccesa = "immagini/socketPlugged.svg";
 var presaSpenta = "immagini/socket.svg";
