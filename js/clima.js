@@ -4,7 +4,7 @@ var climateCorrespondences = {
     91 : "caldo",
     93 : "freddo"
 }
-var selectedClimate, stato;
+var selectedClimate, stato, spentiEntrambi;
 loadXMLcallback = function (port, portArray){
     
     if(parseInt(port) in climateCorrespondences){
@@ -22,11 +22,13 @@ loadXMLcallback = function (port, portArray){
         // READ SOGLIA TEMPERATURA
         $("#" + selectedClimate + " .soglia").html(portArray["soglia"]);
         
+        spentiEntrambi = true;
         // READ MANUAL ACCESO/SPENTO
         stato = off;
         if(portArray["allC"] == "1"){ stato = on; }
         $("#" + selectedClimate + " .manuale").attr('src', stato);
         if(stato == on){
+            spentiEntrambi = false;
             $("#" + selectedClimate + " .automaticManual").html("Manuale");
         }
         
@@ -35,7 +37,12 @@ loadXMLcallback = function (port, portArray){
         if(portArray["ReleTemp"] == "1"){ stato = on; }
         $("#" + selectedClimate + " .automatico").attr('src', stato);
         if(stato == on){
+            spentiEntrambi = false;
             $("#" + selectedClimate + " .automaticManual").html("Automatico");
+        }
+        
+        if(spentiEntrambi == true){
+            $("#" + selectedClimate + " .automaticManual").html("AUTOMATICO/MANUALE");
         }
     }
 }
