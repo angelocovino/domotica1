@@ -68,9 +68,9 @@ function appicciaStuta (elem, isClick = false){
             setLed(port, led);
         }
     }else{
-        if(tr.attr("data-acceso") == 1){
+        if(tr.attr("data-acceso") == 'up' || tr.attr("data-acceso") == 1){
             img.attr("src", lampadinaAccesa);
-        }else if(tr.attr("data-acceso") == 0){
+        }else if(tr.attr("data-acceso") == 'dn' || tr.attr("data-acceso") == 0){
             img.attr("src", lampadinaSpenta);
         }
     }

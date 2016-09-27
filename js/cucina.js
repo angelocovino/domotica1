@@ -36,14 +36,14 @@ function appicciaStuta (elem, isClick = false){
         }else{
             if(tr.attr("data-acceso") == 'up' || tr.attr("data-acceso") == 1){
                 setImage(img, tempImageOn);
-            }if(tr.attr("data-acceso") == 'dn' || tr.attr("data-acceso") == 0){
+            }else if(tr.attr("data-acceso") == 'dn' || tr.attr("data-acceso") == 0){
                 setImage(img, tempImageOff);
             }
         }
     }else{
         if(tr.attr("data-acceso") == 'up' || tr.attr("data-acceso") == 1){
             setImage(img, tempImageOn);
-        }if(tr.attr("data-acceso") == 'dn' || tr.attr("data-acceso") == 0){
+        }else if(tr.attr("data-acceso") == 'dn' || tr.attr("data-acceso") == 0){
             setImage(img, tempImageOff);
         }
     }
