@@ -34,41 +34,41 @@
                             echo "<td id='stato{$i}'></td>";    
                             echo "<td id='cnt{$i}'></td>";    
                             echo "<td id='en{$i}'>";
-                            if($i<16) echo "<button onclick=\"setLed('93','{$i}','Mon')\"></button>";
+                            if($i<16) echo "<button onclick=\"setLed('93','{$i}','Mon')\">Disabilita</button>";
                             echo "</td>";    
                             echo "</tr>";
                         }
                     ?>
                 </table>
-                <button onclick="popupClose()">stato</button>
+                <br />
+                <button onclick="popupClose()">Chiudi</button>
             </div>
+            
             <div class="cont">
                 <div class="stato">
                     <img onclick="setLed(93,16)" class="sirena" src="immagini/sirengreen.svg" />
-                    Stato <span id="statoAllarme"></span>
+                    <span id="statoAllarme">Pronto</span>
                     <progress style="display:none" id="loadBar" value="1" max="60"></progress>
                 </div><br/>
-
-
                 <div class="button" onclick="setLed('93','T','all')">
                     <img src="immagini/shieldRed.svg" />
-                    <p>Allarme totale</p>
+                    Allarme totale
                 </div>
 
                 <div class="button" onclick="setLed('93','P','all')">
                     <img src="immagini/sheldGren.svg"  />
-                    <p>Allarme parziale</p>
+                    Allarme parziale
                 </div>
 
                 <div class="button reset" onclick="setLed('93','R','all')">
                     <img src="immagini/warning%20(1).svg"  />
-                    <p>Reset allarme</p>
+                    Reset allarme
                 </div><br />
 
-                 <div class="" id="Riciclo">
+                 <div id="Riciclo">
                     <div class="riciclo">
-                        <img src="immagini/recycling.svg" />
-                        <p>Modalita riciclo</p>
+                        <img src="immagini/recycling.svg" /><br />
+                        Modalita'<br />riciclo
                      </div><div class="riciclo">
                         <div class="lista">
                             <div class="elemList attivo" onclick="setLed('93','2','modalit')">Attiva</div>
@@ -77,10 +77,8 @@
                          </div>
                      </div>
                 </div><br>
-
-                <a href="http://smarthome2.altervista.org/email_log_VarricchioArturo06.txt">Registro</a>
-
-                <button onclick="popupOpen()">stato</button>
+                <a href="http://smarthome2.altervista.org/email_log_VarricchioArturo06.txt" class='testoResponsive'>Registro</a>
+                <button class='testoResponsive' onclick="popupOpen()">stato</button>
             </div>
             <?php else: ?>
                 <?php if(isset($_POST['pass'])): ?>
