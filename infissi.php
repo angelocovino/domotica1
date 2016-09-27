@@ -2,21 +2,21 @@
 <?php
     $gestioni = array(
         "gestione totale" => array(
-            "apertura" => saIO::led(19, 94)->setImage("immagini/arrowRight.svg", "immagini/arrowRight.svg"),
-            "chiusura" => saIO::led(20, 94)->setImage("immagini/arrowLeft.svg", "immagini/arrowLeft.svg")
+            "apertura" => saIO::led(19, 94)->setImage("immagini/arrowRightOn.svg", "immagini/arrowRight.svg"),
+            "chiusura" => saIO::led(20, 94)->setImage("immagini/arrowLeftOn.svg", "immagini/arrowLeft.svg")
         ),
         "gestione parziale" => array(
-            "apertura 50%" => saIO::led(22, 94)->setImage("immagini/arrowRight.svg", "immagini/arrowRight.svg"),
-            "apertura estiva" => saIO::led(21, 94)->setImage("immagini/arrowRight.svg", "immagini/arrowRight.svg")
+            "apertura 50%" => saIO::led(22, 94)->setImage("immagini/arrowRightOn.svg", "immagini/arrowRight.svg"),
+            "apertura estiva" => saIO::led(21, 94)->setImage("immagini/arrowRightOn.svg", "immagini/arrowRight.svg")
         )
     );
     $stanze = array(
        "cancello pedonale" => array(
-            "apri" => saIO::led(1, 93)->setImage("immagini/arrowRight.svg", "immagini/arrowRight.svg")
+            "apri" => saIO::led(1, 93)->setImage("immagini/arrowRightOn.svg", "immagini/arrowRight.svg")
         ),
         "Porta blindata" => array(
             "stato" => saIO::btn(1, 93)->setImage("immagini/door-1.svg", "immagini/door.svg"),
-            "apri" => saIO::led(3, 93)->setImage("immagini/arrowRight.svg", "immagini/arrowRight.svg")
+            "apri" => saIO::led(3, 93)->setImage("immagini/arrowRightOn.svg", "immagini/arrowRight.svg")
         ),
         "Finestra cucina" => array(
             "stato" => saIO::btn(2, 93)->setImage("immagini/windowOpen.svg", "immagini/windowClose.svg")
