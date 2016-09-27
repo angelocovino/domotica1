@@ -213,10 +213,10 @@ a.testoResponsive:hover {
     }
     [id^=cnt],
     [id^=stato] {
-        display: none;
+     /*   display: none; */
     }
     #calendarEventPopup th:nth-child(2),
     #calendarEventPopup th:nth-child(3){
-        display: none;
+       /* display: none; */
     }
 }
