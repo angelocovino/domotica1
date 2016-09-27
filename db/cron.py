@@ -12,7 +12,7 @@ import string
 con = None
 
 try:
-    path = "/var/www/html/domoticaVarr/db/domotica.sqlite3"
+    path = "/var/www/db/domotica.sqlite3"
     con = lite.connect(path)
     
     con.row_factory = lite.Row
@@ -32,7 +32,7 @@ try:
     cur.execute(query);
     
     rows = cur.fetchall()
-    conn = httplib.HTTPConnection("domotica.smart.homepc.it", 8091)
+    conn = httplib.HTTPConnection("192.168.1.201", 8091)
     
     for row in rows:
         print row['istruzione'] ,row['nome']
@@ -46,7 +46,7 @@ try:
     cur.execute(query);
     
     rows = cur.fetchall()
-    conn = httplib.HTTPConnection("domotica.smart.homepc.it", 8091)
+    conn = httplib.HTTPConnection("192.168.1.201", 8091)
     
     for row in rows:
         giorni = string.split(row['giorni'], ",")

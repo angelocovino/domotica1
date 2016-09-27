@@ -33,6 +33,9 @@ function checkFileExists(url){
 }
 loadScript("js/jquery.min.js", function () {
     $(document).ready(function(){
+        
+        setTimeout(function() { window.scrollTo(0, 1) }, 100);
+        
         // TITOLO TOGGLE
         $(".titolo").click(function (){
             var fatti = $(this).parent().find(".fatti");
