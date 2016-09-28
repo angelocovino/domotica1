@@ -164,7 +164,8 @@ function setLedView(port, portArray, callback){
     $.each(portArray, function(tagName, value) {
         type = tagName.substring(0, 3);
         number = tagName.substring(3);
-        $("[data-port=" + port + "][data-" + type + "=" + number + "]").attr("data-acceso", value);
+        if(type!="ver")
+            $("[data-port=" + port + "][data-" + type + "=" + number + "]").attr("data-acceso", value);
     });
     $(".fatto tr").each(function(i, elem){
         callback(elem);
