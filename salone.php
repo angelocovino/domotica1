@@ -61,7 +61,7 @@
                                         echo "<input type='text' id='rgb_{$name[0]}' />";
                                     }elseif(strpos($luce, "regola") != false){
                                         $name = explode(" ", $nome);
-                                        echo "<input type='range' id='white_{$name[0]}' value='50' min='1' max='100' step='1' />";
+                                        echo "<input type='range' id='white_{$name[0]}' value='0' min='1' max='100' step='1' />";
                                     }else{
                                         echo "<img src='immagini/lamp-3.svg' />";
                                     }

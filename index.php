@@ -30,6 +30,7 @@
         
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
         <link href="css/index.css" rel="stylesheet" />
+        <script src="js/jquery.min.js"></script>
         <script>
             window.addEventListener("load",function() {
                 setTimeout(function(){
@@ -39,11 +40,24 @@
             function vaiA (pagina){
                 document.location = pagina + '.php';
             }
+            function indexResize(){
+                $(".indexMenuEntry").width($(".indexMenuEntry").height());
+                $("#indexContainer").css("margin-left", $("#indexMenuContainer").width());
+            }
+            $(document).ready(function(){
+                indexResize();
+                $(window).resize(function() {
+                    indexResize();
+                });
+            });
         </script>
     </head>
     <body>
+    <!--
         <table id="tabellaCentrativa" class="noHeader"><tr><td>
-            <div id="container">
+        </td></tr></table>
+    -->
+            <div id="indexMenuContainer">
                 <?php
                     @include('shared/utilities.php');
                     $i = 0;
@@ -51,15 +65,45 @@
                         $i++;
                         $temp = explode(" ", $titolo);
                         $temp = $temp[0];
-                        echo "<div onclick='vaiA(\"" . $temp . "\");'>";
-                            echo "<img class='icona' src='immagini/" . $svg . ".svg'><br />" . $titolo;
+                        echo "<div class='indexMenuEntry' onclick='vaiA(\"" . $temp . "\");'>";
+                            echo "<img class='icona' src='immagini/" . $svg . ".svg'>"; // . $titolo;
                         echo "</div>";
-                        if($i%3 == 0){
-                            echo "<br />";
-                        }
                     }
                 ?>
             </div>
-        </td></tr></table>
+            <div id="indexContainer">
+                <table cellspacing="5px">
+                    <tr>
+                        <td colspan="2"><?php
+                            echo date("d") . " ";
+                            echo $months[date("n")] . " ";
+                            echo date("Y");
+                        ?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div><iframe width="100%" src="https://www.3bmeteo.com/moduli_esterni/localita_7_giorni_esteso/7742/ffffff/dcdcdc/5e5e5e/ffffff/it" width=382 height=287 frameborder="0"></iframe><br/><a href="http://www.3bmeteo.com/meteo/vercelli" ></a></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            temperature
+                        </td>
+                        <td>
+                            sensore lux - consumi - stato schede
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            Attivita' giornaliere
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            esseci
+                        </td>
+                    </tr>
+                </table>
+            </div>
     </body>
 </html>

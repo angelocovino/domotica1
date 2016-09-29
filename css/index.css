@@ -1,13 +1,73 @@
 @import url("reset.css");
-#container {
+#indexMenuContainer {
+    position: fixed;
+    left: 0;
+    top: 0;
     display: inline-block;
-    width: 100%;
+    height: 100%;
     border: 0px solid black;
+    padding-right: 2px;
+    box-shadow: 0 2px 1px 1px darkgray;
 }
-#container > div {
+#indexMenuContainer .icona {
+    margin-bottom: 5px;
+    width: 100%;
+    margin: 0;
+}
+.indexMenuEntry {
     cursor: pointer;
     text-transform: uppercase;
+    text-align: center;
+    display: block;
+    margin: 5px 5px 0px 7px;
+    border-radius: 25%;
+    background-color: lightgray;
+    box-shadow: 0 0 1px 1px darkgray;
+    padding: 10px;
+    border: 0px solid blue;
+    color: black;
+    font-size: 0.7em;
+    height: calc((100% / 9) - 26px);
 }
+.indexMenuEntry:not(:last-child) {
+    margin: 5px 5px 5px 7px;
+}
+.indexMenuEntry:first-child {
+    margin-top: 7px;
+}
+
+#indexContainer {
+    position: relative;
+    padding: 7px 5px 7px 7px;
+    margin-left: 0px;
+}
+#indexContainer table {
+    width: 100%;
+    background-color: transparent;
+}
+#indexContainer table td {
+    width: 50%;
+    padding: 10px;
+    background-color: #eee;
+}
+
+#indexContainer table tr:first-child td {
+    text-align: center;
+    border-radius: 10px;
+    background-color: lightgray;
+    box-shadow: 0 0 1px 1px darkgray;
+}
+
+
+
+
+
+
+
+
+
+
+
 #tabellaCentrativa {
     width: 100%;
     height: 100%;
@@ -21,43 +81,8 @@
     vertical-align: middle;
     text-align: center;
 }
-#container .icona {
-    margin-bottom: 5px;
-}
 @media screen and (min-width: 801px) {
-    #container .icona {
-        width: 100px;
-    }
-    #container > div {
-        display: inline-block;
-        margin: 1%;
-        width: 15%;
-        max-width: 125px;
-        border-radius: 20px;
-        background-color: lightgray;
-        box-shadow: 0 0 1px 1px darkgray;
-        padding: 10px;
-        border: 0px solid blue;
-        color: black;
-        font-size: 0.7em;
-    }
 }
 
 @media screen and (max-width: 800px) {
-    #container .icona {
-        width: 100%;
-        margin: 0;
-    }
-    #container > div {
-        display: inline-block;
-        margin: 1%;
-        width: 25%;
-        border-radius: 20px;
-        background-color: lightgray;
-        box-shadow: 0 0 1px 1px darkgray;
-        padding: 10px;
-        border: 0px solid blue;
-        color: black;
-        font-size: 0.7em;
-    }
 }

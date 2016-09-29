@@ -93,7 +93,7 @@ loadScript("js/jquery.min.js", function () {
             echo "}";
             if(strcasecmp($page, "perimetro") == 0):
 ?>
-    loadStyle("css/index.css");
+    loadStyle("css/perimetro.css");
     /*
     loadStyle("css/jquerySVG/jquery.svg.css");
     loadScript("js/jquerySVG/jquery.svg.js", function(){});
@@ -139,6 +139,7 @@ function pad (str, max) {
     return ((str.length < max) ? pad("0" + str, max) : str);
 }
 
+var doNotRefresh = false;
 function reloadColor(baseColor, stanza){
     $("#rgb_" + stanza).spectrum({
         preferredFormat: "hsl",
@@ -152,9 +153,9 @@ function reloadColor(baseColor, stanza){
             var str = color1['h'] + "_" + color1['s'] + "_" + color1['l'];
             $('#rgb_' + stanza).parent().find('.sp-preview-img').attr('src', 'shared/drawLamp.php?color=' + str);
             str = pad(color.toRed(), 3) + "" + pad(color.toGreen(), 3) + "" + color.toBlue();
-            console.log($('#rgb_' + stanza).parents("tr").attr("data-port"));
-            setLed(95, str, "rgb");
-            // RICORDATI DI METTERE TUTTI I LED
+            var port = parseInt($('#rgb_' + stanza).parents("tr").attr("data-port"));
+            setLed(port, str, "rgb");
+            doNotRefresh = true;
         }
     });
 }
@@ -166,7 +167,11 @@ function setLedView(port, portArray, callback){
         number = tagName.substring(3);
         $("[data-port=" + port + "][data-" + type + "=" + number + "]").attr("data-acceso", value);
     });
-    $(".fatto tr").each(function(i, elem){
-        callback(elem);
-    });
+    if(!doNotRefresh){
+        $(".fatto tr").each(function(i, elem){
+            callback(elem);
+        });
+    }else{
+        doNotRefresh = false;
+    }
 }

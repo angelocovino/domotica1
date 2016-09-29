@@ -23,20 +23,29 @@ loadXMLcallback = function (port, portArray){
                 $('#rgb_' + stanza).parent().find('.sp-preview-img').attr('src', 'immagini/lamp-3.svg');
             }else{
                 hexdecimal = pad(Number(r).toString(16), 2) + pad(Number(g).toString(16), 2) + pad(Number(b).toString(16), 2);
-                hex = pad(r, 3) + pad(g, 3) + pad(b, 3);
-                if(hexLast == false || (hexLast != hex)){
-                    //$("#rgb_" + stanza).spectrum("set", "#" + hexdecimal);
-                    $('#rgb_' + stanza).parent().find('.sp-preview-img').attr('src', 'shared/drawLamp.php?rgb=' + hex);
+                if(isNan(r) || isNan(g) || isNan(b)){
+                    $('#rgb_' + stanza).parent().find('.sp-preview-img').attr('src', 'immagini/lamp-3.svg');
+                    hexLast = false;
+                }else{
+                    hex = pad(r, 3) + pad(g, 3) + pad(b, 3);
+                    if(hexLast == false || (hexLast != hex)){
+                        //$("#rgb_" + stanza).spectrum("set", "#" + hexdecimal);
+                        $('#rgb_' + stanza).parent().find('.sp-preview-img').attr('src', 'shared/drawLamp.php?rgb=' + hex);
+                    }
+                    hexLast = hex;
                 }
-                hexLast = hex;
             }
         }
         // LED WHITE
         if($("#white_" + stanza).length > 0){
             w = portArray['PWM3'] / 2;
             wPercentage = ((w * 100) / 250);
-            $("#white_" + stanza).val(wPercentage);
-            str = wPercentage + "%";
+            if(isNaN(wPercentage)){
+                str = "-";
+            }else{
+                $("#white_" + stanza).val(wPercentage);
+                str = wPercentage + "%";
+            }
             if(wPercentage == 0){ str = 'Accendi/Regola'; }
             $("#white_" + stanza + "_span").html(str);
         }
