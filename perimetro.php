@@ -1,7 +1,11 @@
 <?php
     @include('shared/header.php');
 ?>
-    <table id="tabellaCentrativa"><tr><td>
+    <!--
+        <table id="tabellaCentrativa" class="noHeader"><tr><td>
+        </td></tr></table>
+    -->
+    <table id="tabellaCentrativa" class="noHeader"><tr><td>
         <div id="container">
             <?php
                 $i = 0;

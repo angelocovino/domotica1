@@ -22,7 +22,6 @@ function loadXMLStatus(ports, callback){
             console.log("Errore di connessione " + ErrorStr);
         })
         .complete(function(xhr, textStatus){
-            console.log("test");
             if(xhr.status == 200){
                 setTimeout(loadXMLStatus(ports, callback), 1000);
             }else{

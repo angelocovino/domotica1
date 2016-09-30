@@ -1,8 +1,10 @@
 @import url("reset.css");
+/*
 .icona {
     width: 35px;
     margin: 10px;
 }
+*/
 .home {
     width: 50px;
     padding-right: 10px;
@@ -71,7 +73,7 @@
         display: inline-block;
         width: calc(33% - 26px);
     }
-    #tabellaCentrativa > tr > td {
+    #tabellaCentrativa td {
         vertical-align: middle;
         text-align: center;
         width: 100%;

@@ -34,10 +34,19 @@ function checkFileExists(url){
     http.send();
     return http.status!=404;
 }
+function indexResize(){
+    $(".indexMenuEntry").width($(".indexMenuEntry").height());
+    $("#indexContainer").css("margin-left", $("#indexMenuContainer").width());
+}
 loadScript("js/jquery.min.js", function () {
     $(document).ready(function(){
         
         setTimeout(function() { window.scrollTo(0, 1) }, 100);
+        
+        indexResize();
+        $(window).resize(function() {
+            indexResize();
+        });
         
         // TITOLO TOGGLE
         $(".titolo").click(function (){
@@ -74,6 +83,12 @@ loadScript("js/jquery.min.js", function () {
                 $(".fatti").hide(0);
                 $(".titolo").find("img").removeClass('ruotami');
             }
+            
+            window.addEventListener("load",function() {
+                setTimeout(function(){
+                    window.scrollTo(0, 1);
+                }, 0);
+            });
         });
     });
     loadScript("io/io.js", function(){});
