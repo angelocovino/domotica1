@@ -2,10 +2,9 @@
     @include('shared/header.php');
 ?>
     <!--
-        <table id="tabellaCentrativa" class="noHeader"><tr><td>
-        </td></tr></table>
+        <table id="tabellaCentrativa" class="noHeader">
     -->
-    <table id="tabellaCentrativa" class="noHeader"><tr><td>
+    <table id="tabellaCentrativa"><tr><td>
         <div id="container">
             <?php
                 $i = 0;

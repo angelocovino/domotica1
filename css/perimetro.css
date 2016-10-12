@@ -2,6 +2,7 @@
 #container {
     display: inline-block;
     width: 100%;
+    height: auto;
     border: 0px solid black;
 }
 #container > div {
@@ -24,7 +25,7 @@
 #container .icona {
     margin-bottom: 5px;
 }
-@media screen and (min-width: 801px) {
+@media screen and (min-width: 768px) {
     #container .icona {
         width: 100px;
     }
@@ -43,7 +44,7 @@
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 767px) {
     #container .icona {
         width: 100%;
         margin: 0;

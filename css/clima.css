@@ -38,8 +38,13 @@
 div.manuale,
 div.automatico {
     display: block;
-    margin: 5px;
+    padding: 5px;
     cursor: pointer;
+    border-radius: 20px;
+}
+div.manuale:hover,
+div.automatico:hover {
+    background-color: #ddd;
 }
 div.manuale > *,
 div.automatico > * {
@@ -93,15 +98,21 @@ ul li button{
     margin-top: 10px;
     cursor: pointer;
 }
-@media screen and (min-width: 801px ){
+@media screen and (min-width: 1024px){
     .bigDiv {
-        width: 40%;
-        max-width: 350px;
+        width: 45%;
+        max-width: 450px;
     }
 }
-@media screen and (max-width: 800px) {
+@media screen and (min-width: 768px) and (max-width: 1024px){
     .bigDiv {
-        width: calc(80%);
-        max-width: 250px;
+        width: 45%;
+        max-width: 340px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .bigDiv {
+        width: 80%;
+        /*max-width: 250px;*/
     }
 }

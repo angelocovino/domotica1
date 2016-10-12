@@ -3,7 +3,7 @@ var load = 0;
 var statoAllarmeT = 0;
 var statoAllarmeP = 0;
 var stato = $("#statoAllarme");
-
+var password = "";
 
 loadXMLcallback = function (port, portArray){
     contdebug = portArray["Cntdebug"];
@@ -11,42 +11,32 @@ loadXMLcallback = function (port, portArray){
     statoAllarmeP = portArray['allP'];
     
     for($i=1;$i<8;$i++){
-        
         $("#cnt" + $i).html(portArray['Cntdebug' + $i]);
-        
         if(portArray['EnIn' + $i]=="NON ABILITATO"){
             $("#en" + $i + " button").html("Abilita");
         }else{
             $("#en" + $i + " button" ).html("Disabilita");
         }
-        
         if(portArray['btn' + $i]=="up"){            
             $("#stato" + $i).html("Aperta");
         }else{
            $("#stato" + $i).html("Chiusa");
         }
-        
     }
     
     for($i=9;$i<12;$i++){
-        
         $("#cnt" + $i).html(portArray['Cntdebug' + $i]);
-        
         if(portArray['EnIn' + $i]=="NON ABILITATO"){
             $("#en" + $i + " button").html("Abilita");
         }else{
             $("#en" + $i + " button" ).html("Disabilita");
         }
-        
         if(portArray['btn' + $i]=="up"){            
             $("#stato" + $i).html("Aperta");
         }else{
            $("#stato" + $i).html("Chiusa");
         }
-        
     }
-    
-
     
     $("#cnt16").html(portArray['Cntdebug16']);
     $("#cnt17").html(portArray['Cntdebug17']);
@@ -62,8 +52,6 @@ loadXMLcallback = function (port, portArray){
     }else{
         $("#stato17").html("Presente");
     }
-
-
 
     if(portArray['allR']=="1"){
         $(".reset").show();
@@ -91,25 +79,29 @@ loadXMLcallback = function (port, portArray){
         $(".riciclo .disattivo").css("background-color","#00d0ff");
     }
     
-    if((portArray['allT'] >= "1") && (portArray['Cntdebug'] == "0")){//Allarme attivo totale
+    if((portArray['allT'] >= "1") && (portArray['Cntdebug'] == "0")){
+        //Allarme attivo totale
         if(portArray['allT'] == "2"){
             stato.html("Allarme totale attivo con attenzione");
         }else{
             stato.html("Allarme totale attivo");
         }
         $("#loadBar").hide();
-    }else if((portArray['allP'] >= "1") && (portArray['Cntdebug'] == "0")){//Allarme attivo parziale
+    }else if((portArray['allP'] >= "1") && (portArray['Cntdebug'] == "0")){
+        //Allarme attivo parziale
         if(portArray['allP'] == "2"){
             stato.html("Allarme parziale attivo con attenzione");
         }else{
             stato.html("Allarme parziale attivo");
         }
         $("#loadBar").hide();
-    }else if((portArray['led11'] == '0' ) && (portArray["Cntdebug"] == "0")){//Allarme pronto
+    }else if((portArray['led11'] == '0' ) && (portArray["Cntdebug"] == "0")){
+        //Allarme pronto
         stato.html("Pronto");
         load=0;
         $("#loadBar").hide();
-    }else if(portArray["Cntdebug"]>0){//Allarme in attivazione
+    }else if(portArray["Cntdebug"]>0){
+        //Allarme in attivazione
         if(load == 0){
             loadBar = document.getElementById("loadBar").value = 0;
             if(portArray['allT'] == "2")stato.html("Attivazione allarme totate in corso ");
@@ -120,7 +112,6 @@ loadXMLcallback = function (port, portArray){
             load = 1;
         }
     }
-
 }
 
 function popupOpen(time = 500){

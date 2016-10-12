@@ -34,19 +34,10 @@ function checkFileExists(url){
     http.send();
     return http.status!=404;
 }
-function indexResize(){
-    $(".indexMenuEntry").width($(".indexMenuEntry").height());
-    $("#indexContainer").css("margin-left", $("#indexMenuContainer").width());
-}
 loadScript("js/jquery.min.js", function () {
     $(document).ready(function(){
         
         setTimeout(function() { window.scrollTo(0, 1) }, 100);
-        
-        indexResize();
-        $(window).resize(function() {
-            indexResize();
-        });
         
         // TITOLO TOGGLE
         $(".titolo").click(function (){

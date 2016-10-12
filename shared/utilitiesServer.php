@@ -1,4 +1,13 @@
 <?php
+    $correspondences = array(
+            91 => 201,
+            92 => 202,
+            93 => 203,
+            94 => 204,
+            95 => 205,
+            96 => 206,
+            97 => 207
+    );
     $server = array(
         "server" => 'http://192.168.1',
         "serverPort" => '80',

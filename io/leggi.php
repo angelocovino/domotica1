@@ -1,14 +1,5 @@
 <?php
     include("../shared/utilitiesServer.php");
-    $correspondences = array(
-            91 => 201,
-            92 => 202,
-            93 => 203,
-            94 => 204,
-            95 => 205,
-            96 => 206,
-            97 => 207
-    );
 
     $arrayRichieste = array();
     if(isset($_GET['ports'])){

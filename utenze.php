@@ -11,12 +11,12 @@
                 <div onclick="setLed(93,15)" data-enabled="0" class="button" id="Acqua">
                     Acqua
                     <img src="immagini/faucet-off.svg" />
-                    <span>spenta</span>
+                    <span>chiusa</span>
                 </div>
                 <div onclick="setLed(93,13)" data-enabled="0" class="button" id="Anti">
                     Antincendio
                     <img src="immagini/extinguisher.svg" />
-                    <span>spento</span>
+                    <span>disattivo</span>
                 </div>
 
 

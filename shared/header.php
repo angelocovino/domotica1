@@ -58,18 +58,12 @@
         <link rel="shortcut icon" type="image/png" href="immagini/favicon.png"/>
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
         <link href="css/header.css" rel="stylesheet" />
-        <link href="css/index.css" rel="stylesheet" />
 <?php
     echo "<script src='js/shared.php?page=" . $pagina . "'></script>";
 ?>
     </head>
     <body>
 		<div id="popupBackground">&nbsp;</div>
-<?php
-            include("shared/leftMenu.php");
-/*
-?>
-        
         <header id="topMenu">
 <?php
     switch($menuUtilizzato){
@@ -90,7 +84,3 @@
                 <img class='icona' src='immagini/<?php echo $key; ?>.svg' /></td><td><?php echo $paginaVisualizzata; ?>
             </td></tr></table>
         </header>
-<?php
-*/
-?>
-            <div id="indexContainer">

@@ -23,7 +23,7 @@ loadXMLcallback = function (port, portArray){
                 $('#rgb_' + stanza).parent().find('.sp-preview-img').attr('src', 'immagini/lamp-3.svg');
             }else{
                 hexdecimal = pad(Number(r).toString(16), 2) + pad(Number(g).toString(16), 2) + pad(Number(b).toString(16), 2);
-                if(isNan(r) || isNan(g) || isNan(b)){
+                if(isNaN(r) || isNaN(g) || isNaN(b)){
                     $('#rgb_' + stanza).parent().find('.sp-preview-img').attr('src', 'immagini/lamp-3.svg');
                     hexLast = false;
                 }else{
