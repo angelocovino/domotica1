@@ -114,11 +114,17 @@ loadXMLcallback = function (port, portArray){
     }
 }
 
-function popupOpen(time = 500){
+function popupOpen(time){
+    if (time === undefined) {
+        time = 500;
+    }
     $("#popupBackground").fadeIn(time);
     $("#calendarEventPopup").fadeIn(time);
 }
-function popupClose(time = 500){
+function popupClose(time){
+    if (time === undefined) {
+        time = 500;
+    }
     $("#popupBackground").fadeOut(time);
     $("#calendarEventPopup").fadeOut(time);
 }

@@ -31,7 +31,10 @@ function loadXMLStatus(ports, callback){
     }
 }
 
-function setLed(port, value, type="led"){
+function setLed(port, value, type){
+    if (type === undefined) {
+        type = "led";
+    }
     var setTypes = [
         "led",
         "rgb",

@@ -4,7 +4,10 @@
         $page = $_GET['page'];
     }
 ?>
-function vaiA(pagina, parameters = ""){
+function vaiA(pagina, parameters){
+    if (parameters === undefined) {
+        parameters = "";
+    }
     document.location = pagina + '.php' + parameters;
 }
 function loadScript(url, callback){

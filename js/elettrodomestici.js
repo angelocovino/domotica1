@@ -5,7 +5,10 @@ loadXMLcallback = function (port, portArray){
 }
 
 var tr, port, led, img, turnoff;
-function appicciaStuta (elem, isClick = false){
+function appicciaStuta (elem, isClick){
+    if (isClick === undefined) {
+        isClick = false;
+    }
     if(elem.target){
         tr = $(elem.currentTarget);
         isClick = elem.data.isClick;

@@ -9,7 +9,13 @@ function isFunction(functionToCheck) {
 function isCalendarEventOpen(){
     return ($("#calendarEventPopup").is(":visible"));
 }
-function calendarEventToggle(time = 500, callback = null){
+function calendarEventToggle(time, callback){
+    if (time === undefined) {
+        time = 500;
+    }
+    if (callback === undefined) {
+        callback = null;
+    }
     if(isCalendarEventOpen()){
         calendarEventClose(time, callback);
         if(isFunction(callback)){
@@ -21,11 +27,20 @@ function calendarEventToggle(time = 500, callback = null){
         calendarEventOpen(time);
     }
 }
-function calendarEventOpen(time = 500){
+function calendarEventOpen(time){
+    if (time === undefined) {
+        time = 500;
+    }
     $("#popupBackground").fadeIn(time);
     $("#calendarEventPopup").fadeIn(time);
 }
-function calendarEventClose(time = 500, callback = null){
+function calendarEventClose(time, callback){
+    if (time === undefined) {
+        time = 500;
+    }
+    if (callback === undefined) {
+        callback = null;
+    }
     $("#popupBackground").fadeOut(time, function(){
         if(isFunction(callback)){
             callback();
